@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -9,12 +10,25 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
+import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2, Tag, X } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
+interface DiscountCode {
+  id: string;
+  code: string;
+  type: 'percentage' | 'fixed_amount';
+  value: number;
+  min_purchase_amount: number;
+}
 
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [discountCode, setDiscountCode] = useState("");
+  const [appliedDiscount, setAppliedDiscount] = useState<DiscountCode | null>(null);
+  const [isValidating, setIsValidating] = useState(false);
+  
   const { 
     items, 
     isLoading, 
@@ -24,13 +38,104 @@ export const CartDrawer = () => {
   } = useCartStore();
   
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + (parseFloat(item.price.amount) * item.quantity), 0);
+  const subtotal = items.reduce((sum, item) => sum + (parseFloat(item.price.amount) * item.quantity), 0);
+  
+  const discountAmount = appliedDiscount 
+    ? appliedDiscount.type === 'percentage' 
+      ? (subtotal * appliedDiscount.value) / 100 
+      : appliedDiscount.value
+    : 0;
+  
+  const totalPrice = Math.max(0, subtotal - discountAmount);
+
+  const validateDiscountCode = async () => {
+    if (!discountCode.trim()) {
+      toast.error("Please enter a discount code");
+      return;
+    }
+
+    setIsValidating(true);
+    try {
+      const { data, error } = await supabase
+        .from('discount_codes')
+        .select('*')
+        .eq('code', discountCode.toUpperCase())
+        .eq('is_active', true)
+        .single();
+
+      if (error || !data) {
+        toast.error("Invalid discount code", {
+          description: "This code doesn't exist or has expired."
+        });
+        return;
+      }
+
+      // Check if expired
+      if (data.valid_until && new Date(data.valid_until) < new Date()) {
+        toast.error("Discount code expired", {
+          description: "This code is no longer valid."
+        });
+        return;
+      }
+
+      // Check minimum purchase
+      if (data.min_purchase_amount && subtotal < data.min_purchase_amount) {
+        toast.error("Minimum purchase not met", {
+          description: `You need to spend at least ${data.min_purchase_amount} RON to use this code.`
+        });
+        return;
+      }
+
+      // Check max uses
+      if (data.max_uses && data.current_uses >= data.max_uses) {
+        toast.error("Code usage limit reached", {
+          description: "This code has been used too many times."
+        });
+        return;
+      }
+
+      setAppliedDiscount(data as DiscountCode);
+      toast.success("Discount applied!", {
+        description: data.type === 'percentage' 
+          ? `${data.value}% off your order` 
+          : `${data.value} RON off your order`
+      });
+    } catch (error) {
+      console.error('Error validating discount code:', error);
+      toast.error("Error validating code", {
+        description: "Please try again."
+      });
+    } finally {
+      setIsValidating(false);
+    }
+  };
+
+  const removeDiscount = () => {
+    setAppliedDiscount(null);
+    setDiscountCode("");
+    toast.success("Discount code removed");
+  };
 
   const handleCheckout = async () => {
     try {
       await createCheckout();
       const checkoutUrl = useCartStore.getState().checkoutUrl;
       if (checkoutUrl) {
+        // Track discount usage if applied
+        if (appliedDiscount) {
+          await supabase.from('discount_code_usage').insert({
+            discount_code_id: appliedDiscount.id,
+            customer_email: 'checkout@wavely.ro', // Will be updated with real email after checkout
+            discount_amount: discountAmount
+          });
+
+          // Update usage count
+          await supabase
+            .from('discount_codes')
+            .update({ current_uses: appliedDiscount.value + 1 })
+            .eq('id', appliedDiscount.id);
+        }
+        
         window.open(checkoutUrl, '_blank');
         setIsOpen(false);
       }
@@ -133,11 +238,76 @@ export const CartDrawer = () => {
               </div>
               
               <div className="flex-shrink-0 space-y-4 pt-4 border-t bg-background">
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold">Total</span>
-                  <span className="text-xl font-bold">
-                    {items[0]?.price.currencyCode || 'USD'} ${totalPrice.toFixed(2)}
-                  </span>
+                {/* Discount Code Section */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Tag className="h-4 w-4" />
+                    Discount Code
+                  </label>
+                  
+                  {appliedDiscount ? (
+                    <div className="flex items-center gap-2 p-2 bg-green-500/10 border border-green-500/20 rounded-lg">
+                      <Badge variant="secondary" className="bg-green-500/20 text-green-700">
+                        {appliedDiscount.code}
+                      </Badge>
+                      <span className="text-sm flex-1">
+                        {appliedDiscount.type === 'percentage' 
+                          ? `-${appliedDiscount.value}%` 
+                          : `-${appliedDiscount.value} RON`}
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={removeDiscount}
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2">
+                      <Input
+                        placeholder="Enter code"
+                        value={discountCode}
+                        onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
+                        onKeyDown={(e) => e.key === 'Enter' && validateDiscountCode()}
+                        className="flex-1"
+                      />
+                      <Button
+                        variant="outline"
+                        onClick={validateDiscountCode}
+                        disabled={isValidating || !discountCode.trim()}
+                      >
+                        {isValidating ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          "Apply"
+                        )}
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Price Summary */}
+                <div className="space-y-2 pt-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Subtotal</span>
+                    <span>{items[0]?.price.currencyCode || 'USD'} ${subtotal.toFixed(2)}</span>
+                  </div>
+                  
+                  {appliedDiscount && (
+                    <div className="flex justify-between text-sm text-green-600">
+                      <span>Discount ({appliedDiscount.code})</span>
+                      <span>-${discountAmount.toFixed(2)}</span>
+                    </div>
+                  )}
+                  
+                  <div className="flex justify-between items-center pt-2 border-t">
+                    <span className="text-lg font-semibold">Total</span>
+                    <span className="text-xl font-bold">
+                      {items[0]?.price.currencyCode || 'USD'} ${totalPrice.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
                 
                 <Button 

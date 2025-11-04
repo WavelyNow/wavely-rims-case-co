@@ -48,6 +48,16 @@ const Footer = () => {
             <h4 className="font-semibold font-poppins mb-4">Support</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
+                <a href="/giveaway" className="transition-smooth hover:text-primary">
+                  Giveaways
+                </a>
+              </li>
+              <li>
+                <a href="/referral" className="transition-smooth hover:text-primary">
+                  Refer & Earn
+                </a>
+              </li>
+              <li>
                 <a href="/faq" className="transition-smooth hover:text-primary">
                   FAQ
                 </a>

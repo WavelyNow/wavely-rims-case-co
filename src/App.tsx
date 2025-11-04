@@ -12,6 +12,8 @@ import Terms from "./pages/Terms";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
+import Giveaway from "./pages/Giveaway";
+import Referral from "./pages/Referral";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/giveaway" element={<Giveaway />} />
+          <Route path="/referral" element={<Referral />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

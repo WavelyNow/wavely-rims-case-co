@@ -14,7 +14,273 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      discount_code_usage: {
+        Row: {
+          customer_email: string
+          discount_amount: number
+          discount_code_id: string
+          id: string
+          order_id: string | null
+          used_at: string
+        }
+        Insert: {
+          customer_email: string
+          discount_amount: number
+          discount_code_id: string
+          id?: string
+          order_id?: string | null
+          used_at?: string
+        }
+        Update: {
+          customer_email?: string
+          discount_amount?: number
+          discount_code_id?: string
+          id?: string
+          order_id?: string | null
+          used_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "discount_code_usage_discount_code_id_fkey"
+            columns: ["discount_code_id"]
+            isOneToOne: false
+            referencedRelation: "discount_codes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      discount_codes: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string | null
+          current_uses: number
+          description: string | null
+          id: string
+          is_active: boolean
+          max_uses: number | null
+          min_purchase_amount: number | null
+          type: string
+          updated_at: string
+          valid_from: string
+          valid_until: string | null
+          value: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by?: string | null
+          current_uses?: number
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          min_purchase_amount?: number | null
+          type: string
+          updated_at?: string
+          valid_from?: string
+          valid_until?: string | null
+          value: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          current_uses?: number
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          min_purchase_amount?: number | null
+          type?: string
+          updated_at?: string
+          valid_from?: string
+          valid_until?: string | null
+          value?: number
+        }
+        Relationships: []
+      }
+      giveaway_entries: {
+        Row: {
+          created_at: string
+          email: string
+          entry_count: number
+          full_name: string
+          giveaway_id: string
+          id: string
+          referral_code: string | null
+          social_proof: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          entry_count?: number
+          full_name: string
+          giveaway_id: string
+          id?: string
+          referral_code?: string | null
+          social_proof?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          entry_count?: number
+          full_name?: string
+          giveaway_id?: string
+          id?: string
+          referral_code?: string | null
+          social_proof?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "giveaway_entries_giveaway_id_fkey"
+            columns: ["giveaway_id"]
+            isOneToOne: false
+            referencedRelation: "giveaways"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      giveaways: {
+        Row: {
+          created_at: string
+          current_entries: number
+          description: string | null
+          end_date: string
+          entry_requirement: string
+          id: string
+          is_active: boolean
+          max_entries: number | null
+          prize_description: string
+          start_date: string
+          title: string
+          updated_at: string
+          winner_email: string | null
+          winner_selected: boolean
+        }
+        Insert: {
+          created_at?: string
+          current_entries?: number
+          description?: string | null
+          end_date: string
+          entry_requirement: string
+          id?: string
+          is_active?: boolean
+          max_entries?: number | null
+          prize_description: string
+          start_date?: string
+          title: string
+          updated_at?: string
+          winner_email?: string | null
+          winner_selected?: boolean
+        }
+        Update: {
+          created_at?: string
+          current_entries?: number
+          description?: string | null
+          end_date?: string
+          entry_requirement?: string
+          id?: string
+          is_active?: boolean
+          max_entries?: number | null
+          prize_description?: string
+          start_date?: string
+          title?: string
+          updated_at?: string
+          winner_email?: string | null
+          winner_selected?: boolean
+        }
+        Relationships: []
+      }
+      referral_codes: {
+        Row: {
+          code: string
+          created_at: string
+          current_uses: number
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          max_uses: number | null
+          referrer_email: string
+          referrer_name: string | null
+          referrer_reward_type: string
+          referrer_reward_value: number
+          reward_type: string
+          reward_value: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          current_uses?: number
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          referrer_email: string
+          referrer_name?: string | null
+          referrer_reward_type: string
+          referrer_reward_value: number
+          reward_type: string
+          reward_value: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          current_uses?: number
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          referrer_email?: string
+          referrer_name?: string | null
+          referrer_reward_type?: string
+          referrer_reward_value?: number
+          reward_type?: string
+          reward_value?: number
+        }
+        Relationships: []
+      }
+      referral_usage: {
+        Row: {
+          id: string
+          order_id: string | null
+          referee_email: string
+          referee_name: string | null
+          referral_code_id: string
+          referrer_reward_claimed: boolean
+          reward_claimed: boolean
+          used_at: string
+        }
+        Insert: {
+          id?: string
+          order_id?: string | null
+          referee_email: string
+          referee_name?: string | null
+          referral_code_id: string
+          referrer_reward_claimed?: boolean
+          reward_claimed?: boolean
+          used_at?: string
+        }
+        Update: {
+          id?: string
+          order_id?: string | null
+          referee_email?: string
+          referee_name?: string | null
+          referral_code_id?: string
+          referrer_reward_claimed?: boolean
+          reward_claimed?: boolean
+          used_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referral_usage_referral_code_id_fkey"
+            columns: ["referral_code_id"]
+            isOneToOne: false
+            referencedRelation: "referral_codes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
