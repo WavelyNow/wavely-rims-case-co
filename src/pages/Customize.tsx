@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import ProgressBar from "@/components/configurator/ProgressBar";
 import StepPhoneModel from "@/components/configurator/StepPhoneModel";
 import StepRimStyle from "@/components/configurator/StepRimStyle";
@@ -186,6 +187,7 @@ const Customize = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
