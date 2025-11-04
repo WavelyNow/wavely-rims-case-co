@@ -17,21 +17,36 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             <a href="/" className="text-sm font-medium transition-smooth hover:text-primary">
               Home
             </a>
-            <a href="/customize" className="text-sm font-medium transition-smooth hover:text-primary">
-              Customize
-            </a>
+            <Button 
+              className="bg-gradient-accent hover:shadow-glow transition-smooth text-sm font-semibold h-9"
+              onClick={() => window.location.href = '/customize'}
+            >
+              Customize Now
+            </Button>
             <a href="/shop" className="text-sm font-medium transition-smooth hover:text-primary">
               Shop
             </a>
             <a href="/gallery" className="text-sm font-medium transition-smooth hover:text-primary">
               Gallery
             </a>
+            <a href="/how-it-works" className="text-sm font-medium transition-smooth hover:text-primary">
+              How It Works
+            </a>
+            <a href="/blog" className="text-sm font-medium transition-smooth hover:text-primary">
+              Blog
+            </a>
+            <a href="/about" className="text-sm font-medium transition-smooth hover:text-primary">
+              About
+            </a>
             <a href="/faq" className="text-sm font-medium transition-smooth hover:text-primary">
               FAQ
+            </a>
+            <a href="/contact" className="text-sm font-medium transition-smooth hover:text-primary">
+              Contact
             </a>
           </div>
 
@@ -64,21 +79,36 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-3 animate-fade-in">
+          <div className="lg:hidden py-4 space-y-3 animate-fade-in border-t border-border/40 mt-4">
             <a href="/" className="block text-sm font-medium transition-smooth hover:text-primary">
               Home
             </a>
-            <a href="/customize" className="block text-sm font-medium transition-smooth hover:text-primary">
-              Customize
-            </a>
+            <Button 
+              className="w-full bg-gradient-accent hover:shadow-glow transition-smooth text-sm font-semibold"
+              onClick={() => window.location.href = '/customize'}
+            >
+              Customize Now
+            </Button>
             <a href="/shop" className="block text-sm font-medium transition-smooth hover:text-primary">
               Shop
             </a>
             <a href="/gallery" className="block text-sm font-medium transition-smooth hover:text-primary">
               Gallery
             </a>
+            <a href="/how-it-works" className="block text-sm font-medium transition-smooth hover:text-primary">
+              How It Works
+            </a>
+            <a href="/blog" className="block text-sm font-medium transition-smooth hover:text-primary">
+              Blog
+            </a>
+            <a href="/about" className="block text-sm font-medium transition-smooth hover:text-primary">
+              About
+            </a>
             <a href="/faq" className="block text-sm font-medium transition-smooth hover:text-primary">
               FAQ
+            </a>
+            <a href="/contact" className="block text-sm font-medium transition-smooth hover:text-primary">
+              Contact
             </a>
           </div>
         )}
