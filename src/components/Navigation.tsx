@@ -1,6 +1,7 @@
-import { ShoppingCart, Heart, User, Menu } from "lucide-react";
+import { Heart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { CartDrawer } from "@/components/CartDrawer";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,12 +56,7 @@ const Navigation = () => {
             <Button variant="ghost" size="icon" className="relative transition-smooth hover:text-primary">
               <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative transition-smooth hover:text-primary">
-              <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
-                0
-              </span>
-            </Button>
+            <CartDrawer />
             <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary">
               <User className="h-5 w-5" />
             </Button>

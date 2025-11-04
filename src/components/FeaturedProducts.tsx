@@ -1,59 +1,49 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingCart } from "lucide-react";
-
-const products = [
-  {
-    id: 1,
-    name: "Carbon Fiber Sport",
-    price: "$89.99",
-    image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&h=500&fit=crop",
-    rim: "BBS RS",
-    material: "Carbon Fiber"
-  },
-  {
-    id: 2,
-    name: "Chrome Classic",
-    price: "$79.99",
-    image: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=500&h=500&fit=crop",
-    rim: "OZ Racing",
-    material: "Glossy"
-  },
-  {
-    id: 3,
-    name: "Matte Black Edition",
-    price: "$84.99",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=500&fit=crop",
-    rim: "Vossen",
-    material: "Matte"
-  },
-  {
-    id: 4,
-    name: "Gold Luxury",
-    price: "$99.99",
-    image: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=500&h=500&fit=crop",
-    rim: "ADV.1",
-    material: "Metallic"
-  },
-  {
-    id: 5,
-    name: "Racing Red",
-    price: "$89.99",
-    image: "https://images.unsplash.com/photo-1592286927505-ed77d72c4b09?w=500&h=500&fit=crop",
-    rim: "Enkei RPF1",
-    material: "Glossy"
-  },
-  {
-    id: 6,
-    name: "Silver Performance",
-    price: "$94.99",
-    image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=500&fit=crop",
-    rim: "HRE P101",
-    material: "Metallic"
-  }
-];
+import { useEffect, useState } from "react";
+import { getProducts, ShopifyProduct } from "@/lib/shopify";
+import { useCartStore } from "@/stores/cartStore";
+import { toast } from "sonner";
 
 const FeaturedProducts = () => {
+  const [products, setProducts] = useState<ShopifyProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const addItem = useCartStore(state => state.addItem);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const data = await getProducts(6);
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to load products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
+
+  const handleAddToCart = (product: ShopifyProduct) => {
+    const firstVariant = product.node.variants.edges[0]?.node;
+    if (!firstVariant) return;
+
+    addItem({
+      product,
+      variantId: firstVariant.id,
+      variantTitle: firstVariant.title,
+      price: firstVariant.price,
+      quantity: 1,
+      selectedOptions: firstVariant.selectedOptions,
+    });
+
+    toast.success("Added to cart!", {
+      description: `${product.node.title} has been added to your cart.`,
+    });
+  };
+
   return (
     <section className="py-20 px-4">
       <div className="container mx-auto">
@@ -66,78 +56,109 @@ const FeaturedProducts = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product, index) => (
-            <Card 
-              key={product.id}
-              className="group overflow-hidden border-border/40 bg-card/50 backdrop-blur shadow-card hover:shadow-premium transition-premium animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardContent className="p-0">
-                {/* Product Image */}
-                <div className="relative overflow-hidden aspect-square">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-premium group-hover:scale-110"
-                  />
-                  
-                  {/* Overlay on Hover */}
-                  <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-smooth flex items-center justify-center gap-3">
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      className="rounded-full border-secondary/30 hover:bg-primary hover:border-primary transition-smooth"
-                    >
-                      <Heart className="h-5 w-5" />
-                    </Button>
-                    <Button
-                      size="icon"
-                      className="rounded-full bg-gradient-accent hover:shadow-glow transition-smooth"
-                    >
-                      <ShoppingCart className="h-5 w-5" />
-                    </Button>
-                  </div>
-                  
-                  {/* Material Badge */}
-                  <div className="absolute top-3 right-3 bg-background/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold border border-border/40">
-                    {product.material}
-                  </div>
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <Card key={i} className="animate-pulse">
+                <div className="aspect-square bg-muted" />
+                <div className="p-5 space-y-3">
+                  <div className="h-4 bg-muted rounded w-3/4" />
+                  <div className="h-4 bg-muted rounded w-1/2" />
                 </div>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((product, index) => {
+              const image = product.node.images.edges[0]?.node;
+              const price = product.node.priceRange.minVariantPrice;
 
-                {/* Product Info */}
-                <div className="p-5">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <h3 className="font-semibold font-poppins text-lg mb-1 group-hover:text-primary transition-smooth">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        Rim: {product.rim}
-                      </p>
+              return (
+                <Card 
+                  key={product.node.id}
+                  className="group overflow-hidden border-border/40 bg-card/50 backdrop-blur shadow-card hover:shadow-premium transition-premium animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardContent className="p-0">
+                    <a href={`/product/${product.node.handle}`}>
+                      <div className="relative overflow-hidden aspect-square">
+                        {image ? (
+                          <img
+                            src={image.url}
+                            alt={image.altText || product.node.title}
+                            className="w-full h-full object-cover transition-premium group-hover:scale-110"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-secondary/20 flex items-center justify-center">
+                            <ShoppingCart className="h-16 w-16 text-muted-foreground" />
+                          </div>
+                        )}
+                        
+                        <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-smooth flex items-center justify-center gap-3">
+                          <Button
+                            size="icon"
+                            variant="outline"
+                            className="rounded-full border-secondary/30 hover:bg-primary hover:border-primary transition-smooth"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              toast.success("Added to wishlist!");
+                            }}
+                          >
+                            <Heart className="h-5 w-5" />
+                          </Button>
+                          <Button
+                            size="icon"
+                            className="rounded-full bg-gradient-accent hover:shadow-glow transition-smooth"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleAddToCart(product);
+                            }}
+                          >
+                            <ShoppingCart className="h-5 w-5" />
+                          </Button>
+                        </div>
+                      </div>
+                    </a>
+
+                    <div className="p-5">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <a href={`/product/${product.node.handle}`}>
+                            <h3 className="font-semibold font-poppins text-lg mb-1 group-hover:text-primary transition-smooth">
+                              {product.node.title}
+                            </h3>
+                          </a>
+                          <p className="text-sm text-muted-foreground line-clamp-1">
+                            {product.node.description}
+                          </p>
+                        </div>
+                        <span className="text-xl font-bold font-poppins text-primary">
+                          ${parseFloat(price.amount).toFixed(2)}
+                        </span>
+                      </div>
+
+                      <Button 
+                        className="w-full mt-4 bg-gradient-metallic hover:bg-secondary/20 text-foreground border border-border/40 transition-smooth"
+                        variant="outline"
+                        onClick={() => window.location.href = '/customize'}
+                      >
+                        Customize Now
+                      </Button>
                     </div>
-                    <span className="text-xl font-bold font-poppins text-primary">
-                      {product.price}
-                    </span>
-                  </div>
-
-                  <Button 
-                    className="w-full mt-4 bg-gradient-metallic hover:bg-secondary/20 text-foreground border border-border/40 transition-smooth"
-                    variant="outline"
-                  >
-                    Customize Now
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        )}
 
         <div className="text-center mt-12">
           <Button 
             size="lg"
             variant="outline"
             className="border-secondary/30 hover:bg-secondary/10 transition-smooth font-semibold"
+            onClick={() => window.location.href = '/shop'}
           >
             View All Designs
           </Button>

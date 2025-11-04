@@ -2,6 +2,8 @@ import { Heart, ShoppingCart, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConfiguratorState } from "@/types/configurator";
 import { rimOptions, materialOptions } from "@/data/configuratorData";
+import { useCartStore } from "@/stores/cartStore";
+import { toast } from "sonner";
 
 interface LivePreviewProps {
   config: ConfiguratorState;
@@ -10,6 +12,9 @@ interface LivePreviewProps {
 }
 
 const LivePreview = ({ config, onAddToCart, onAddToWishlist }: LivePreviewProps) => {
+  const createCheckout = useCartStore(state => state.createCheckout);
+  const isLoading = useCartStore(state => state.isLoading);
+  
   const basePrice = 35;
   const rimPrice = config.rimPrice;
   const materialPrice = config.materialPrice;
@@ -18,11 +23,31 @@ const LivePreview = ({ config, onAddToCart, onAddToWishlist }: LivePreviewProps)
   const textPrice = config.customText ? 3 : 0;
 
   const subtotal = basePrice + rimPrice + materialPrice + photoPrice + facePhotoPrice + textPrice;
-  const discount = 0; // Can be applied from quiz or promo code
+  const discount = 0;
   const total = subtotal - discount;
 
   const selectedRim = rimOptions.find((r) => r.id === config.rimStyle);
   const selectedMaterial = materialOptions.find((m) => m.id === config.material);
+
+  const handleAddToCart = () => {
+    onAddToCart();
+    toast.success("Added to cart!", {
+      description: "Your custom case has been added to your cart.",
+    });
+  };
+
+  const handleCheckout = async () => {
+    try {
+      await createCheckout();
+      const checkoutUrl = useCartStore.getState().checkoutUrl;
+      if (checkoutUrl) {
+        window.open(checkoutUrl, '_blank');
+      }
+    } catch (error) {
+      console.error('Checkout failed:', error);
+      toast.error("Failed to create checkout");
+    }
+  };
 
   return (
     <div className="sticky top-24 space-y-6">
@@ -144,9 +169,10 @@ const LivePreview = ({ config, onAddToCart, onAddToWishlist }: LivePreviewProps)
         {/* CTAs */}
         <div className="space-y-3 pt-4">
           <Button
-            onClick={onAddToCart}
+            onClick={handleAddToCart}
             size="lg"
             className="w-full bg-gradient-accent hover:shadow-glow transition-premium font-semibold"
+            disabled={isLoading}
           >
             <ShoppingCart className="mr-2 h-5 w-5" />
             ADD TO CART
