@@ -25,40 +25,14 @@ const testimonials = [
     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
     rating: 5,
     quote: "Best phone case I've ever owned. Premium materials, amazing design, and fast shipping."
-  },
-  {
-    id: 4,
-    name: "Emily Watson",
-    car: "Porsche 911",
-    photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
-    rating: 5,
-    quote: "My car photo looks stunning on the case. It's like having a mini version of my Porsche!"
-  },
-  {
-    id: 5,
-    name: "Chris Martinez",
-    car: "Tesla Model 3",
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop",
-    rating: 5,
-    quote: "Unique design that stands out. The 3D rim adds such a premium touch. Worth every penny!"
   }
 ];
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 3 >= testimonials.length ? 0 : prev + 1));
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + 3);
-  if (visibleTestimonials.length < 3) {
-    visibleTestimonials.push(...testimonials.slice(0, 3 - visibleTestimonials.length));
-  }
+  // Static display - no carousel needed for 3 testimonials
+  const visibleTestimonials = testimonials;
 
   return (
     <section className="py-20 px-4">
@@ -68,7 +42,7 @@ const Testimonials = () => {
             What Our <span className="bg-gradient-accent bg-clip-text text-transparent">Customers Say</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Join thousands of satisfied car enthusiasts
+            Real feedback from our first customers
           </p>
         </div>
 
@@ -111,19 +85,6 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Navigation Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-smooth ${
-                index === currentIndex ? 'bg-primary w-8' : 'bg-muted-foreground/30'
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
