@@ -1,4 +1,4 @@
-import { Heart, User, Menu } from "lucide-react";
+import { Heart, User, Menu, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -23,10 +23,11 @@ const Navigation = () => {
               Home
             </a>
             <Button 
-              className="bg-gradient-accent hover:shadow-glow transition-smooth text-sm font-semibold h-9"
+              className="bg-gradient-accent hover:shadow-glow hover:scale-105 transition-premium text-sm font-semibold h-9 group"
               onClick={() => window.location.href = '/customize'}
             >
               Customize Now
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-smooth inline-block" />
             </Button>
             <a href="/shop" className="text-sm font-medium transition-smooth hover:text-primary">
               Shop
@@ -44,11 +45,11 @@ const Navigation = () => {
 
           {/* Icons */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="relative transition-smooth hover:text-primary">
-              <Heart className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="relative transition-smooth hover:text-primary hover:scale-110 group">
+              <Heart className="h-5 w-5 group-hover:fill-red-500 group-hover:text-red-500 transition-smooth" />
             </Button>
             <CartDrawer />
-            <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary">
+            <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary hover:scale-110">
               <User className="h-5 w-5" />
             </Button>
             
@@ -56,7 +57,7 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden hover:scale-110 transition-smooth"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <Menu className="h-5 w-5" />
@@ -71,10 +72,11 @@ const Navigation = () => {
               Home
             </a>
             <Button 
-              className="w-full bg-gradient-accent hover:shadow-glow transition-smooth text-sm font-semibold"
+              className="w-full bg-gradient-accent hover:shadow-glow hover:scale-105 transition-premium text-sm font-semibold group"
               onClick={() => window.location.href = '/customize'}
             >
               Customize Now
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-smooth inline-block" />
             </Button>
             <a href="/shop" className="block text-sm font-medium transition-smooth hover:text-primary">
               Shop

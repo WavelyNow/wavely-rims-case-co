@@ -19,15 +19,15 @@ const Newsletter = () => {
 
   return (
     <section className="py-16 px-4 bg-gradient-accent relative overflow-hidden">
-      {/* Decorative elements */}
+      {/* Decorative animated elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDuration: "3s" }} />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDuration: "4s", animationDelay: "1s" }} />
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
+        <div className="max-w-2xl mx-auto text-center animate-fade-in">
+          <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur flex items-center justify-center animate-scale-in shadow-glow">
             <Mail className="h-8 w-8 text-white" />
           </div>
 
@@ -50,7 +50,7 @@ const Newsletter = () => {
             <Button 
               type="submit"
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 transition-smooth font-semibold shadow-glow"
+              className="bg-white text-primary hover:bg-white/90 hover:scale-105 transition-premium font-semibold shadow-glow"
             >
               Subscribe
             </Button>

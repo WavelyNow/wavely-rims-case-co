@@ -135,11 +135,11 @@ const StyleQuiz = () => {
 
   return (
     <>
-      <section className="py-20 px-4 bg-gradient-metallic">
+      <section className="py-20 px-4 bg-gradient-subtle">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center bg-card/50 backdrop-blur rounded-2xl p-12 border border-border/40 shadow-card">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-accent flex items-center justify-center shadow-glow">
-              <Sparkles className="h-10 w-10 text-white" />
+          <div className="text-center bg-card/50 backdrop-blur rounded-2xl p-12 border border-border/40 shadow-card hover:shadow-premium transition-premium animate-fade-in">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-accent flex items-center justify-center shadow-glow animate-scale-in">
+              <Sparkles className="h-10 w-10 text-white animate-pulse" />
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
@@ -152,7 +152,7 @@ const StyleQuiz = () => {
 
             <Button
               size="lg"
-              className="bg-gradient-accent hover:shadow-glow transition-premium font-semibold group"
+              className="bg-gradient-accent hover:shadow-glow hover:scale-105 transition-premium font-semibold group"
               onClick={() => setIsOpen(true)}
             >
               Start Quiz

@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart, ShoppingCart, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -138,12 +138,13 @@ const FeaturedProducts = () => {
                         </span>
                       </div>
 
-                      <Button 
-                        className="w-full mt-4 bg-gradient-metallic hover:bg-secondary/20 text-foreground border border-border/40 transition-smooth"
+                       <Button 
+                        className="w-full mt-4 bg-gradient-subtle hover:shadow-card text-foreground border border-border/40 hover:scale-105 transition-premium font-semibold group"
                         variant="outline"
                         onClick={() => window.location.href = '/customize'}
                       >
                         Customize Now
+                        <ShoppingCart className="ml-2 h-4 w-4 group-hover:scale-110 transition-smooth" />
                       </Button>
                     </div>
                   </CardContent>
@@ -153,14 +154,15 @@ const FeaturedProducts = () => {
           </div>
         )}
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 animate-fade-in">
           <Button 
             size="lg"
             variant="outline"
-            className="border-secondary/30 hover:bg-secondary/10 transition-smooth font-semibold"
+            className="border-secondary/30 hover:bg-secondary/10 hover:scale-105 transition-premium font-semibold group"
             onClick={() => window.location.href = '/shop'}
           >
             View All Designs
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-smooth" />
           </Button>
         </div>
       </div>
