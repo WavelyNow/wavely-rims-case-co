@@ -50,22 +50,6 @@ const Hero = () => {
               View Gallery
             </Button>
           </div>
-
-          {/* Stats */}
-          <div className="mt-12 grid grid-cols-3 gap-8 max-w-2xl">
-            <div className="animate-scale-in">
-              <div className="text-3xl font-bold font-poppins text-primary">50K+</div>
-              <div className="text-sm text-muted-foreground">Happy Customers</div>
-            </div>
-            <div className="animate-scale-in" style={{ animationDelay: "0.1s" }}>
-              <div className="text-3xl font-bold font-poppins text-primary">200+</div>
-              <div className="text-sm text-muted-foreground">Rim Designs</div>
-            </div>
-            <div className="animate-scale-in" style={{ animationDelay: "0.2s" }}>
-              <div className="text-3xl font-bold font-poppins text-primary">4.9★</div>
-              <div className="text-sm text-muted-foreground">Average Rating</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

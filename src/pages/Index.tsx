@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import TrustBadges from "@/components/TrustBadges";
 import StyleQuiz from "@/components/StyleQuiz";
 import FeaturedProducts from "@/components/FeaturedProducts";
-import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 
@@ -15,7 +14,6 @@ const Index = () => {
       <TrustBadges />
       <StyleQuiz />
       <FeaturedProducts />
-      <Testimonials />
       <Newsletter />
       <Footer />
     </div>

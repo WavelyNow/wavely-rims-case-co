@@ -7,6 +7,9 @@ import Index from "./pages/Index";
 import Customize from "./pages/Customize";
 import Shop from "./pages/Shop";
 import Product from "./pages/Product";
+import FAQ from "./pages/FAQ";
+import Contact from "./pages/Contact";
+import HowItWorks from "./pages/HowItWorks";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import ReturnPolicy from "./pages/ReturnPolicy";
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/customize" element={<Customize />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:handle" element={<Product />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />

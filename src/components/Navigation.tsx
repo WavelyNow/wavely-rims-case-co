@@ -31,17 +31,8 @@ const Navigation = () => {
             <a href="/shop" className="text-sm font-medium transition-smooth hover:text-primary">
               Shop
             </a>
-            <a href="/gallery" className="text-sm font-medium transition-smooth hover:text-primary">
-              Gallery
-            </a>
             <a href="/how-it-works" className="text-sm font-medium transition-smooth hover:text-primary">
               How It Works
-            </a>
-            <a href="/blog" className="text-sm font-medium transition-smooth hover:text-primary">
-              Blog
-            </a>
-            <a href="/about" className="text-sm font-medium transition-smooth hover:text-primary">
-              About
             </a>
             <a href="/faq" className="text-sm font-medium transition-smooth hover:text-primary">
               FAQ
@@ -88,17 +79,8 @@ const Navigation = () => {
             <a href="/shop" className="block text-sm font-medium transition-smooth hover:text-primary">
               Shop
             </a>
-            <a href="/gallery" className="block text-sm font-medium transition-smooth hover:text-primary">
-              Gallery
-            </a>
             <a href="/how-it-works" className="block text-sm font-medium transition-smooth hover:text-primary">
               How It Works
-            </a>
-            <a href="/blog" className="block text-sm font-medium transition-smooth hover:text-primary">
-              Blog
-            </a>
-            <a href="/about" className="block text-sm font-medium transition-smooth hover:text-primary">
-              About
             </a>
             <a href="/faq" className="block text-sm font-medium transition-smooth hover:text-primary">
               FAQ
