@@ -34,7 +34,7 @@ const TrustBadges = () => {
               className="flex flex-col items-center text-center space-y-3 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-14 h-14 rounded-full bg-gradient-metallic flex items-center justify-center">
+              <div className="w-14 h-14 rounded-full bg-gradient-subtle flex items-center justify-center">
                 <badge.icon className="h-7 w-7 text-primary" />
               </div>
               <div>

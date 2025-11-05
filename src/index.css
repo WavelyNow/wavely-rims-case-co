@@ -8,77 +8,74 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Premium automotive color palette */
-    --background: 0 0% 10%;
-    --foreground: 0 0% 95%;
+    /* Vibrant, energetic color palette */
+    --background: 220 25% 10%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 20% 13%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 20% 13%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 354 70% 56%;
+    --primary: 280 85% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 75%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 190 85% 55%;
+    --secondary-foreground: 220 25% 10%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 220 15% 25%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 354 70% 56%;
+    --accent: 340 90% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 354 70% 56%;
+    --border: 220 15% 25%;
+    --input: 220 20% 18%;
+    --ring: 280 85% 60%;
 
     --radius: 0.75rem;
 
-    /* Custom design tokens */
-    --metallic-silver: 0 0% 75%;
-    --racing-red: 354 70% 56%;
-    --deep-black: 0 0% 10%;
+    /* Custom vibrant design tokens */
+    --electric-purple: 280 85% 60%;
+    --neon-cyan: 190 85% 55%;
+    --hot-pink: 340 90% 60%;
+    --vivid-orange: 25 95% 58%;
+    --deep-navy: 220 25% 10%;
     
-    /* Gradients */
-    --gradient-premium: linear-gradient(135deg, hsl(var(--deep-black)), hsl(0 0% 15%));
-    --gradient-metallic: linear-gradient(135deg, hsl(var(--metallic-silver) / 0.1), hsl(var(--metallic-silver) / 0.05));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--racing-red)), hsl(354 70% 45%));
+    /* Energetic Gradients */
+    --gradient-premium: linear-gradient(135deg, hsl(var(--electric-purple)), hsl(var(--hot-pink)));
+    --gradient-subtle: linear-gradient(180deg, hsl(220 25% 10%), hsl(220 20% 13%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--electric-purple)), hsl(var(--neon-cyan)));
+    --gradient-vibrant: linear-gradient(135deg, hsl(var(--hot-pink)), hsl(var(--vivid-orange)));
     
-    /* Shadows */
-    --shadow-premium: 0 10px 40px -10px hsl(var(--racing-red) / 0.3);
-    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 30px hsl(var(--racing-red) / 0.4);
+    /* Glowing Shadows */
+    --shadow-premium: 0 10px 40px -10px hsl(var(--electric-purple) / 0.5);
+    --shadow-card: 0 4px 30px hsl(280 85% 60% / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--electric-purple) / 0.6);
+    --shadow-neon: 0 0 50px hsl(var(--neon-cyan) / 0.5);
     
-    /* Animations */
+    /* Smooth Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* Dark mode uses same premium automotive theme */
-    --background: 0 0% 10%;
-    --foreground: 0 0% 95%;
+    /* Same vibrant theme for dark mode */
+    --background: 220 25% 10%;
+    --foreground: 0 0% 98%;
   }
 }
 
@@ -102,12 +99,16 @@ All colors MUST be HSL.
     background: var(--gradient-premium);
   }
   
-  .gradient-metallic {
-    background: var(--gradient-metallic);
+  .gradient-subtle {
+    background: var(--gradient-subtle);
   }
   
   .gradient-accent {
     background: var(--gradient-accent);
+  }
+  
+  .gradient-vibrant {
+    background: var(--gradient-vibrant);
   }
   
   .shadow-premium {
@@ -120,6 +121,10 @@ All colors MUST be HSL.
   
   .shadow-glow {
     box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-neon {
+    box-shadow: var(--shadow-neon);
   }
   
   .transition-smooth {

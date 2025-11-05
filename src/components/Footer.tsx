@@ -15,9 +15,9 @@ const Footer = () => {
             </p>
             <div className="text-xs text-muted-foreground space-y-1">
               <p>SC WAVELY SRL</p>
-              <p>CUI: RO[COMPLETEAZĂ]</p>
-              <p>J[XX]/[NNN]/[AAAA]</p>
-              <p>Băiculești, Argeș, România</p>
+              <p>VAT: RO[COMPLETE]</p>
+              <p>J[XX]/[NNN]/[YYYY]</p>
+              <p>Băiculești, Argeș, Romania</p>
             </div>
           </div>
 
@@ -103,10 +103,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-xs text-muted-foreground">
               <p className="mb-2">
-                <strong>Soluționarea Alternativă a Litigiilor (SAL):</strong>
+                <strong>Alternative Dispute Resolution (ADR):</strong>
               </p>
               <p>
-                Platforma SOL:{" "}
+                EU ODR Platform:{" "}
                 <a
                   href="https://ec.europa.eu/consumers/odr"
                   target="_blank"
@@ -117,7 +117,7 @@ const Footer = () => {
                 </a>
               </p>
               <p className="mt-2">
-                <strong>Autoritatea Națională pentru Protecția Consumatorilor (ANPC):</strong>
+                <strong>National Authority for Consumer Protection (ANPC):</strong>
               </p>
               <p>
                 Website:{" "}
@@ -140,7 +140,7 @@ const Footer = () => {
             >
               <img
                 src="https://anpc.ro/galerie/file_c0dac0f25e.png"
-                alt="ANPC - Protecția Consumatorilor"
+                alt="ANPC - Consumer Protection"
                 className="h-16 opacity-70 hover:opacity-100 transition-smooth"
               />
             </a>
@@ -162,7 +162,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-border/40 pt-6 text-center">
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-            © 2025 Wavely. All rights reserved. Made with <Heart className="h-4 w-4 text-red-500 fill-red-500" /> in România
+            © 2025 Wavely. All rights reserved. Made with <Heart className="h-4 w-4 text-red-500 fill-red-500" /> in Romania
           </p>
         </div>
       </div>

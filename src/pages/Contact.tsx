@@ -25,8 +25,8 @@ const Contact = () => {
     // Simulate form submission
     setTimeout(() => {
       toast({
-        title: "Mesaj trimis cu succes!",
-        description: "Îți vom răspunde în maxim 24 de ore.",
+        title: "Message sent successfully!",
+        description: "We'll respond within 24 hours.",
       });
       setFormData({ name: "", email: "", subject: "", message: "" });
       setIsSubmitting(false);
@@ -48,10 +48,10 @@ const Contact = () => {
       <section className="relative py-20 px-4 bg-gradient-subtle">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 animate-fade-in">
-            Hai să vorbim <span className="bg-gradient-accent bg-clip-text text-transparent">împreună</span>
+            Let's Talk <span className="bg-gradient-accent bg-clip-text text-transparent">Together</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            Suntem aici să răspundem la toate întrebările tale despre produse, comenzi sau personalizare
+            We're here to answer all your questions about products, orders, or customization
           </p>
         </div>
       </section>
@@ -65,17 +65,17 @@ const Contact = () => {
             <div className="animate-fade-in">
               <div className="bg-card/50 backdrop-blur rounded-xl p-8 border border-border/40 shadow-premium">
                 <h2 className="text-2xl md:text-3xl font-bold font-poppins mb-6">
-                  Trimite-ne un mesaj
+                  Send us a message
                 </h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nume complet</Label>
+                    <Label htmlFor="name">Full Name</Label>
                     <Input
                       id="name"
                       name="name"
                       type="text"
-                      placeholder="Ion Popescu"
+                      placeholder="John Doe"
                       value={formData.name}
                       onChange={handleChange}
                       required
@@ -89,7 +89,7 @@ const Contact = () => {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="ion@exemplu.ro"
+                      placeholder="john@example.com"
                       value={formData.email}
                       onChange={handleChange}
                       required
@@ -98,12 +98,12 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subiect</Label>
+                    <Label htmlFor="subject">Subject</Label>
                     <Input
                       id="subject"
                       name="subject"
                       type="text"
-                      placeholder="Întrebare despre comandă"
+                      placeholder="Question about order"
                       value={formData.subject}
                       onChange={handleChange}
                       required
@@ -112,11 +112,11 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Mesaj</Label>
+                    <Label htmlFor="message">Message</Label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Descrie întrebarea sau problema ta..."
+                      placeholder="Describe your question or issue..."
                       value={formData.message}
                       onChange={handleChange}
                       required
@@ -130,7 +130,7 @@ const Contact = () => {
                     disabled={isSubmitting}
                     className="w-full bg-gradient-accent hover:shadow-glow transition-smooth font-semibold"
                   >
-                    {isSubmitting ? "Se trimite..." : "Trimite mesajul"}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </div>
@@ -147,11 +147,11 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold font-poppins mb-2">Email</h3>
-                    <a href="mailto:support@wavely.ro" className="text-muted-foreground hover:text-primary transition-smooth">
-                      support@wavely.ro
+                    <a href="mailto:support@wavely.com" className="text-muted-foreground hover:text-primary transition-smooth">
+                      support@wavely.com
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Răspundem în 24h
+                      Response within 24h
                     </p>
                   </div>
                 </div>
@@ -163,12 +163,12 @@ const Contact = () => {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold font-poppins mb-2">Telefon</h3>
+                    <h3 className="font-semibold font-poppins mb-2">Phone</h3>
                     <a href="tel:+40756123456" className="text-muted-foreground hover:text-primary transition-smooth">
                       +40 756 123 456
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Luni - Vineri, 9:00 - 18:00
+                      Monday - Friday, 9:00 AM - 6:00 PM
                     </p>
                   </div>
                 </div>
@@ -180,11 +180,11 @@ const Contact = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold font-poppins mb-2">Adresă</h3>
+                    <h3 className="font-semibold font-poppins mb-2">Address</h3>
                     <p className="text-muted-foreground">
-                      Str. Exemplu Nr. 123<br />
-                      București, 010101<br />
-                      România
+                      Example Street No. 123<br />
+                      Bucharest, 010101<br />
+                      Romania
                     </p>
                   </div>
                 </div>
@@ -196,11 +196,11 @@ const Contact = () => {
                     <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold font-poppins mb-2">Program</h3>
+                    <h3 className="font-semibold font-poppins mb-2">Schedule</h3>
                     <div className="text-muted-foreground space-y-1">
-                      <p>Luni - Vineri: 9:00 - 18:00</p>
-                      <p>Sâmbătă: 10:00 - 14:00</p>
-                      <p>Duminică: Închis</p>
+                      <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                      <p>Saturday: 10:00 AM - 2:00 PM</p>
+                      <p>Sunday: Closed</p>
                     </div>
                   </div>
                 </div>
@@ -208,16 +208,16 @@ const Contact = () => {
 
               {/* Quick Links */}
               <div className="bg-card/30 backdrop-blur rounded-xl p-6 border border-border/40">
-                <h3 className="font-semibold font-poppins mb-4">Link-uri utile</h3>
+                <h3 className="font-semibold font-poppins mb-4">Useful Links</h3>
                 <div className="space-y-2">
                   <a href="/faq" className="block text-muted-foreground hover:text-primary transition-smooth">
-                    → Întrebări frecvente
+                    → Frequently Asked Questions
                   </a>
                   <a href="/return-policy" className="block text-muted-foreground hover:text-primary transition-smooth">
-                    → Politica de returnare
+                    → Return Policy
                   </a>
                   <a href="/privacy-policy" className="block text-muted-foreground hover:text-primary transition-smooth">
-                    → Politica de confidențialitate
+                    → Privacy Policy
                   </a>
                 </div>
               </div>

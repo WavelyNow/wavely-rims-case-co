@@ -10,111 +10,111 @@ import {
 const FAQ = () => {
   const faqs = [
     {
-      category: "Produse & Personalizare",
+      category: "Products & Customization",
       questions: [
         {
-          q: "Ce materiale folosiți pentru huse?",
-          a: "Husele noastre sunt fabricate din materiale premium: TPU flexibil pentru protecție la impact, policarbonat rigid pentru durabilitate maximă, și finisaj mat soft-touch pentru o senzație premium în mână. Toate materialele sunt testate pentru rezistență la zgârieturi și uzură."
+          q: "What materials do you use for cases?",
+          a: "Our cases are made from premium materials: flexible TPU for impact protection, rigid polycarbonate for maximum durability, and soft-touch matte finish for a premium feel. All materials are tested for scratch and wear resistance."
         },
         {
-          q: "Cum funcționează procesul de personalizare?",
-          a: "Personalizarea este simplă: 1) Alegi modelul de telefon, 2) Selectezi designul de jantă (avem peste 200 de modele), 3) Încarci poze cu mașina ta sau alte imagini preferate, 4) Adaugi text personalizat (opțional), 5) Vezi preview-ul live și confirmi comanda. Întregul proces durează 2-3 minute."
+          q: "How does the customization process work?",
+          a: "Customization is simple: 1) Choose your phone model, 2) Select rim design (over 200 models), 3) Upload photos of your car or favorite images, 4) Add custom text (optional), 5) View live preview and confirm order. The entire process takes 2-3 minutes."
         },
         {
-          q: "Pot încărca orice tip de imagine?",
-          a: "Da! Accepăm imagini în format JPG, PNG, și HEIC (iOS). Pentru calitate optimă, recomandăm imagini cu rezoluție minimă de 1000x1000 pixeli. Echipa noastră verifică fiecare design înainte de producție și te contactează dacă sunt necesare ajustări."
+          q: "Can I upload any type of image?",
+          a: "Yes! We accept JPG, PNG, and HEIC (iOS) formats. For optimal quality, we recommend images with minimum resolution of 1000x1000 pixels. Our team reviews every design before production and contacts you if adjustments are needed."
         },
         {
-          q: "Designul de jantă este 3D real sau doar printat?",
-          a: "Jantele sunt realizate prin tehnologie de printare 3D avansată, creând un relief tactil autentic. Nu este doar o imagine printată - poți simți textura și detaliile fiecărei jante. Aceasta este diferența noastră față de alte huse personalizate."
+          q: "Is the rim design real 3D or just printed?",
+          a: "Rims are created using advanced 3D printing technology, creating authentic tactile relief. It's not just a printed image - you can feel the texture and details of each rim. This is our difference from other custom cases."
         },
         {
-          q: "Câte modele de telefon susțineți?",
-          a: "Suportăm toate modelele populare iPhone (iPhone 12-16 Series), Samsung Galaxy (S20-S24, Note), Google Pixel (6-8), și multe altele. Lista completă este disponibilă în configuratorul de personalizare. Dacă nu găsești modelul tău, contactează-ne și vom verifica disponibilitatea."
+          q: "How many phone models do you support?",
+          a: "We support all popular iPhone models (iPhone 12-16 Series), Samsung Galaxy (S20-S24, Note), Google Pixel (6-8), and many others. The complete list is available in the customization configurator. If you don't find your model, contact us and we'll check availability."
         }
       ]
     },
     {
-      category: "Comenzi & Plăți",
+      category: "Orders & Payments",
       questions: [
         {
-          q: "Ce metode de plată acceptați?",
-          a: "Acceptăm plata cu card (Visa, Mastercard, American Express), Google Pay, Apple Pay, și plata ramburs la livrare (disponibil în România). Toate tranzacțiile sunt securizate prin Stripe, cel mai mare procesator de plăți din lume."
+          q: "What payment methods do you accept?",
+          a: "We accept card payments (Visa, Mastercard, American Express), Google Pay, Apple Pay, and cash on delivery (available in Romania). All transactions are secured through Stripe, the world's largest payment processor."
         },
         {
-          q: "Pot modifica sau anula comanda după plasare?",
-          a: "Poți anula sau modifica comanda în primele 2 ore după plasare, contactându-ne urgent la comenzi@wavely.ro sau pe WhatsApp. După această perioadă, husa intră în producție personalizată și nu mai poate fi modificată."
+          q: "Can I modify or cancel my order after placing it?",
+          a: "You can cancel or modify your order within 2 hours of placement by contacting us urgently at orders@wavely.com or WhatsApp. After this period, the case enters custom production and cannot be modified."
         },
         {
-          q: "Primiți factură fiscală?",
-          a: "Da, toate comenzile includ factură fiscală electronică care este trimisă automat pe email după expediere. Pentru firmă, introdu datele companiei (CUI, denumire) în câmpurile dedicate la checkout."
+          q: "Do I receive an invoice?",
+          a: "Yes, all orders include an electronic invoice automatically sent via email after shipping. For company purchases, enter company details (tax ID, name) in the dedicated fields at checkout."
         },
         {
-          q: "Aveți cod de reducere pentru prima comandă?",
-          a: "Da! Abonează-te la newsletter pentru 10% discount la prima comandă. Mai avem promoții speciale pe pagina de Giveaway și programe de referral care îți oferă reduceri pentru prietenii recomandați."
+          q: "Do you have a discount code for first orders?",
+          a: "Yes! Subscribe to our newsletter for 10% off your first order. We also have special promotions on the Giveaway page and referral programs that give you discounts for recommended friends."
         }
       ]
     },
     {
-      category: "Livrare & Transport",
+      category: "Shipping & Delivery",
       questions: [
         {
-          q: "Cât durează livrarea?",
-          a: "Producția personalizată durează 2-3 zile lucrătoare. După expediere, livrarea în România durează 1-2 zile (Fan Courier). Livrare internațională în UE: 3-5 zile. Primești tracking automat pe email și SMS când coletul este expediat."
+          q: "How long does delivery take?",
+          a: "Custom production takes 2-3 business days. After shipping, delivery in Romania takes 1-2 days (Fan Courier). International delivery to EU: 3-5 days. You receive automatic tracking via email and SMS when the package is shipped."
         },
         {
-          q: "Cât costă transportul?",
-          a: "Livrare standard în România: 15 lei. Transport GRATUIT pentru comenzi peste 150 lei. Livrare internațională: 35 lei în UE, 50 lei în afara UE. Prețul final este afișat la checkout înainte de confirmare."
+          q: "How much does shipping cost?",
+          a: "Standard delivery in Romania: 15 lei. FREE shipping for orders over 150 lei. International delivery: 35 lei in EU, 50 lei outside EU. Final price is displayed at checkout before confirmation."
         },
         {
-          q: "Livrați în toată țara?",
-          a: "Da, livrăm în toată România prin Fan Courier, inclusiv în localități mici. Pentru livrări internaționale, acoperim întreaga Uniune Europeană și alte țări selectate (UK, Elveția, SUA, Canada)."
+          q: "Do you deliver throughout the country?",
+          a: "Yes, we deliver throughout Romania via Fan Courier, including small towns. For international deliveries, we cover the entire European Union and other selected countries (UK, Switzerland, USA, Canada)."
         },
         {
-          q: "Ce se întâmplă dacă nu sunt acasă la livrare?",
-          a: "Curierul va încerca să te contacteze telefonic. Dacă nu ești disponibil, coletul va fi depozitat la sediul Fan Courier din orașul tău, unde îl poți ridica în următoarele 7 zile. Vei primi SMS cu adresa și programul."
+          q: "What happens if I'm not home for delivery?",
+          a: "The courier will try to contact you by phone. If you're not available, the package will be stored at the Fan Courier office in your city, where you can pick it up within 7 days. You'll receive SMS with address and schedule."
         }
       ]
     },
     {
-      category: "Returnări & Garanții",
+      category: "Returns & Warranties",
       questions: [
         {
-          q: "Pot returna husa dacă nu îmi place?",
-          a: "Da! Ai 14 zile drept de returnare conform legislației europene. Husa trebuie să fie nefolosită, în ambalajul original. Notă: produsele personalizate pot fi returnate doar dacă au defecte de fabricație, nu pentru schimbare de design."
+          q: "Can I return the case if I don't like it?",
+          a: "Yes! You have 14 days right of return according to European legislation. The case must be unused, in original packaging. Note: custom products can only be returned if they have manufacturing defects, not for design changes."
         },
         {
-          q: "Ce garanție oferă husele?",
-          a: "Oferim garanție de 12 luni pentru defecte de fabricație: crăpături, desprinderea designului, decolorare. Garanția nu acoperă uzura normală sau daunele cauzate de impact/cădere. Pentru probleme, contactează support@wavely.ro cu poze și descrierea problemei."
+          q: "What warranty do cases have?",
+          a: "We offer 12-month warranty for manufacturing defects: cracks, design peeling, discoloration. Warranty doesn't cover normal wear or damage caused by impact/falls. For issues, contact support@wavely.com with photos and problem description."
         },
         {
-          q: "Ce fac dacă husa sosește deteriorată?",
-          a: "Dacă husa sosește cu defecte vizibile sau deteriorări, contactează-ne imediat (max 48h) la support@wavely.ro cu poze clare ale problemei. Vom trimite înlocuire gratuită sau rambursare completă, fără costuri de transport pentru tine."
+          q: "What do I do if the case arrives damaged?",
+          a: "If the case arrives with visible defects or damage, contact us immediately (max 48h) at support@wavely.com with clear photos of the problem. We'll send free replacement or full refund, no shipping costs for you."
         },
         {
-          q: "Cum funcționează procesul de retur?",
-          a: "1) Anunță-ne prin email că dorești să returnezi produsul în 14 zile, 2) Primești email cu instrucțiuni și adresa de retur, 3) Expediezi produsul (costul transportului retur este suportat de client, except defecte), 4) Verificăm produsul primit, 5) Procesăm rambursarea în 5-7 zile lucrătoare."
+          q: "How does the return process work?",
+          a: "1) Notify us by email that you want to return the product within 14 days, 2) Receive email with instructions and return address, 3) Ship the product (return shipping cost is customer's responsibility, except defects), 4) We check received product, 5) Process refund in 5-7 business days."
         }
       ]
     },
     {
-      category: "Întreținere & Durabilitate",
+      category: "Care & Durability",
       questions: [
         {
-          q: "Husele sunt rezistente la zgârieturi?",
-          a: "Da, materialele noastre sunt tratate anti-zgârieturi și testate pentru uzură zilnică. Designul 3D și printul sunt protejate cu un strat transparent UV-resistant care previne decolorarea și zgârieturile superficiale."
+          q: "Are cases scratch-resistant?",
+          a: "Yes, our materials are anti-scratch treated and tested for daily wear. The 3D design and print are protected with a transparent UV-resistant layer that prevents fading and surface scratches."
         },
         {
-          q: "Cum curăț husa fără să deteriorez designul?",
-          a: "Curăță husa cu o cârpă moale umedă și săpun neutru. NU folosi alcool, acetone sau detergenți abrazivi care pot deteriora printul. Pentru pete persistente, folosește o periuță moale. Lasă husa să se usuce complet înainte de remontare."
+          q: "How do I clean the case without damaging the design?",
+          a: "Clean the case with a soft damp cloth and mild soap. DO NOT use alcohol, acetone, or abrasive detergents that can damage the print. For persistent stains, use a soft brush. Let the case dry completely before remounting."
         },
         {
-          q: "Designul se șterge în timp?",
-          a: "Nu! Folosim tehnologie de sublimation printing de grad industrial care pătrunde în material, nu doar pe suprafață. Designul este acoperit cu finisaj UV-protective care previne decolorarea chiar și la expunere îndelungată la soare."
+          q: "Does the design wear off over time?",
+          a: "No! We use industrial-grade sublimation printing technology that penetrates the material, not just the surface. The design is covered with UV-protective finish that prevents fading even with prolonged sun exposure."
         },
         {
-          q: "Husa devine gălbuie în timp?",
-          a: "Materialele noastre premium sunt tratate anti-îngălbenire. Spre deosebire de husele TPU ieftine care devin gălbui în 2-3 luni, husele Wavely își mențin culoarea originală pentru 12+ luni la utilizare normală."
+          q: "Does the case turn yellow over time?",
+          a: "Our premium materials are anti-yellowing treated. Unlike cheap TPU cases that turn yellow in 2-3 months, Wavely cases maintain their original color for 12+ months with normal use."
         }
       ]
     }
@@ -128,10 +128,10 @@ const FAQ = () => {
       <section className="relative py-20 px-4 bg-gradient-subtle">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 animate-fade-in">
-            Întrebări <span className="bg-gradient-accent bg-clip-text text-transparent">Frecvente</span>
+            Frequently Asked <span className="bg-gradient-accent bg-clip-text text-transparent">Questions</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            Toate răspunsurile de care ai nevoie despre produsele noastre, livrare, și servicii
+            All the answers you need about our products, delivery, and services
           </p>
         </div>
       </section>
@@ -167,16 +167,16 @@ const FAQ = () => {
           {/* Contact CTA */}
           <div className="mt-16 text-center bg-card/30 backdrop-blur rounded-xl p-8 border border-border/40 animate-fade-in">
             <h3 className="text-2xl font-bold font-poppins mb-4">
-              Nu ai găsit răspunsul?
+              Didn't find the answer?
             </h3>
             <p className="text-muted-foreground mb-6">
-              Echipa noastră de support este aici să te ajute!
+              Our support team is here to help you!
             </p>
             <a
               href="/contact"
               className="inline-flex items-center justify-center rounded-md text-sm font-semibold h-11 px-8 bg-gradient-accent hover:shadow-glow transition-smooth"
             >
-              Contactează-ne
+              Contact Us
             </a>
           </div>
         </div>

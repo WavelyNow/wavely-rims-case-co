@@ -7,45 +7,45 @@ const HowItWorks = () => {
   const steps = [
     {
       icon: Smartphone,
-      title: "Alege modelul de telefon",
-      description: "Selectează din lista completă de modele iPhone, Samsung, Google Pixel și multe altele. Avem huse pentru toate modelele populare.",
-      highlight: "200+ modele disponibile"
+      title: "Choose Your Phone Model",
+      description: "Select from our complete list of iPhone, Samsung, Google Pixel models and many more. We have cases for all popular models.",
+      highlight: "200+ models available"
     },
     {
       icon: Palette,
-      title: "Selectează designul de jantă",
-      description: "Alege din colecția noastră premium de jante 3D: sport, luxury, off-road, classic. Fiecare jantă este modelată în detaliu pentru un efect autentic.",
-      highlight: "Design 3D real, nu printat"
+      title: "Select Rim Design",
+      description: "Choose from our premium collection of 3D rims: sport, luxury, off-road, classic. Each rim is detailed for an authentic effect.",
+      highlight: "Real 3D design, not printed"
     },
     {
       icon: Image,
-      title: "Încarcă poze personale",
-      description: "Adaugă poze cu mașina ta, placa de înmatriculare, sau orice alte imagini preferate. Sistemul nostru optimizează automat imaginile pentru calitate maximă.",
-      highlight: "Preview în timp real"
+      title: "Upload Personal Photos",
+      description: "Add photos of your car, license plate, or any favorite images. Our system automatically optimizes images for maximum quality.",
+      highlight: "Real-time preview"
     },
     {
       icon: Package,
-      title: "Producție & Livrare",
-      description: "Husa ta este produsă custom folosind tehnologie de printare de ultimă generație și materiale premium. Livrare în 3-5 zile lucrătoare.",
-      highlight: "Tracking complet"
+      title: "Production & Delivery",
+      description: "Your case is custom-produced using latest printing technology and premium materials. Delivery in 3-5 business days.",
+      highlight: "Full tracking"
     }
   ];
 
   const features = [
     {
       icon: Shield,
-      title: "Protecție Premium",
-      description: "Materiale de calitate industrială care protejează telefonul de impact, zgârieturi și uzură zilnică. Margini ridicate pentru protecția camerei și ecranului."
+      title: "Premium Protection",
+      description: "Industrial-grade materials that protect your phone from impact, scratches and daily wear. Raised edges for camera and screen protection."
     },
     {
       icon: Palette,
-      title: "Personalizare Completă",
-      description: "Design 100% personalizabil - de la modelul de jantă până la pozele tale preferate. Fiecare husă este unică și creată special pentru tine."
+      title: "Complete Customization",
+      description: "100% customizable design - from rim model to your favorite photos. Each case is unique and created especially for you."
     },
     {
       icon: Zap,
-      title: "Livrare Rapidă",
-      description: "Producție în 2-3 zile + transport express. Primești tracking complet și notificări în timp real despre statusul comenzii tale."
+      title: "Fast Delivery",
+      description: "Production in 2-3 days + express shipping. You get full tracking and real-time notifications about your order status."
     }
   ];
 
@@ -57,10 +57,10 @@ const HowItWorks = () => {
       <section className="relative py-20 px-4 bg-gradient-subtle">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 animate-fade-in">
-            Cum funcționează <span className="bg-gradient-accent bg-clip-text text-transparent">Wavely</span>
+            How <span className="bg-gradient-accent bg-clip-text text-transparent">Wavely</span> Works
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            De la idee la husă personalizată în doar 4 pași simpli. Fiecare design este unic și creat special pentru tine.
+            From idea to custom case in just 4 simple steps. Each design is unique and created especially for you.
           </p>
         </div>
       </section>
@@ -83,7 +83,7 @@ const HowItWorks = () => {
                     <step.icon className="h-10 w-10 text-primary" />
                   </div>
                   <div className="inline-block px-4 py-1 rounded-full bg-gradient-accent text-sm font-semibold mb-4">
-                    Pasul {idx + 1}
+                    Step {idx + 1}
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
                     {step.title}
@@ -114,7 +114,7 @@ const HowItWorks = () => {
               className="bg-gradient-accent hover:shadow-glow transition-smooth text-base font-semibold group"
               onClick={() => window.location.href = '/customize'}
             >
-              Începe personalizarea
+              Start Customizing
               <ArrowRight className="ml-2 h-5 w-5 transition-smooth group-hover:translate-x-1" />
             </Button>
           </div>
@@ -126,10 +126,10 @@ const HowItWorks = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-              De ce <span className="bg-gradient-accent bg-clip-text text-transparent">Wavely</span>?
+              Why <span className="bg-gradient-accent bg-clip-text text-transparent">Wavely</span>?
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Combinăm tehnologia avansată cu materiale premium pentru huse care durează
+              We combine advanced technology with premium materials for cases that last
             </p>
           </div>
 
@@ -160,35 +160,35 @@ const HowItWorks = () => {
         <div className="container mx-auto max-w-4xl">
           <div className="bg-card/50 backdrop-blur rounded-xl p-8 md:p-12 border border-border/40 shadow-premium animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-6 text-center">
-              Materiale <span className="bg-gradient-accent bg-clip-text text-transparent">Premium</span>
+              Premium <span className="bg-gradient-accent bg-clip-text text-transparent">Materials</span>
             </h2>
             
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                <strong className="text-foreground">TPU Flexibil:</strong> Protecție excelentă la impact și căderi. 
-                Materialul absoarbe șocurile și protejează telefonul în situații de zi cu zi.
+                <strong className="text-foreground">Flexible TPU:</strong> Excellent protection against impact and falls. 
+                The material absorbs shocks and protects your phone in everyday situations.
               </p>
               <p>
-                <strong className="text-foreground">Policarbonat Rigid:</strong> Rezistență maximă la zgârieturi și uzură. 
-                Păstrează designul intact pe termen lung, fără decolorare sau îngălbenire.
+                <strong className="text-foreground">Rigid Polycarbonate:</strong> Maximum resistance to scratches and wear. 
+                Keeps design intact long-term, without fading or yellowing.
               </p>
               <p>
-                <strong className="text-foreground">Printare 3D Avansată:</strong> Tehnologie de ultimă generație pentru relief 
-                autentic al jantelor. Poți simți fiecare detaliu - nu este doar o imagine printată.
+                <strong className="text-foreground">Advanced 3D Printing:</strong> Latest technology for authentic 
+                rim relief. You can feel every detail - it's not just a printed image.
               </p>
               <p>
-                <strong className="text-foreground">Finisaj UV-Protective:</strong> Strat transparent care protejează printul 
-                de decolorare și uzură. Culorile rămân vibrante chiar și după luni de utilizare.
+                <strong className="text-foreground">UV-Protective Finish:</strong> Transparent layer that protects print 
+                from fading and wear. Colors stay vibrant even after months of use.
               </p>
               <p>
-                <strong className="text-foreground">Soft-Touch Coating:</strong> Finisaj mat care oferă grip excelent și 
-                o senzație premium în mână. Rezistent la amprente și pete.
+                <strong className="text-foreground">Soft-Touch Coating:</strong> Matte finish that offers excellent grip and 
+                a premium feel in hand. Resistant to fingerprints and stains.
               </p>
             </div>
 
             <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
               <p className="text-center font-semibold text-foreground">
-                🌿 Toate materialele sunt certificate și eco-friendly
+                🌿 All materials are certified and eco-friendly
               </p>
             </div>
           </div>
