@@ -1,75 +1,56 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap, Upload, Star, Quote, Instagram, Heart, ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Sparkles, Zap, Upload, Star, Instagram, Heart, ShoppingCart } from "lucide-react";
+import { useState, useEffect } from "react";
 import heroPhoneCase from "@/assets/hero-phone-case.jpg";
-import caseFerrari from "@/assets/case-ferrari.jpg";
-import caseGTR from "@/assets/case-gtr.jpg";
-import caseLamborghini from "@/assets/case-lamborghini.jpg";
-import caseBMW from "@/assets/case-bmw.jpg";
+import { getProducts, ShopifyProduct } from "@/lib/shopify";
+import { useCartStore } from "@/stores/cartStore";
+import { toast } from "sonner";
 
 const Index = () => {
-  const [hoveredCase, setHoveredCase] = useState<number | null>(null);
+  const [products, setProducts] = useState<ShopifyProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const addItem = useCartStore(state => state.addItem);
 
-  const featuredCases = [
-    {
-      id: 1,
-      name: "Ferrari F8",
-      image: caseFerrari,
-      price: "$49.99",
-      badge: "Best Seller",
-      color: "hot-pink"
-    },
-    {
-      id: 2,
-      name: "Nissan GTR R35",
-      image: caseGTR,
-      price: "$44.99",
-      badge: "Popular",
-      color: "electric-cyan"
-    },
-    {
-      id: 3,
-      name: "Lamborghini Huracán",
-      image: caseLamborghini,
-      price: "$54.99",
-      badge: "Premium",
-      color: "lime-neon"
-    },
-    {
-      id: 4,
-      name: "BMW M4",
-      image: caseBMW,
-      price: "$49.99",
-      badge: "New",
-      color: "electric-cyan"
-    }
-  ];
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const data = await getProducts(4);
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to load products:", error);
+        toast.error("Failed to load products");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const testimonials = [
-    {
-      id: 1,
-      name: "Alex M.",
-      role: "Car Enthusiast",
-      text: "The quality is insane! My GTR case looks exactly like the real thing. Everyone asks where I got it.",
-      rating: 5
-    },
-    {
-      id: 2,
-      name: "Jordan K.",
-      role: "Ferrari Owner",
-      text: "Finally a case that matches my passion. The carbon fiber texture and neon details are perfect!",
-      rating: 5
-    },
-    {
-      id: 3,
-      name: "Sam R.",
-      role: "Track Day Regular",
-      text: "Best purchase ever! Dropped my phone multiple times and it's still perfect. Looks amazing too.",
-      rating: 5
+    loadProducts();
+  }, []);
+
+  const handleAddToCart = (product: ShopifyProduct) => {
+    const firstVariant = product.node.variants.edges[0]?.node;
+    if (!firstVariant) {
+      toast.error("Product variant not available");
+      return;
     }
-  ];
+
+    addItem({
+      product,
+      variantId: firstVariant.id,
+      variantTitle: firstVariant.title,
+      price: firstVariant.price,
+      quantity: 1,
+      selectedOptions: firstVariant.selectedOptions,
+    });
+
+    toast.success("Added to cart!", {
+      description: `${product.node.title} has been added to your cart.`,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -239,10 +220,9 @@ const Index = () => {
       </header>
 
       <main id="main-content" className="relative">
-        {/* FEATURED CASES SECTION */}
+        {/* FEATURED PRODUCTS SECTION */}
         <section className="py-24 relative overflow-hidden" aria-labelledby="featured-title">
-          <div className="absolute inset-0 carbon-fiber opacity-50" />
-          <div className="absolute inset-0 bg-gradient-subtle" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
           
           <div className="container max-w-7xl mx-auto px-4 relative z-10">
             <div className="text-center mb-16 animate-fade-in">
@@ -259,54 +239,97 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredCases.map((item, i) => (
-                <div
-                  key={item.id}
-                  className="group relative animate-fade-in cursor-pointer"
-                  style={{ animationDelay: `${i * 150}ms` }}
-                  onMouseEnter={() => setHoveredCase(i)}
-                  onMouseLeave={() => setHoveredCase(null)}
-                >
-                  <div className={`relative rounded-2xl border-2 border-border/40 bg-card/60 backdrop-blur-sm overflow-hidden transition-all hover:border-${item.color}/60 hover:shadow-premium hover:-translate-y-2`}>
-                    {/* Badge */}
-                    <div className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-${item.color}/90 text-white text-xs font-black uppercase backdrop-blur-sm`}>
-                      {item.badge}
+            {loading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[...Array(4)].map((_, i) => (
+                  <Card key={i} className="animate-pulse border-2 border-border/40 bg-card/60 backdrop-blur-sm">
+                    <div className="aspect-square bg-muted" />
+                    <div className="p-6 space-y-3">
+                      <div className="h-4 bg-muted rounded w-3/4" />
+                      <div className="h-4 bg-muted rounded w-1/2" />
+                      <div className="h-10 bg-muted rounded" />
                     </div>
+                  </Card>
+                ))}
+              </div>
+            ) : products.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-xl text-muted-foreground">No products available yet</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {products.map((product, i) => {
+                  const image = product.node.images.edges[0]?.node;
+                  const price = product.node.priceRange.minVariantPrice;
 
-                    {/* Glow on hover */}
-                    <div className={`absolute inset-0 bg-${item.color}/20 opacity-0 group-hover:opacity-100 transition-opacity blur-xl`} />
-                    
-                    {/* Image */}
-                    <div className="aspect-square bg-gradient-subtle p-6 relative overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
-                      />
-                    </div>
+                  return (
+                    <Card
+                      key={product.node.id}
+                      className="group relative animate-fade-in overflow-hidden border-2 border-border/40 bg-card/60 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-premium hover:-translate-y-2"
+                      style={{ animationDelay: `${i * 150}ms` }}
+                    >
+                      {/* Glow effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none" />
+                      
+                      <a href={`/product/${product.node.handle}`}>
+                        <div className="aspect-square overflow-hidden bg-gradient-subtle p-6 relative">
+                          {image ? (
+                            <img
+                              src={image.url}
+                              alt={image.altText || product.node.title}
+                              className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <ShoppingCart className="h-20 w-20 text-muted-foreground" />
+                            </div>
+                          )}
+                        </div>
+                      </a>
 
-                    {/* Info */}
-                    <div className="p-6 relative z-10">
-                      <h3 className="text-xl font-black font-poppins mb-2 group-hover:text-primary transition-colors">
-                        {item.name}
-                      </h3>
-                      <div className="flex items-center justify-between">
-                        <span className="text-2xl font-black text-primary">{item.price}</span>
-                        <Button 
-                          size="sm" 
-                          className="bg-gradient-accent hover:shadow-glow transition-premium text-xs font-bold"
-                          onClick={() => window.location.href = "/shop"}
-                        >
-                          <ShoppingCart className="h-4 w-4 mr-1" />
-                          ADD
-                        </Button>
+                      <div className="p-6 relative z-10 space-y-4">
+                        <div className="space-y-2">
+                          <a href={`/product/${product.node.handle}`}>
+                            <h3 className="text-xl font-black font-poppins group-hover:text-primary transition-colors">
+                              {product.node.title}
+                            </h3>
+                          </a>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            {product.node.description}
+                          </p>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          <span className="text-2xl font-black text-primary">
+                            ${parseFloat(price.amount).toFixed(2)}
+                          </span>
+                          <Badge variant="secondary" className="text-xs">{price.currencyCode}</Badge>
+                        </div>
+
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            className="flex-1 bg-gradient-accent hover:shadow-glow transition-premium text-xs font-bold"
+                            onClick={() => handleAddToCart(product)}
+                          >
+                            <ShoppingCart className="h-4 w-4 mr-1" />
+                            ADD TO CART
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="border-2 border-primary/40 hover:bg-primary/10 hover:border-primary"
+                          >
+                            <Heart className="h-4 w-4 hover:fill-primary hover:text-primary transition-all" />
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+                    </Card>
+                  );
+                })}
+              </div>
+            )}
 
             <div className="text-center mt-12">
               <Button
@@ -323,7 +346,7 @@ const Index = () => {
 
         {/* CUSTOMIZE YOURS SECTION */}
         <section className="py-24 relative" aria-labelledby="customize-title">
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
           
           <div className="container max-w-6xl mx-auto px-4 relative z-10">
             <div className="relative rounded-3xl border-2 border-primary/30 bg-card/80 backdrop-blur-xl p-12 md:p-16 overflow-hidden shadow-premium">
@@ -378,63 +401,32 @@ const Index = () => {
           </div>
         </section>
 
-        {/* TESTIMONIALS SECTION */}
-        <section className="py-24 relative carbon-fiber" aria-labelledby="testimonials-title">
-          <div className="absolute inset-0 bg-gradient-subtle opacity-90" />
+        {/* INSTAGRAM SECTION */}
+        <section className="py-24 relative" aria-labelledby="instagram-title">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-card/20 to-background" />
           
-          <div className="container max-w-7xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent/10 border-2 border-accent/40 backdrop-blur-sm mb-6">
-                <Quote className="h-5 w-5 text-accent" />
-                <span className="text-sm font-bold text-accent uppercase tracking-wider">Community Love</span>
-              </div>
-              
-              <h2 id="testimonials-title" className="text-6xl font-black font-poppins mb-4" style={{ fontFamily: "'Orbitron', 'Poppins', sans-serif" }}>
-                <span className="bg-gradient-accent bg-clip-text text-transparent">CAR ENTHUSIASTS</span>
-              </h2>
-              <p className="text-xl text-muted-foreground font-semibold">See what our community says</p>
+          <div className="container max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent/10 border-2 border-accent/40 backdrop-blur-sm mb-6">
+              <Instagram className="h-5 w-5 text-accent" />
+              <span className="text-sm font-bold text-accent uppercase tracking-wider">Join Our Community</span>
             </div>
+            
+            <h2 id="instagram-title" className="text-5xl md:text-6xl font-black font-poppins mb-6" style={{ fontFamily: "'Orbitron', 'Poppins', sans-serif" }}>
+              <span className="bg-gradient-accent bg-clip-text text-transparent">SHOW YOUR STYLE</span>
+            </h2>
+            <p className="text-xl text-muted-foreground font-semibold mb-12 max-w-2xl mx-auto">
+              Share your WAVELY case with the world and get featured on our Instagram
+            </p>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, i) => (
-                <div
-                  key={testimonial.id}
-                  className="relative rounded-2xl border-2 border-border/40 bg-card/80 backdrop-blur-sm p-6 hover:border-primary/50 transition-all hover:shadow-card animate-fade-in"
-                  style={{ animationDelay: `${i * 150}ms` }}
-                >
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  
-                  <p className="text-foreground mb-6 leading-relaxed italic">
-                    "{testimonial.text}"
-                  </p>
-                  
-                  <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-full bg-gradient-accent" />
-                    <div>
-                      <p className="font-bold font-poppins">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-14 px-8 border-2 border-secondary hover:bg-secondary/20 transition-smooth text-lg font-black group"
-                onClick={() => window.open('https://instagram.com', '_blank')}
-              >
-                <Instagram className="h-5 w-5 mr-2" />
-                FOLLOW US @WAVELY
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
-              </Button>
-            </div>
+            <Button
+              size="lg"
+              className="h-16 px-10 bg-gradient-accent hover:shadow-neon transition-premium text-xl font-black group"
+              onClick={() => window.open('https://instagram.com', '_blank')}
+            >
+              <Instagram className="h-6 w-6 mr-3" />
+              FOLLOW @WAVELY
+              <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+            </Button>
           </div>
         </section>
       </main>
