@@ -39,13 +39,14 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    /* Car-lifestyle neon design tokens */
-    --hot-pink: 330 100% 60%;
-    --electric-cyan: 180 100% 50%;
+    /* Car-lifestyle neon design tokens - Updated Palette */
+    --hot-pink: 330 100% 50%; /* #FF00AA Neon Magenta */
+    --electric-cyan: 190 100% 50%; /* #00E0FF Electric Cyan */
     --lime-neon: 140 100% 50%;
     --ferrari-red: 0 90% 55%;
-    --carbon-black: 220 15% 8%;
-    --metallic-gray: 220 8% 30%;
+    --carbon-black: 0 0% 4%; /* #0A0A0A Carbon Fiber Black */
+    --metallic-gray: 0 0% 69%; /* #B0B0B0 Cool Gray */
+    --neon-purple: 285 100% 50%; /* #C000FF Neon Purple Blend */
     
     /* Neon Gradients */
     --gradient-premium: linear-gradient(135deg, hsl(var(--hot-pink)), hsl(var(--electric-cyan)));
@@ -160,6 +161,20 @@ All colors MUST be HSL.
 @keyframes float {
   0%, 100% { transform: translateY(0px) scale(1); }
   50% { transform: translateY(-30px) scale(1.02); }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes neon-shimmer {
+  0%, 100% { 
+    box-shadow: 0 0 20px hsl(330 100% 50% / 0.5), 0 0 40px hsl(190 100% 50% / 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px hsl(330 100% 50% / 0.8), 0 0 60px hsl(190 100% 50% / 0.5);
+  }
 }
 
 @keyframes tiltIn {

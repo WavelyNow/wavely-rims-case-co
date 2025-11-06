@@ -79,132 +79,161 @@ const Index = () => {
 
       <Navigation />
 
-      {/* HERO SECTION - Parallax with 3D Elements */}
-      <header className="relative overflow-hidden min-h-screen carbon-fiber" aria-labelledby="hero-title">
-        {/* Neon Light Strips - like garage */}
-        <div className="absolute top-0 left-10 w-1 h-full bg-gradient-to-b from-primary via-primary to-transparent opacity-60 blur-sm" />
-        <div className="absolute top-0 right-10 w-1 h-full bg-gradient-to-b from-secondary via-secondary to-transparent opacity-60 blur-sm" />
+      {/* HERO SECTION - Automotive Dashboard Style */}
+      <header className="relative overflow-hidden min-h-screen" aria-labelledby="hero-title" style={{ background: '#0A0A0A' }}>
+        {/* Carbon Fiber Background Pattern */}
+        <div className="absolute inset-0 carbon-fiber opacity-40" />
         
-        {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
+        {/* Gradient Overlay - Pink to Cyan */}
+        <div className="absolute inset-0 bg-gradient-to-br from-hot-pink/20 via-transparent to-electric-cyan/20" />
+        
+        {/* Neon Grid Lines */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'linear-gradient(hsl(var(--electric-cyan)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--electric-cyan)) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
 
-        {/* 3D Rim Element - emerging from behind */}
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-20">
-          <div className="relative w-full h-full">
-            <div className="absolute inset-0 rounded-full border-8 border-metallic-gray opacity-40 animate-spin" style={{ animationDuration: '20s' }} />
-            <div className="absolute inset-8 rounded-full border-4 border-primary/30" />
-            <div className="absolute inset-16 rounded-full bg-gradient-radial from-primary/10 to-transparent" />
-          </div>
-        </div>
-
-        {/* Floating neon particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(40)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                width: `${2 + Math.random() * 4}px`,
-                height: `${2 + Math.random() * 4}px`,
-                background: i % 3 === 0 ? 'hsl(var(--hot-pink))' : i % 3 === 1 ? 'hsl(var(--electric-cyan))' : 'hsl(var(--lime-neon))',
-                opacity: 0.3 + Math.random() * 0.3,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${4 + Math.random() * 8}s`
-              }}
-            />
-          ))}
-        </div>
+        {/* Moving Light Animation */}
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-electric-cyan to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
         
         <div className="container max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
-            {/* Left: Text content */}
-            <div className="animate-fade-in space-y-8">
-              {/* Neon Badge */}
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 border-2 border-primary/40 backdrop-blur-sm animate-neon-pulse">
-                <Zap className="h-6 w-6 text-primary" />
-                <span className="text-sm font-black text-primary uppercase tracking-widest">Premium Car Cases</span>
-              </div>
-
-              <div className="space-y-6">
-                <h1 id="hero-title" className="text-7xl md:text-9xl font-black font-poppins leading-none tracking-tighter" style={{ fontFamily: "'Orbitron', 'Poppins', sans-serif" }}>
-                  <span className="block text-white drop-shadow-[0_0_40px_rgba(255,20,147,0.8)]">WAVELY</span>
-                  <span className="block text-transparent bg-gradient-accent bg-clip-text animate-neon-pulse">
-                    GARAGE
-                  </span>
+            {/* LEFT SIDE - Specs & CTA */}
+            <div className="animate-fade-in space-y-8 order-2 lg:order-1">
+              {/* Brand Name */}
+              <div className="mb-12">
+                <h1 id="hero-title" className="text-8xl md:text-9xl font-black leading-none tracking-tighter mb-4" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                  <span className="block text-white drop-shadow-[0_0_30px_rgba(255,0,170,0.8)]">WAVELY</span>
                 </h1>
-                
-                <p className="text-2xl md:text-3xl text-muted-foreground font-bold leading-relaxed max-w-xl" style={{ fontFamily: "'Urbanist', sans-serif" }}>
-                  Premium phone cases featuring <span className="text-primary">legendary sports cars</span>. 
-                  Carbon fiber texture. Neon accents. Pure performance.
+                <p className="text-2xl text-metallic-gray font-semibold uppercase tracking-wider" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  Premium Automotive Phone Cases
                 </p>
               </div>
 
+              {/* Specs Dashboard */}
+              <div className="relative p-8 rounded-2xl border-2 border-hot-pink/30 bg-black/60 backdrop-blur-xl space-y-4 animate-[neon-shimmer_3s_ease-in-out_infinite]">
+                <div className="absolute top-0 left-0 w-3 h-3 bg-hot-pink rounded-full animate-pulse" />
+                <div className="absolute top-0 right-0 w-3 h-3 bg-electric-cyan rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+                
+                <h2 className="text-xl font-black text-white uppercase tracking-wider mb-6 border-b border-hot-pink/40 pb-3" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                  SPECIFICATIONS
+                </h2>
+                
+                <div className="space-y-3 font-mono text-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-metallic-gray uppercase">Engine:</span>
+                    <span className="text-white font-bold">3D Printed Design</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-metallic-gray uppercase">Material:</span>
+                    <span className="text-white font-bold">Carbon Fiber Polymer</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-metallic-gray uppercase">Finish:</span>
+                    <span className="text-white font-bold">Glossy Neon Edge</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-metallic-gray uppercase">Customization:</span>
+                    <span className="text-electric-cyan font-bold">Available</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-metallic-gray uppercase">Warranty:</span>
+                    <span className="text-hot-pink font-bold">12 Months</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="h-16 px-10 bg-gradient-accent hover:shadow-neon transition-premium text-xl font-black group relative overflow-hidden border-2 border-transparent hover:border-primary"
+                  className="h-16 px-10 text-xl font-black uppercase group relative overflow-hidden border-0"
+                  style={{
+                    background: 'linear-gradient(135deg, #00E0FF, #0080FF)',
+                    boxShadow: '0 0 30px rgba(0, 224, 255, 0.6), 0 0 60px rgba(0, 224, 255, 0.3)'
+                  }}
                   onClick={() => (window.location.href = "/shop")}
                 >
-                  <span className="relative z-10 flex items-center">
+                  <span className="relative z-10 flex items-center text-white">
                     <ShoppingCart className="h-6 w-6 mr-3" />
                     SHOP NOW
                     <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                   </span>
-                  <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Button>
                 
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-16 px-10 border-2 border-secondary hover:bg-secondary/20 hover:border-secondary transition-smooth text-xl font-black group backdrop-blur-sm"
+                  className="h-16 px-10 text-xl font-black uppercase group backdrop-blur-sm"
+                  style={{
+                    borderWidth: '2px',
+                    borderColor: '#FF00AA',
+                    color: '#FF00AA',
+                    background: 'rgba(255, 0, 170, 0.1)'
+                  }}
                   onClick={() => (window.location.href = "/customize")}
                 >
-                  <Sparkles className="h-6 w-6 mr-3 text-secondary group-hover:animate-spin" />
+                  <Sparkles className="h-6 w-6 mr-3 group-hover:animate-spin" />
                   EXPLORE DESIGNS
                 </Button>
               </div>
-
-              {/* Trust indicators */}
-              <div className="flex flex-wrap gap-6 pt-8 border-t border-border/40">
-                {[
-                  { icon: Star, text: "Premium Quality", color: "primary" },
-                  { icon: Zap, text: "Fast Shipping", color: "secondary" },
-                  { icon: Heart, text: "100+ 5★ Reviews", color: "accent" }
-                ].map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={i} className="flex items-center gap-2 animate-fade-in" style={{ animationDelay: `${i * 200}ms` }}>
-                      <div className={`h-10 w-10 rounded-lg bg-${item.color}/20 flex items-center justify-center border border-${item.color}/40`}>
-                        <Icon className={`h-5 w-5 text-${item.color}`} />
-                      </div>
-                      <span className="text-sm font-bold uppercase tracking-wide">{item.text}</span>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
 
-            {/* Right: Hero Product with Parallax */}
-            <div className="relative lg:h-screen flex items-center justify-center">
-              <div className="relative animate-float animate-tilt-in" style={{ animationDuration: '8s' }}>
-                {/* Multiple glow layers for 3D effect */}
-                <div className="absolute -inset-20 bg-primary/40 rounded-full blur-[120px] animate-neon-pulse" />
-                <div className="absolute -inset-10 bg-secondary/40 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
-                <div className="absolute -inset-5 bg-accent/30 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: '4s', animationDelay: '2s' }} />
+            {/* RIGHT SIDE - 3D Phone Case with Spinning Rims */}
+            <div className="relative lg:h-screen flex items-center justify-center order-1 lg:order-2">
+              <div className="relative animate-float" style={{ animationDuration: '6s' }}>
+                {/* Glow Effects */}
+                <div className="absolute -inset-32 bg-hot-pink/40 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute -inset-20 bg-electric-cyan/40 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute -inset-10 bg-neon-purple/30 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '2s' }} />
                 
-                {/* Main hero image */}
-                <img
-                  src={heroFerrariCase}
-                  alt="Ferrari phone case with neon lighting"
-                  className="relative z-10 w-full max-w-2xl rounded-3xl shadow-premium transform hover:scale-105 transition-premium"
-                  style={{ filter: 'drop-shadow(0 0 40px rgba(255,20,147,0.6))' }}
-                />
+                {/* Main Product Image */}
+                <div className="relative z-10">
+                  <img
+                    src={heroFerrariCase}
+                    alt="WAVELY premium phone case with sports car design and carbon fiber texture"
+                    className="relative w-full max-w-2xl rounded-3xl"
+                    style={{ 
+                      filter: 'drop-shadow(0 0 60px rgba(255, 0, 170, 0.8))',
+                      transform: 'perspective(1000px) rotateY(-5deg)'
+                    }}
+                  />
+                </div>
                 
-                {/* Reflective glow spots */}
-                <div className="absolute top-1/4 -left-10 h-32 w-32 bg-primary/60 rounded-full blur-2xl animate-pulse" />
-                <div className="absolute bottom-1/4 -right-10 h-40 w-40 bg-secondary/60 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+                {/* 3D Rim Elements - Spinning */}
+                <div className="absolute top-1/4 -left-20 w-40 h-40 opacity-80">
+                  <div className="relative w-full h-full animate-[spin-slow_8s_linear_infinite]">
+                    <div className="absolute inset-0 rounded-full border-8 border-metallic-gray/40" style={{ borderStyle: 'double' }} />
+                    <div className="absolute inset-4 rounded-full border-4 border-hot-pink/60" />
+                    <div className="absolute inset-8 rounded-full bg-gradient-radial from-hot-pink/30 to-transparent" />
+                    {/* Spoke pattern */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-1 h-full bg-metallic-gray/60" />
+                      <div className="absolute w-full h-1 bg-metallic-gray/60" />
+                      <div className="absolute w-full h-1 bg-metallic-gray/60 rotate-45" />
+                      <div className="absolute w-full h-1 bg-metallic-gray/60 -rotate-45" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="absolute bottom-1/4 -right-24 w-48 h-48 opacity-80">
+                  <div className="relative w-full h-full animate-[spin-slow_10s_linear_infinite]">
+                    <div className="absolute inset-0 rounded-full border-8 border-metallic-gray/40" style={{ borderStyle: 'double' }} />
+                    <div className="absolute inset-4 rounded-full border-4 border-electric-cyan/60" />
+                    <div className="absolute inset-8 rounded-full bg-gradient-radial from-electric-cyan/30 to-transparent" />
+                    {/* Spoke pattern */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-1 h-full bg-metallic-gray/60" />
+                      <div className="absolute w-full h-1 bg-metallic-gray/60" />
+                      <div className="absolute w-full h-1 bg-metallic-gray/60 rotate-45" />
+                      <div className="absolute w-full h-1 bg-metallic-gray/60 -rotate-45" />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Neon Edge Highlights */}
+                <div className="absolute top-1/3 right-0 h-40 w-40 bg-hot-pink/60 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/3 left-0 h-40 w-40 bg-electric-cyan/60 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
               </div>
             </div>
           </div>
@@ -212,8 +241,8 @@ const Index = () => {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <span className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Scroll</span>
-          <ArrowRight className="h-6 w-6 text-primary rotate-90" />
+          <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#B0B0B0' }}>Scroll</span>
+          <ArrowRight className="h-6 w-6 rotate-90" style={{ color: '#FF00AA' }} />
         </div>
       </header>
 
