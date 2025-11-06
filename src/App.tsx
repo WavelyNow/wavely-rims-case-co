@@ -17,6 +17,8 @@ import CookiePolicy from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
 import Giveaway from "./pages/Giveaway";
 import Referral from "./pages/Referral";
+import Auth from "./pages/Auth";
+import Account from "./pages/Account";
 import AdminLogin from "./pages/AdminLogin";
 import DiscountCodes from "./pages/admin/DiscountCodes";
 
@@ -42,6 +44,8 @@ const App = () => (
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/giveaway" element={<Giveaway />} />
           <Route path="/referral" element={<Referral />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/discount-codes" element={<DiscountCodes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
