@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Smartphone, Palette, Upload, Sparkles, Check, Shield, Truck, Star } from "lucide-react";
+import { ArrowRight, Smartphone, Palette, Upload, Sparkles, Check, Shield, Truck, Star, Zap } from "lucide-react";
 import { useState } from "react";
 
 const HowItWorks = () => {
@@ -87,9 +87,13 @@ const HowItWorks = () => {
                   <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                     {step.description}
                   </p>
-                  <div className="inline-flex items-center gap-2 text-primary font-semibold">
-                    <Zap className="h-5 w-5" />
-                    {step.highlight}
+                  <div className="space-y-2">
+                    {step.highlights.map((highlight, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span>{highlight}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -143,7 +147,7 @@ const HowItWorks = () => {
                   {feature.title}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
+                  {feature.desc}
                 </p>
               </div>
             ))}
