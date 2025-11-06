@@ -46,154 +46,219 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 bg-gradient-subtle">
+        <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
+      </div>
+
+      {/* Floating particles */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-primary rounded-full opacity-30 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 10}s`
+            }}
+          />
+        ))}
+      </div>
+
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-subtle">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 animate-fade-in">
-            How <span className="bg-gradient-accent bg-clip-text text-transparent">Wavely</span> Works
+      <section className="relative py-20 px-4">
+        <div className="container mx-auto text-center relative z-10 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/20 border-2 border-primary/40 backdrop-blur-sm mb-6 animate-pulse" style={{ animationDuration: '3s' }}>
+            <Sparkles className="h-5 w-5 text-primary animate-spin" style={{ animationDuration: '3s' }} />
+            <span className="text-sm font-bold text-primary uppercase tracking-wider">Simple 4-Step Process</span>
+          </div>
+          
+          <h1 className="text-6xl md:text-8xl font-black font-poppins mb-6">
+            <span className="bg-gradient-accent bg-clip-text text-transparent">How It Works</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            From idea to custom case in just 4 simple steps. Each design is unique and created especially for you.
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto font-medium">
+            Creating your perfect custom case is easier than you think. Follow our simple process and get your unique design delivered in days.
           </p>
         </div>
       </section>
 
-      {/* Steps Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="space-y-16">
-            {steps.map((step, idx) => (
-              <div
-                key={idx}
-                className={`flex flex-col ${
-                  idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                } items-center gap-12 animate-fade-in`}
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                {/* Icon & Step Number */}
-                <div className="flex-1 text-center lg:text-left">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-                    <step.icon className="h-10 w-10 text-primary" />
-                  </div>
-                  <div className="inline-block px-4 py-1 rounded-full bg-gradient-accent text-sm font-semibold mb-4">
-                    Step {idx + 1}
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-                    {step.title}
-                  </h2>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                    {step.description}
-                  </p>
-                  <div className="space-y-2">
-                    {step.highlights.map((highlight, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm">
-                        <Check className="h-4 w-4 text-primary" />
-                        <span>{highlight}</span>
+      <main className="relative z-10">
+        {/* Interactive Steps Section */}
+        <section className="py-20">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Left - Step Navigation */}
+              <div className="space-y-4 lg:sticky lg:top-24">
+                {steps.map((step, index) => {
+                  const Icon = step.icon;
+                  const isActive = activeStep === index;
+                  
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => setActiveStep(index)}
+                      className={`w-full text-left p-6 rounded-2xl border-2 transition-all group ${
+                        isActive
+                          ? 'border-primary bg-gradient-to-br from-primary/20 to-accent/20 shadow-premium scale-105'
+                          : 'border-border/40 bg-card/60 hover:border-primary/50 hover:shadow-card backdrop-blur-sm'
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className={`h-16 w-16 rounded-xl flex items-center justify-center flex-shrink-0 transition-all ${
+                          isActive
+                            ? `bg-gradient-to-br ${step.color} shadow-glow scale-110`
+                            : 'bg-muted group-hover:bg-gradient-accent'
+                        }`}>
+                          <Icon className={`h-8 w-8 ${isActive ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`} />
+                        </div>
+                        
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className={`text-xs font-bold px-3 py-1.5 rounded-full ${
+                              isActive ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                            }`}>
+                              Step {index + 1}
+                            </span>
+                          </div>
+                          <h3 className={`font-bold font-poppins text-2xl mb-2 ${
+                            isActive ? 'text-primary' : 'group-hover:text-primary'
+                          }`}>
+                            {step.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </button>
+                  );
+                })}
+              </div>
 
-                {/* Visual Placeholder */}
-                <div className="flex-1">
-                  <div className="bg-card/50 backdrop-blur rounded-xl p-8 border border-border/40 shadow-premium aspect-square flex items-center justify-center">
-                    <step.icon className="h-32 w-32 text-primary/20" />
+              {/* Right - Active Step Details */}
+              <div className="lg:sticky lg:top-24">
+                <div className="relative rounded-3xl border-2 border-primary/30 bg-card/60 p-8 backdrop-blur-xl shadow-premium animate-fade-in overflow-hidden group hover:border-primary/50 transition-all">
+                  {/* Decorative gradients */}
+                  <div className="absolute inset-0 bg-gradient-premium opacity-10 group-hover:opacity-20 transition-opacity" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-accent opacity-30 blur-3xl rounded-full animate-pulse" style={{ animationDuration: '4s' }} />
+                  
+                  <div className="relative z-10">
+                    <div className={`h-24 w-24 rounded-2xl bg-gradient-to-br ${steps[activeStep].color} flex items-center justify-center mb-6 shadow-premium`}>
+                      {(() => {
+                        const Icon = steps[activeStep].icon;
+                        return <Icon className="h-12 w-12 text-white" />;
+                      })()}
+                    </div>
+
+                    <h3 className="text-4xl font-black font-poppins mb-4 bg-gradient-accent bg-clip-text text-transparent">
+                      {steps[activeStep].title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                      {steps[activeStep].description}
+                    </p>
+
+                    <div className="space-y-3">
+                      <p className="text-sm font-bold text-primary uppercase tracking-wider mb-4">Key Features</p>
+                      {steps[activeStep].highlights.map((highlight, i) => (
+                        <div key={i} className="flex items-center gap-3 animate-fade-in" style={{ animationDelay: `${i * 100}ms` }}>
+                          <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                            <Check className="h-5 w-5 text-primary" />
+                          </div>
+                          <span className="text-foreground font-medium">{highlight}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Button
+                      size="lg"
+                      className="w-full mt-8 h-14 bg-gradient-accent hover:shadow-neon transition-premium text-lg font-bold group relative overflow-hidden"
+                      onClick={() => window.location.href = "/customize"}
+                    >
+                      <span className="relative z-10 flex items-center justify-center">
+                        Start This Step
+                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Button>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
+        </section>
 
-          {/* CTA */}
-          <div className="text-center mt-16 animate-fade-in">
-            <Button
-              size="lg"
-              className="bg-gradient-accent hover:shadow-glow transition-smooth text-base font-semibold group"
-              onClick={() => window.location.href = '/customize'}
-            >
-              Start Customizing
-              <ArrowRight className="ml-2 h-5 w-5 transition-smooth group-hover:translate-x-1" />
-            </Button>
+        {/* Features Grid */}
+        <section className="py-20">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="text-center mb-16 animate-fade-in">
+              <h2 className="text-5xl font-black font-poppins mb-4">
+                <span className="bg-gradient-accent bg-clip-text text-transparent">Why Wavely</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Premium quality and exceptional service in every case we create
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, i) => {
+                const Icon = feature.icon;
+                return (
+                  <div
+                    key={i}
+                    className="group relative rounded-2xl border-2 border-border/40 bg-card/60 p-6 hover:border-primary/50 hover:shadow-premium transition-all hover:-translate-y-2 animate-fade-in backdrop-blur-sm overflow-hidden"
+                    style={{ animationDelay: `${i * 100}ms` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-premium opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity" />
+                    
+                    <div className="relative z-10">
+                      <div className="h-14 w-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform">
+                        <Icon className="h-7 w-7 text-white" />
+                      </div>
+                      <h3 className="font-bold font-poppins text-xl mb-2">{feature.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-4 bg-gradient-subtle">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-              Why <span className="bg-gradient-accent bg-clip-text text-transparent">Wavely</span>?
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              We combine advanced technology with premium materials for cases that last
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="bg-card/50 backdrop-blur rounded-xl p-8 border border-border/40 shadow-card hover:shadow-premium transition-premium text-center animate-scale-in"
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                  <feature.icon className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold font-poppins mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {feature.desc}
+        {/* CTA Section */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-premium p-12 md:p-16 text-center shadow-premium">
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20" />
+              
+              <div className="relative z-10 max-w-3xl mx-auto">
+                <Sparkles className="h-16 w-16 text-white mx-auto mb-6 animate-pulse" />
+                <h2 className="text-5xl md:text-6xl font-black font-poppins text-white mb-6">
+                  Ready to Start Creating?
+                </h2>
+                <p className="text-2xl text-white/90 mb-8 font-medium">
+                  Your perfect custom case is just a few clicks away!
                 </p>
+                
+                <Button
+                  size="lg"
+                  className="h-16 px-10 bg-white text-primary hover:bg-white/90 transition-premium text-xl font-black group shadow-premium relative overflow-hidden"
+                  onClick={() => window.location.href = "/customize"}
+                >
+                  <span className="relative z-10 flex items-center">
+                    Begin Customization
+                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                  </span>
+                </Button>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Materials Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-card/50 backdrop-blur rounded-xl p-8 md:p-12 border border-border/40 shadow-premium animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-6 text-center">
-              Premium <span className="bg-gradient-accent bg-clip-text text-transparent">Materials</span>
-            </h2>
-            
-            <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <p>
-                <strong className="text-foreground">Flexible TPU:</strong> Excellent protection against impact and falls. 
-                The material absorbs shocks and protects your phone in everyday situations.
-              </p>
-              <p>
-                <strong className="text-foreground">Rigid Polycarbonate:</strong> Maximum resistance to scratches and wear. 
-                Keeps design intact long-term, without fading or yellowing.
-              </p>
-              <p>
-                <strong className="text-foreground">Advanced 3D Printing:</strong> Latest technology for authentic 
-                rim relief. You can feel every detail - it's not just a printed image.
-              </p>
-              <p>
-                <strong className="text-foreground">UV-Protective Finish:</strong> Transparent layer that protects print 
-                from fading and wear. Colors stay vibrant even after months of use.
-              </p>
-              <p>
-                <strong className="text-foreground">Soft-Touch Coating:</strong> Matte finish that offers excellent grip and 
-                a premium feel in hand. Resistant to fingerprints and stains.
-              </p>
-            </div>
-
-            <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
-              <p className="text-center font-semibold text-foreground">
-                🌿 All materials are certified and eco-friendly
-              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
     </div>

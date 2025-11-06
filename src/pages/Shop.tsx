@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Heart } from "lucide-react";
+import { ShoppingCart, Heart, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BackgroundFX from "@/components/BackgroundFX";
@@ -55,19 +55,43 @@ const Shop = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 bg-gradient-subtle">
+        <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
+      </div>
+
+      {/* Floating particles */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(25)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-primary rounded-full opacity-20 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${4 + Math.random() * 8}s`
+            }}
+          />
+        ))}
+      </div>
+
       <Navigation />
-      {/* WOW background animations */}
-      <BackgroundFX intensity="medium" />
       
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-12 relative z-10">
         {/* Page Header */}
-        <header className="text-center mb-14">
-          <h1 className="text-4xl md:text-5xl font-bold font-poppins tracking-tight mb-3">
-            Shop All Cases
+        <header className="text-center mb-14 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/20 border-2 border-primary/40 backdrop-blur-sm mb-6 animate-pulse" style={{ animationDuration: '3s' }}>
+            <Sparkles className="h-5 w-5 text-primary animate-spin" style={{ animationDuration: '3s' }} />
+            <span className="text-sm font-bold text-primary uppercase tracking-wider">Premium Collection</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-black font-poppins tracking-tighter mb-4">
+            <span className="bg-gradient-accent bg-clip-text text-transparent">Shop All Cases</span>
           </h1>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Browse our complete collection of custom car rim phone cases
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-medium">
+            Browse our complete collection of <span className="text-primary font-bold">automotive-inspired</span> phone cases
           </p>
         </header>
 
@@ -98,8 +122,10 @@ const Shop = () => {
               return (
                 <Card 
                   key={product.node.id} 
-                  className="group overflow-hidden transition-all hover:shadow-card hover:-translate-y-1 focus-within:shadow-card"
+                  className="group relative overflow-hidden border-2 border-border/40 hover:border-primary/50 transition-all hover:shadow-premium hover:-translate-y-2 focus-within:shadow-premium bg-card/60 backdrop-blur-sm"
                 >
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none" />
                   <a href={`/product/${product.node.handle}`}>
                     <div className="aspect-square overflow-hidden bg-secondary/20">
                       {image ? (
@@ -141,14 +167,22 @@ const Shop = () => {
 
                     <div className="flex gap-2">
                       <Button
-                        className="flex-1 bg-gradient-accent hover:shadow-glow transition-premium"
+                        className="flex-1 bg-gradient-accent hover:shadow-neon transition-premium font-bold group relative overflow-hidden"
                         onClick={() => handleAddToCart(product)}
                       >
-                        <ShoppingCart className="h-4 w-4 mr-2" />
-                        Add to Cart
+                        <span className="relative z-10 flex items-center">
+                          <ShoppingCart className="h-4 w-4 mr-2" />
+                          Add to Cart
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
                       </Button>
-                      <Button variant="outline" size="icon" aria-label="Add to wishlist">
-                        <Heart className="h-4 w-4" />
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        aria-label="Add to wishlist"
+                        className="border-2 border-primary/40 hover:bg-primary/10 hover:border-primary group"
+                      >
+                        <Heart className="h-4 w-4 group-hover:fill-primary group-hover:text-primary group-hover:scale-110 transition-all" />
                       </Button>
                     </div>
                   </div>

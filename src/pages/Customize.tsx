@@ -104,18 +104,43 @@ const Customize = () => {
   ).toFixed(2);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated background particles */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-primary rounded-full opacity-30 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 7}s`
+            }}
+          />
+        ))}
+      </div>
+
       <Navigation />
       
-      {/* Animated Progress Bar */}
-      <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border/40 shadow-lg">
+      {/* Animated Progress Bar with glow */}
+      <div className="sticky top-0 z-40 bg-gradient-to-b from-background via-background/95 to-transparent backdrop-blur-xl border-b border-primary/20 shadow-premium">
+        <div className="absolute inset-0 bg-gradient-accent opacity-5" />
         <ProgressBar currentStep={config.currentStep} />
       </div>
 
-      <div className="container mx-auto px-4 py-8 lg:py-12">
+      <div className="container mx-auto px-4 py-8 lg:py-12 relative z-10">
+        {/* Page header */}
+        <div className="text-center mb-8 animate-fade-in">
+          <h1 className="text-4xl md:text-6xl font-black font-poppins mb-3 bg-gradient-accent bg-clip-text text-transparent">
+            Design Your Case
+          </h1>
+          <p className="text-lg text-muted-foreground">Create something unique in just 5 simple steps</p>
+        </div>
+
         <div className="grid lg:grid-cols-[1fr_400px] gap-8 max-w-7xl mx-auto">
           {/* Left Panel - Configuration Steps */}
-          <div className="animate-fade-in">
+          <div className="animate-fade-in"  style={{ animationDelay: '200ms' }}>
             {config.currentStep === 1 && (
               <StepPhoneModel
                 selectedModel={config.phoneModel}
@@ -173,17 +198,23 @@ const Customize = () => {
 
           {/* Right Panel - Enhanced Summary Card */}
           <div className="lg:block hidden">
-            <div className="sticky top-24 space-y-6 animate-fade-in">
+            <div className="sticky top-24 space-y-6 animate-fade-in" style={{ animationDelay: '400ms' }}>
               {/* Summary Card */}
-              <div className="relative rounded-3xl border border-border/40 bg-card/50 backdrop-blur-xl p-6 shadow-premium overflow-hidden">
+              <div className="relative rounded-3xl border-2 border-primary/30 bg-card/60 backdrop-blur-xl p-6 shadow-premium overflow-hidden group hover:border-primary/50 transition-all">
                 {/* Decorative gradient */}
-                <div className="absolute inset-0 bg-gradient-premium opacity-5" />
+                <div className="absolute inset-0 bg-gradient-premium opacity-10 group-hover:opacity-20 transition-opacity" />
+                
+                {/* Animated corner accents */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-accent opacity-20 blur-2xl rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+                <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-vibrant opacity-20 blur-2xl rounded-full animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }} />
                 
                 <div className="relative z-10">
                   {/* Header */}
-                  <div className="flex items-center gap-2 mb-6 pb-4 border-b border-border/40">
-                    <Sparkles className="h-5 w-5 text-primary animate-pulse" />
-                    <h3 className="text-xl font-bold font-poppins">Your Design</h3>
+                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-primary/20">
+                    <div className="h-10 w-10 rounded-xl bg-gradient-accent flex items-center justify-center shadow-glow">
+                      <Sparkles className="h-5 w-5 text-white animate-spin" style={{ animationDuration: '4s' }} />
+                    </div>
+                    <h3 className="text-xl font-bold font-poppins bg-gradient-accent bg-clip-text text-transparent">Your Design</h3>
                   </div>
 
                   {/* Price Breakdown */}
@@ -261,19 +292,22 @@ const Customize = () => {
                   <div className="space-y-3">
                     <Button
                       onClick={handleAddToCart}
-                      className="w-full h-12 bg-gradient-accent hover:shadow-glow transition-premium text-base font-semibold group"
+                      className="w-full h-14 bg-gradient-accent hover:shadow-neon transition-premium text-lg font-bold group relative overflow-hidden"
                     >
-                      <ShoppingCart className="h-5 w-5 mr-2" />
-                      Add to Cart
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <span className="relative z-10 flex items-center justify-center">
+                        <ShoppingCart className="h-5 w-5 mr-2" />
+                        Add to Cart
+                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Button>
                     
                     <Button
                       onClick={handleAddToWishlist}
                       variant="outline"
-                      className="w-full h-12 border-primary/30 hover:bg-primary/10 transition-smooth group"
+                      className="w-full h-14 border-2 border-primary/40 hover:bg-primary/10 hover:border-primary transition-smooth text-lg font-bold group"
                     >
-                      <Heart className="h-5 w-5 mr-2 group-hover:fill-primary group-hover:text-primary transition-all" />
+                      <Heart className="h-5 w-5 mr-2 group-hover:fill-primary group-hover:text-primary group-hover:scale-110 transition-all" />
                       Save to Wishlist
                     </Button>
                   </div>
@@ -302,22 +336,28 @@ const Customize = () => {
 
       {/* Mobile Floating Action Bar */}
       {config.currentStep === 5 && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-xl border-t border-border/40 p-4 z-50 shadow-premium animate-slide-in-right">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider">Total</p>
-              <p className="text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent">
-                ${totalPrice}
-              </p>
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-t from-background via-card/95 to-transparent backdrop-blur-xl border-t-2 border-primary/40 p-4 z-50 shadow-premium animate-slide-in-right">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-accent opacity-10 blur-xl" />
+            <div className="relative flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider font-bold">Total</p>
+                <p className="text-3xl font-black bg-gradient-accent bg-clip-text text-transparent animate-pulse" style={{ animationDuration: '3s' }}>
+                  ${totalPrice}
+                </p>
+              </div>
+              <Button
+                onClick={handleAddToCart}
+                className="px-6 py-3 h-14 bg-gradient-accent hover:shadow-neon transition-premium text-lg font-bold group relative overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center">
+                  <ShoppingCart className="h-5 w-5 mr-2" />
+                  Add to Cart
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Button>
             </div>
-            <Button
-              onClick={handleAddToCart}
-              className="px-6 py-3 h-12 bg-gradient-accent hover:shadow-glow transition-premium font-semibold group"
-            >
-              <ShoppingCart className="h-5 w-5 mr-2" />
-              Add to Cart
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
           </div>
         </div>
       )}
