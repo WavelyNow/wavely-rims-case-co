@@ -101,7 +101,9 @@ export const CartDrawer = () => {
           : `${data.value} RON off your order`
       });
     } catch (error) {
-      console.error('Error validating discount code:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error validating discount code:', error);
+      }
       toast.error("Error validating code", {
         description: "Please try again."
       });
@@ -121,26 +123,22 @@ export const CartDrawer = () => {
       await createCheckout();
       const checkoutUrl = useCartStore.getState().checkoutUrl;
       if (checkoutUrl) {
-        // Track discount usage if applied
+        // Track discount usage if applied (trigger will handle count increment automatically)
         if (appliedDiscount) {
           await supabase.from('discount_code_usage').insert({
             discount_code_id: appliedDiscount.id,
             customer_email: 'checkout@wavely.ro', // Will be updated with real email after checkout
             discount_amount: discountAmount
           });
-
-          // Update usage count
-          await supabase
-            .from('discount_codes')
-            .update({ current_uses: appliedDiscount.value + 1 })
-            .eq('id', appliedDiscount.id);
         }
         
         window.open(checkoutUrl, '_blank');
         setIsOpen(false);
       }
     } catch (error) {
-      console.error('Checkout failed:', error);
+      if (import.meta.env.DEV) {
+        console.error('Checkout failed:', error);
+      }
       toast.error("Failed to create checkout", {
         description: "Please try again or contact support if the issue persists."
       });

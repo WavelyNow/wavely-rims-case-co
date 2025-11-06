@@ -117,7 +117,9 @@ const DiscountCodes = () => {
         totalDiscount
       });
     } catch (error) {
-      console.error('Error loading data:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error loading data:', error);
+      }
       toast.error("Failed to load data");
     } finally {
       setLoading(false);
@@ -164,7 +166,9 @@ const DiscountCodes = () => {
       });
       loadData();
     } catch (error: any) {
-      console.error('Error creating code:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error creating code:', error);
+      }
       toast.error(error.message || "Failed to create code");
     } finally {
       setIsCreating(false);
@@ -182,7 +186,9 @@ const DiscountCodes = () => {
       toast.success(currentStatus ? "Code deactivated" : "Code activated");
       loadData();
     } catch (error) {
-      console.error('Error toggling code:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error toggling code:', error);
+      }
       toast.error("Failed to update code");
     }
   };
@@ -200,7 +206,9 @@ const DiscountCodes = () => {
       toast.success("Code deleted");
       loadData();
     } catch (error) {
-      console.error('Error deleting code:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error deleting code:', error);
+      }
       toast.error("Failed to delete code");
     }
   };
@@ -217,7 +225,9 @@ const DiscountCodes = () => {
       toast.success("Expired codes deactivated");
       loadData();
     } catch (error) {
-      console.error('Error deactivating expired:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error deactivating expired:', error);
+      }
       toast.error("Failed to deactivate codes");
     }
   };
