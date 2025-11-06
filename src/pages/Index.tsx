@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Zap, Upload, Star, Quote, Instagram, Heart, ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import heroFerrariCase from "@/assets/hero-ferrari-case.jpg";
+import heroPhoneCase from "@/assets/hero-phone-case.jpg";
 import caseFerrari from "@/assets/case-ferrari.jpg";
 import caseGTR from "@/assets/case-gtr.jpg";
 import caseLamborghini from "@/assets/case-lamborghini.jpg";
@@ -81,20 +81,37 @@ const Index = () => {
 
       {/* HERO SECTION - Automotive Dashboard Style */}
       <header className="relative overflow-hidden min-h-screen" aria-labelledby="hero-title" style={{ background: '#0A0A0A' }}>
-        {/* Carbon Fiber Background Pattern */}
-        <div className="absolute inset-0 carbon-fiber opacity-40" />
+        {/* Animated Stars Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="stars-layer absolute inset-0" style={{
+            background: `
+              radial-gradient(2px 2px at 20% 30%, white, transparent),
+              radial-gradient(2px 2px at 60% 70%, white, transparent),
+              radial-gradient(1px 1px at 50% 50%, white, transparent),
+              radial-gradient(1px 1px at 80% 10%, white, transparent),
+              radial-gradient(2px 2px at 90% 60%, white, transparent),
+              radial-gradient(1px 1px at 33% 80%, white, transparent),
+              radial-gradient(2px 2px at 15% 85%, white, transparent)
+            `,
+            backgroundSize: '200% 200%',
+            animation: 'twinkle 20s ease-in-out infinite',
+            opacity: 0.3
+          }} />
+          <div className="stars-layer absolute inset-0" style={{
+            background: `
+              radial-gradient(1px 1px at 40% 20%, rgba(0, 224, 255, 0.8), transparent),
+              radial-gradient(1px 1px at 70% 60%, rgba(255, 0, 170, 0.8), transparent),
+              radial-gradient(1px 1px at 25% 75%, rgba(192, 0, 255, 0.8), transparent),
+              radial-gradient(1px 1px at 85% 40%, rgba(0, 224, 255, 0.8), transparent)
+            `,
+            backgroundSize: '250% 250%',
+            animation: 'twinkle 15s ease-in-out infinite reverse',
+            opacity: 0.4
+          }} />
+        </div>
         
         {/* Gradient Overlay - Pink to Cyan */}
-        <div className="absolute inset-0 bg-gradient-to-br from-hot-pink/20 via-transparent to-electric-cyan/20" />
-        
-        {/* Neon Grid Lines */}
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: 'linear-gradient(hsl(var(--electric-cyan)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--electric-cyan)) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
-
-        {/* Moving Light Animation */}
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-electric-cyan to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-hot-pink/10 via-transparent to-electric-cyan/10" />
         
         <div className="container max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
@@ -110,36 +127,42 @@ const Index = () => {
                 </p>
               </div>
 
-              {/* Specs Dashboard */}
-              <div className="relative p-8 rounded-2xl border-2 border-hot-pink/30 bg-black/60 backdrop-blur-xl space-y-4 animate-[neon-shimmer_3s_ease-in-out_infinite]">
-                <div className="absolute top-0 left-0 w-3 h-3 bg-hot-pink rounded-full animate-pulse" />
-                <div className="absolute top-0 right-0 w-3 h-3 bg-electric-cyan rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+              {/* Specs Cards Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-hot-pink/20 to-transparent rounded-xl blur-xl group-hover:blur-2xl transition-all" />
+                  <div className="relative p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-hot-pink/20 group-hover:border-hot-pink/60 transition-all">
+                    <div className="text-4xl font-black text-hot-pink mb-2" style={{ fontFamily: "'Orbitron', sans-serif" }}>3D</div>
+                    <div className="text-sm text-metallic-gray uppercase">Printed Design</div>
+                  </div>
+                </div>
                 
-                <h2 className="text-xl font-black text-white uppercase tracking-wider mb-6 border-b border-hot-pink/40 pb-3" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                  SPECIFICATIONS
-                </h2>
-                
-                <div className="space-y-3 font-mono text-sm">
-                  <div className="flex justify-between items-center">
-                    <span className="text-metallic-gray uppercase">Engine:</span>
-                    <span className="text-white font-bold">3D Printed Design</span>
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-electric-cyan/20 to-transparent rounded-xl blur-xl group-hover:blur-2xl transition-all" />
+                  <div className="relative p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-electric-cyan/20 group-hover:border-electric-cyan/60 transition-all">
+                    <div className="text-4xl font-black text-electric-cyan mb-2" style={{ fontFamily: "'Orbitron', sans-serif" }}>CF</div>
+                    <div className="text-sm text-metallic-gray uppercase">Carbon Fiber</div>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-metallic-gray uppercase">Material:</span>
-                    <span className="text-white font-bold">Carbon Fiber Polymer</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-metallic-gray uppercase">Finish:</span>
-                    <span className="text-white font-bold">Glossy Neon Edge</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-metallic-gray uppercase">Customization:</span>
-                    <span className="text-electric-cyan font-bold">Available</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-metallic-gray uppercase">Warranty:</span>
-                    <span className="text-hot-pink font-bold">12 Months</span>
-                  </div>
+                </div>
+              </div>
+
+              {/* Premium Features List */}
+              <div className="space-y-4 p-6 rounded-xl bg-gradient-to-br from-black/60 to-black/30 backdrop-blur-xl border border-white/10">
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-2 h-2 rounded-full bg-hot-pink group-hover:scale-150 transition-transform" />
+                  <span className="text-white font-semibold group-hover:text-hot-pink transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>Glossy Neon Edge Finish</span>
+                </div>
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-2 h-2 rounded-full bg-electric-cyan group-hover:scale-150 transition-transform" />
+                  <span className="text-white font-semibold group-hover:text-electric-cyan transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>Full Customization Available</span>
+                </div>
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-2 h-2 rounded-full bg-neon-purple group-hover:scale-150 transition-transform" />
+                  <span className="text-white font-semibold group-hover:text-neon-purple transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>12 Months Warranty</span>
+                </div>
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-2 h-2 rounded-full bg-lime-neon group-hover:scale-150 transition-transform" />
+                  <span className="text-white font-semibold group-hover:text-lime-neon transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>Premium Protection</span>
                 </div>
               </div>
 
@@ -179,61 +202,30 @@ const Index = () => {
               </div>
             </div>
 
-            {/* RIGHT SIDE - 3D Phone Case with Spinning Rims */}
+            {/* RIGHT SIDE - Premium Phone Case with Wheel */}
             <div className="relative lg:h-screen flex items-center justify-center order-1 lg:order-2">
               <div className="relative animate-float" style={{ animationDuration: '6s' }}>
                 {/* Glow Effects */}
-                <div className="absolute -inset-32 bg-hot-pink/40 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute -inset-20 bg-electric-cyan/40 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute -inset-10 bg-neon-purple/30 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '2s' }} />
+                <div className="absolute -inset-32 bg-hot-pink/30 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute -inset-20 bg-electric-cyan/30 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute -inset-10 bg-neon-purple/20 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '2s' }} />
                 
                 {/* Main Product Image */}
                 <div className="relative z-10">
                   <img
-                    src={heroFerrariCase}
-                    alt="WAVELY premium phone case with sports car design and carbon fiber texture"
-                    className="relative w-full max-w-2xl rounded-3xl"
+                    src={heroPhoneCase}
+                    alt="WAVELY premium phone case with sports car wheel rim design"
+                    className="relative w-full max-w-2xl"
                     style={{ 
-                      filter: 'drop-shadow(0 0 60px rgba(255, 0, 170, 0.8))',
+                      filter: 'drop-shadow(0 0 60px rgba(255, 0, 170, 0.6)) drop-shadow(0 0 30px rgba(0, 224, 255, 0.4))',
                       transform: 'perspective(1000px) rotateY(-5deg)'
                     }}
                   />
                 </div>
                 
-                {/* 3D Rim Elements - Spinning */}
-                <div className="absolute top-1/4 -left-20 w-40 h-40 opacity-80">
-                  <div className="relative w-full h-full animate-[spin-slow_8s_linear_infinite]">
-                    <div className="absolute inset-0 rounded-full border-8 border-metallic-gray/40" style={{ borderStyle: 'double' }} />
-                    <div className="absolute inset-4 rounded-full border-4 border-hot-pink/60" />
-                    <div className="absolute inset-8 rounded-full bg-gradient-radial from-hot-pink/30 to-transparent" />
-                    {/* Spoke pattern */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-1 h-full bg-metallic-gray/60" />
-                      <div className="absolute w-full h-1 bg-metallic-gray/60" />
-                      <div className="absolute w-full h-1 bg-metallic-gray/60 rotate-45" />
-                      <div className="absolute w-full h-1 bg-metallic-gray/60 -rotate-45" />
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="absolute bottom-1/4 -right-24 w-48 h-48 opacity-80">
-                  <div className="relative w-full h-full animate-[spin-slow_10s_linear_infinite]">
-                    <div className="absolute inset-0 rounded-full border-8 border-metallic-gray/40" style={{ borderStyle: 'double' }} />
-                    <div className="absolute inset-4 rounded-full border-4 border-electric-cyan/60" />
-                    <div className="absolute inset-8 rounded-full bg-gradient-radial from-electric-cyan/30 to-transparent" />
-                    {/* Spoke pattern */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-1 h-full bg-metallic-gray/60" />
-                      <div className="absolute w-full h-1 bg-metallic-gray/60" />
-                      <div className="absolute w-full h-1 bg-metallic-gray/60 rotate-45" />
-                      <div className="absolute w-full h-1 bg-metallic-gray/60 -rotate-45" />
-                    </div>
-                  </div>
-                </div>
-                
                 {/* Neon Edge Highlights */}
-                <div className="absolute top-1/3 right-0 h-40 w-40 bg-hot-pink/60 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/3 left-0 h-40 w-40 bg-electric-cyan/60 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+                <div className="absolute top-1/4 right-1/4 h-48 w-48 bg-hot-pink/40 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 left-1/4 h-48 w-48 bg-electric-cyan/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
               </div>
             </div>
           </div>
