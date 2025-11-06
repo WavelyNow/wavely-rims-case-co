@@ -8,55 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Vibrant, energetic color palette */
-    --background: 220 25% 10%;
+    /* Bold automotive-inspired color palette */
+    --background: 210 40% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 220 20% 13%;
+    --card: 210 35% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 220 20% 13%;
+    --popover: 210 35% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 280 85% 60%;
+    --primary: 15 90% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 190 85% 55%;
-    --secondary-foreground: 220 25% 10%;
+    --secondary: 45 95% 60%;
+    --secondary-foreground: 210 40% 8%;
 
-    --muted: 220 15% 25%;
+    --muted: 210 20% 25%;
     --muted-foreground: 0 0% 70%;
 
-    --accent: 340 90% 60%;
+    --accent: 280 75% 58%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 25%;
-    --input: 220 20% 18%;
-    --ring: 280 85% 60%;
+    --border: 210 20% 22%;
+    --input: 210 30% 15%;
+    --ring: 15 90% 55%;
 
     --radius: 0.75rem;
 
-    /* Custom vibrant design tokens */
-    --electric-purple: 280 85% 60%;
-    --neon-cyan: 190 85% 55%;
-    --hot-pink: 340 90% 60%;
-    --vivid-orange: 25 95% 58%;
-    --deep-navy: 220 25% 10%;
+    /* Custom automotive design tokens */
+    --racing-red: 15 90% 55%;
+    --chrome-yellow: 45 95% 60%;
+    --electric-blue: 210 90% 58%;
+    --neon-purple: 280 75% 58%;
+    --midnight-black: 210 40% 8%;
     
-    /* Energetic Gradients */
-    --gradient-premium: linear-gradient(135deg, hsl(var(--electric-purple)), hsl(var(--hot-pink)));
-    --gradient-subtle: linear-gradient(180deg, hsl(220 25% 10%), hsl(220 20% 13%));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--electric-purple)), hsl(var(--neon-cyan)));
-    --gradient-vibrant: linear-gradient(135deg, hsl(var(--hot-pink)), hsl(var(--vivid-orange)));
+    /* Dynamic Gradients */
+    --gradient-premium: linear-gradient(135deg, hsl(var(--racing-red)), hsl(var(--neon-purple)));
+    --gradient-subtle: linear-gradient(180deg, hsl(210 40% 8%), hsl(210 35% 12%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--racing-red)), hsl(var(--chrome-yellow)));
+    --gradient-vibrant: linear-gradient(135deg, hsl(var(--electric-blue)), hsl(var(--neon-purple)));
+    --gradient-hero: linear-gradient(135deg, hsl(15 90% 55% / 0.3), hsl(280 75% 58% / 0.3));
     
     /* Glowing Shadows */
-    --shadow-premium: 0 10px 40px -10px hsl(var(--electric-purple) / 0.5);
-    --shadow-card: 0 4px 30px hsl(280 85% 60% / 0.3);
-    --shadow-glow: 0 0 40px hsl(var(--electric-purple) / 0.6);
-    --shadow-neon: 0 0 50px hsl(var(--neon-cyan) / 0.5);
+    --shadow-premium: 0 20px 60px -10px hsl(var(--racing-red) / 0.6);
+    --shadow-card: 0 8px 40px hsl(15 90% 55% / 0.4);
+    --shadow-glow: 0 0 60px hsl(var(--racing-red) / 0.8);
+    --shadow-neon: 0 0 80px hsl(var(--chrome-yellow) / 0.6);
     
     /* Smooth Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -149,9 +150,17 @@ All colors MUST be HSL.
 }
 
 @keyframes floatY {
-  0% { transform: translate3d(0,0,0); }
-  50% { transform: translate3d(0,-6px,0); }
-  100% { transform: translate3d(0,0,0); }
+  0%, 100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(0,-20px,0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 .aurora-blob {

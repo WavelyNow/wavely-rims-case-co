@@ -1,9 +1,9 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import HeroBackground from "@/components/HeroBackground";
 import { ArrowRight, Sparkles, Zap, Shield, Truck, Star, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import heroPhoneCase from "@/assets/hero-phone-case.jpg";
 
 const Index = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -16,69 +16,121 @@ const Index = () => {
 
       <Navigation />
 
-      {/* HERO SECTION - Full bleed, animated */}
-      <header className="relative overflow-hidden" aria-labelledby="hero-title">
-        <HeroBackground />
+      {/* HERO SECTION - Dramatic with product image */}
+      <header className="relative overflow-hidden min-h-screen" aria-labelledby="hero-title">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-subtle">
+          <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
+        </div>
+
+        {/* Floating animated particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-primary rounded-full opacity-20 animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${5 + Math.random() * 10}s`
+              }}
+            />
+          ))}
+        </div>
         
         <div className="container max-w-7xl mx-auto px-4 relative z-10">
-          <div className="min-h-[80vh] flex items-center">
-            <div className="max-w-3xl animate-fade-in">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+            {/* Left: Text content */}
+            <div className="animate-fade-in space-y-8">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-scale-in backdrop-blur-sm">
-                <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-                <span className="text-sm font-semibold text-primary">Premium Custom Cases</span>
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/20 border-2 border-primary/40 backdrop-blur-sm animate-pulse" style={{ animationDuration: '3s' }}>
+                <Sparkles className="h-5 w-5 text-primary animate-spin" style={{ animationDuration: '3s' }} />
+                <span className="text-sm font-bold text-primary uppercase tracking-wider">Automotive-Inspired Design</span>
               </div>
 
-              <h1 id="hero-title" className="text-6xl md:text-8xl font-bold font-poppins leading-tight mb-6 animate-fade-in">
-                Wavely
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-muted-foreground mb-8 animate-fade-in leading-relaxed">
-                Premium custom cases inspired by automotive rim designs. Choose your style, material, and add your photos – we deliver quality.
-              </p>
+              <div className="space-y-6">
+                <h1 id="hero-title" className="text-7xl md:text-9xl font-black font-poppins leading-none tracking-tighter">
+                  <span className="block text-white drop-shadow-[0_0_30px_rgba(255,100,50,0.5)]">Wavely</span>
+                  <span className="block text-transparent bg-gradient-accent bg-clip-text animate-pulse" style={{ animationDuration: '4s' }}>
+                    Cases
+                  </span>
+                </h1>
+                
+                <p className="text-2xl md:text-3xl text-muted-foreground font-medium leading-relaxed max-w-xl">
+                  Premium phone cases inspired by <span className="text-primary font-bold">luxury car rims</span>. 
+                  Customize with your photos and style.
+                </p>
+              </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="bg-gradient-accent hover:shadow-glow transition-premium text-lg font-semibold group"
+                  className="h-16 px-8 bg-gradient-accent hover:shadow-neon transition-premium text-xl font-bold group relative overflow-hidden"
                   onClick={() => (window.location.href = "/customize")}
                 >
-                  Configure Your Case
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10 flex items-center">
+                    Start Designing
+                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Button>
+                
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-secondary/30 hover:bg-secondary/10 transition-smooth text-lg font-semibold group backdrop-blur-sm"
+                  className="h-16 px-8 border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-smooth text-xl font-bold group backdrop-blur-sm"
                   onClick={() => (window.location.href = "/shop")}
                 >
-                  Browse Shop
-                  <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  Browse Collection
+                  <ChevronRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </div>
 
-              {/* Social Proof */}
-              <div className="mt-12 flex items-center gap-8 animate-fade-in">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="h-10 w-10 rounded-full bg-gradient-premium border-2 border-background animate-scale-in"
-                      style={{ animationDelay: `${i * 100}ms` }}
-                    />
-                  ))}
-                </div>
-                <div>
-                  <div className="flex items-center gap-1 mb-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground">Trusted by 10,000+ customers</p>
-                </div>
+              {/* Key features */}
+              <div className="flex flex-wrap gap-6 pt-6">
+                {[
+                  { icon: Shield, text: "Military Protection" },
+                  { icon: Truck, text: "5-7 Day Delivery" },
+                  { icon: Star, text: "Premium Quality" }
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="flex items-center gap-2 text-sm font-semibold animate-fade-in" style={{ animationDelay: `${i * 200}ms` }}>
+                      <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                        <Icon className="h-4 w-4 text-primary" />
+                      </div>
+                      <span>{item.text}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right: Dramatic product image */}
+            <div className="relative lg:h-screen flex items-center justify-center">
+              <div className="relative animate-float" style={{ animationDuration: '6s' }}>
+                {/* Glow effect behind image */}
+                <div className="absolute inset-0 bg-gradient-accent rounded-3xl blur-[100px] opacity-60 animate-pulse" style={{ animationDuration: '4s' }} />
+                
+                {/* Main product image */}
+                <img
+                  src={heroPhoneCase}
+                  alt="Premium phone case with luxury car rim design"
+                  className="relative z-10 w-full max-w-2xl rounded-3xl shadow-premium transform hover:scale-105 transition-premium"
+                />
+                
+                {/* Floating accent elements */}
+                <div className="absolute -top-10 -right-10 h-32 w-32 bg-primary/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '3s' }} />
+                <div className="absolute -bottom-10 -left-10 h-40 w-40 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <ChevronRight className="h-8 w-8 text-primary rotate-90" />
         </div>
       </header>
 
