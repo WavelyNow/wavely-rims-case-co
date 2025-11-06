@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Sparkles, Zap, Upload, Star, Instagram, Heart, ShoppingCart, Shield, Truck, RefreshCw, CheckCircle2, Package } from "lucide-react";
 import { useState, useEffect } from "react";
 import heroPhoneCase from "@/assets/hero-phone-case.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -83,108 +84,117 @@ const Index = () => {
 
       <Navigation />
 
-      {/* HERO SECTION - Modern Minimal */}
-      <header className="relative overflow-hidden" aria-labelledby="hero-title">
-        {/* Animated Stars Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="stars-layer absolute inset-0" style={{
-            background: `
-              radial-gradient(2px 2px at 20% 30%, white, transparent),
-              radial-gradient(2px 2px at 60% 70%, white, transparent),
-              radial-gradient(1px 1px at 50% 50%, white, transparent),
-              radial-gradient(1px 1px at 80% 10%, white, transparent),
-              radial-gradient(2px 2px at 90% 60%, white, transparent)
-            `,
-            backgroundSize: '200% 200%',
-            animation: 'twinkle 20s ease-in-out infinite',
-            opacity: 0.2
-          }} />
+      {/* HERO SECTION - Cinematic Fullscreen */}
+      <header className="relative overflow-hidden h-screen" aria-labelledby="hero-title">
+        {/* Background Image with Breathing Effect */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center animate-breathing"
+            style={{
+              backgroundImage: `url(${heroBg})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover'
+            }}
+          />
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-hot-pink/10 via-transparent to-electric-cyan/10" />
         </div>
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background" />
 
-        <div className="container max-w-7xl mx-auto px-4 relative z-10">
-          <div className="min-h-screen flex flex-col justify-center py-20">
-            {/* Hero Content */}
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Side - Text */}
-              <div className="space-y-8 animate-fade-in">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                  <Sparkles className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-semibold text-primary">Premium Automotive Phone Cases</span>
-                </div>
+        {/* Animated Particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: Math.random() * 4 + 2 + 'px',
+                height: Math.random() * 4 + 2 + 'px',
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                background: i % 3 === 0 ? 'hsl(var(--hot-pink))' : i % 3 === 1 ? 'hsl(var(--electric-cyan))' : 'white',
+                opacity: Math.random() * 0.5 + 0.2,
+                animation: `float ${Math.random() * 10 + 10}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 5}s`
+              }}
+            />
+          ))}
+        </div>
 
-                {/* Main Heading */}
-                <div className="space-y-4">
-                  <h1 id="hero-title" className="text-5xl md:text-7xl lg:text-8xl font-black leading-none">
-                    <span className="block text-foreground">Your Car.</span>
-                    <span className="block bg-gradient-accent bg-clip-text text-transparent">Your Case.</span>
-                  </h1>
-                  <p className="text-xl md:text-2xl text-muted-foreground max-w-lg">
-                    Transform your favorite car into a premium 3D-printed phone case with neon edge details.
-                  </p>
-                </div>
+        {/* Content */}
+        <div className="container max-w-7xl mx-auto px-4 relative z-10 h-full flex items-center justify-center">
+          <div className="text-center space-y-8 animate-fade-in max-w-4xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 animate-pulse" style={{ animationDuration: '3s' }}>
+              <Sparkles className="h-5 w-5 text-hot-pink" />
+              <span className="text-sm font-bold text-white uppercase tracking-wider">Premium Automotive Cases</span>
+            </div>
 
-                {/* CTAs */}
-                <div className="flex flex-wrap gap-4">
-                  <Button
-                    size="lg"
-                    className="h-14 px-8 bg-gradient-accent hover:shadow-glow transition-premium text-lg font-bold group"
-                    onClick={() => (window.location.href = "/customize")}
-                  >
-                    <Upload className="h-5 w-5 mr-2" />
-                    Create Yours
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-14 px-8 border-2 hover:bg-card transition-smooth text-lg font-bold"
-                    onClick={() => (window.location.href = "/shop")}
-                  >
-                    Browse Collection
-                  </Button>
-                </div>
+            {/* Main Heading */}
+            <div className="space-y-6">
+              <h1 id="hero-title" className="text-6xl md:text-8xl lg:text-9xl font-black leading-none">
+                <span className="block text-white drop-shadow-2xl">Your Car.</span>
+                <span className="block mt-4 bg-gradient-to-r from-hot-pink via-neon-purple to-electric-cyan bg-clip-text text-transparent drop-shadow-2xl animate-gradient">
+                  Your Case.
+                </span>
+              </h1>
+              
+              <p className="text-xl md:text-3xl text-white/90 max-w-3xl mx-auto font-light drop-shadow-lg">
+                Transform your favorite car into a premium<br className="hidden md:block" />
+                <span className="font-semibold text-hot-pink">3D-printed phone case</span> with neon edge details
+              </p>
+            </div>
 
-                {/* Trust Badges */}
-                <div className="flex flex-wrap gap-6 pt-4">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
-                    <span className="text-sm font-medium">Free Shipping</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Shield className="h-5 w-5 text-primary" />
-                    <span className="text-sm font-medium">12-Month Warranty</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Package className="h-5 w-5 text-primary" />
-                    <span className="text-sm font-medium">Premium Quality</span>
-                  </div>
+            {/* CTAs */}
+            <div className="flex flex-wrap justify-center gap-6 pt-8">
+              <Button
+                size="lg"
+                className="h-16 px-10 bg-white text-black hover:bg-white/90 transition-all text-lg font-black group shadow-2xl hover:scale-105"
+                onClick={() => (window.location.href = "/customize")}
+              >
+                <Upload className="h-5 w-5 mr-3" />
+                Create Your Case
+                <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+              </Button>
+              
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-16 px-10 border-2 border-white/30 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all text-lg font-black hover:scale-105"
+                onClick={() => (window.location.href = "/shop")}
+              >
+                Browse Collection
+              </Button>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="flex flex-wrap justify-center gap-8 pt-12">
+              <div className="flex items-center gap-3 text-white/90">
+                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <CheckCircle2 className="h-5 w-5 text-hot-pink" />
                 </div>
+                <span className="font-semibold">Free Shipping</span>
               </div>
-
-              {/* Right Side - Product Image */}
-              <div className="relative animate-fade-in lg:animate-float" style={{ animationDelay: '0.2s', animationDuration: '6s' }}>
-                {/* Glow Effects */}
-                <div className="absolute inset-0 bg-gradient-accent opacity-20 blur-[100px] animate-pulse" />
-                
-                {/* Main Image */}
-                <div className="relative z-10">
-                  <img
-                    src={heroPhoneCase}
-                    alt="WAVELY premium phone case with car wheel design"
-                    className="w-full max-w-2xl mx-auto drop-shadow-2xl"
-                    style={{ 
-                      filter: 'drop-shadow(0 0 60px rgba(255, 0, 170, 0.3))'
-                    }}
-                  />
+              <div className="flex items-center gap-3 text-white/90">
+                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <Shield className="h-5 w-5 text-electric-cyan" />
                 </div>
+                <span className="font-semibold">12-Month Warranty</span>
+              </div>
+              <div className="flex items-center gap-3 text-white/90">
+                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <Package className="h-5 w-5 text-lime-neon" />
+                </div>
+                <span className="font-semibold">Premium Quality</span>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce text-white/60">
+          <span className="text-xs uppercase tracking-widest font-bold">Scroll</span>
+          <ArrowRight className="h-5 w-5 rotate-90" />
         </div>
       </header>
 
