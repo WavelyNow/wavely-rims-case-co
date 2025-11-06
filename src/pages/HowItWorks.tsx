@@ -1,52 +1,48 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Smartphone, Palette, Image, Package, Shield, Zap } from "lucide-react";
+import { ArrowRight, Smartphone, Palette, Upload, Sparkles, Check, Shield, Truck, Star } from "lucide-react";
+import { useState } from "react";
 
 const HowItWorks = () => {
+  const [activeStep, setActiveStep] = useState(0);
+
   const steps = [
     {
       icon: Smartphone,
-      title: "Choose Your Phone Model",
-      description: "Select from our complete list of iPhone, Samsung, Google Pixel models and many more. We have cases for all popular models.",
-      highlight: "200+ models available"
+      title: "Choose Your Device",
+      description: "Select your phone model from our extensive list of supported devices. We support all major brands and models.",
+      highlights: ["100+ phone models", "Perfect fit guaranteed", "Easy search & filter"],
+      color: "from-primary to-accent"
     },
     {
       icon: Palette,
-      title: "Select Rim Design",
-      description: "Choose from our premium collection of 3D rims: sport, luxury, off-road, classic. Each rim is detailed for an authentic effect.",
-      highlight: "Real 3D design, not printed"
+      title: "Pick Rim Style & Material",
+      description: "Choose from authentic automotive rim designs and premium materials. Each combination creates a unique masterpiece.",
+      highlights: ["15+ rim designs", "5 premium materials", "Matte, glossy, metallic"],
+      color: "from-accent to-secondary"
     },
     {
-      icon: Image,
-      title: "Upload Personal Photos",
-      description: "Add photos of your car, license plate, or any favorite images. Our system automatically optimizes images for maximum quality.",
-      highlight: "Real-time preview"
+      icon: Upload,
+      title: "Upload Your Photos",
+      description: "Make it personal by adding photos of your car, loved ones, or any image you want. Our AI ensures perfect placement.",
+      highlights: ["HD photo printing", "Auto-optimization", "Multiple photo support"],
+      color: "from-secondary to-primary"
     },
     {
-      icon: Package,
-      title: "Production & Delivery",
-      description: "Your case is custom-produced using latest printing technology and premium materials. Delivery in 3-5 business days.",
-      highlight: "Full tracking"
+      icon: Sparkles,
+      title: "Customize & Order",
+      description: "Add custom text, choose colors, and preview your design in 3D. Once perfect, place your order and we'll handle the rest.",
+      highlights: ["Real-time 3D preview", "Custom text & fonts", "Secure checkout"],
+      color: "from-primary to-secondary"
     }
   ];
 
   const features = [
-    {
-      icon: Shield,
-      title: "Premium Protection",
-      description: "Industrial-grade materials that protect your phone from impact, scratches and daily wear. Raised edges for camera and screen protection."
-    },
-    {
-      icon: Palette,
-      title: "Complete Customization",
-      description: "100% customizable design - from rim model to your favorite photos. Each case is unique and created especially for you."
-    },
-    {
-      icon: Zap,
-      title: "Fast Delivery",
-      description: "Production in 2-3 days + express shipping. You get full tracking and real-time notifications about your order status."
-    }
+    { icon: Shield, title: "Military-Grade Protection", desc: "Drop-tested up to 10ft with reinforced corners" },
+    { icon: Truck, title: "Fast Production", desc: "Manufactured and shipped within 5-7 business days" },
+    { icon: Star, title: "Premium Quality", desc: "UV-resistant printing that won't fade or scratch" },
+    { icon: Check, title: "100% Guarantee", desc: "Not happy? Full refund within 30 days, no questions asked" }
   ];
 
   return (
