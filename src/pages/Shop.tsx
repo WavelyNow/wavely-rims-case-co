@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Heart } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import BackgroundFX from "@/components/BackgroundFX";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -30,6 +31,8 @@ const Shop = () => {
     loadProducts();
   }, []);
 
+  const gridCols = useMemo(() => "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8", []);
+
   const handleAddToCart = (product: ShopifyProduct) => {
     const firstVariant = product.node.variants.edges[0]?.node;
     if (!firstVariant) {
@@ -52,21 +55,24 @@ const Shop = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
       <Navigation />
+      {/* WOW background animations */}
+      <BackgroundFX intensity="medium" />
       
       <main className="container mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold font-poppins mb-4">
+        {/* Page Header */}
+        <header className="text-center mb-14">
+          <h1 className="text-4xl md:text-5xl font-bold font-poppins tracking-tight mb-3">
             Shop All Cases
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Browse our complete collection of custom car rim phone cases
           </p>
-        </div>
+        </header>
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={gridCols}>
             {[...Array(6)].map((_, i) => (
               <Card key={i} className="animate-pulse">
                 <div className="aspect-square bg-muted rounded-t-lg" />
@@ -84,7 +90,7 @@ const Shop = () => {
             <p className="text-muted-foreground">Check back soon for new products!</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={gridCols}>
             {products.map((product) => {
               const image = product.node.images.edges[0]?.node;
               const price = product.node.priceRange.minVariantPrice;
@@ -92,7 +98,7 @@ const Shop = () => {
               return (
                 <Card 
                   key={product.node.id} 
-                  className="group overflow-hidden transition-all hover:shadow-card hover:-translate-y-1"
+                  className="group overflow-hidden transition-all hover:shadow-card hover:-translate-y-1 focus-within:shadow-card"
                 >
                   <a href={`/product/${product.node.handle}`}>
                     <div className="aspect-square overflow-hidden bg-secondary/20">
@@ -101,6 +107,10 @@ const Shop = () => {
                           src={image.url}
                           alt={image.altText || product.node.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          loading="lazy"
+                          decoding="async"
+                          sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                          fetchpriority="low"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
@@ -117,7 +127,7 @@ const Shop = () => {
                           {product.node.title}
                         </h3>
                       </a>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
+                      <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
                         {product.node.description}
                       </p>
                     </div>
@@ -137,7 +147,7 @@ const Shop = () => {
                         <ShoppingCart className="h-4 w-4 mr-2" />
                         Add to Cart
                       </Button>
-                      <Button variant="outline" size="icon">
+                      <Button variant="outline" size="icon" aria-label="Add to wishlist">
                         <Heart className="h-4 w-4" />
                       </Button>
                     </div>

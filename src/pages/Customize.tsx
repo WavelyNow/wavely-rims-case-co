@@ -8,7 +8,6 @@ import StepRimStyle from "@/components/configurator/StepRimStyle";
 import StepUploadPhoto from "@/components/configurator/StepUploadPhoto";
 import StepMaterial from "@/components/configurator/StepMaterial";
 import StepPersonalization from "@/components/configurator/StepPersonalization";
-import LivePreview from "@/components/configurator/LivePreview";
 import { ConfiguratorState } from "@/types/configurator";
 import { toast } from "sonner";
 
@@ -157,13 +156,82 @@ const Customize = () => {
             )}
           </div>
 
-          {/* Right Panel - Live Preview (Sticky on Desktop) */}
-          <div className="lg:block hidden">
-            <LivePreview
-              config={config}
-              onAddToCart={handleAddToCart}
-              onAddToWishlist={handleAddToWishlist}
-            />
+          {/* Right Panel - Config Summary (non-3D) */}
+          <div className="lg:block hidden sticky top-24 space-y-6 animate-fade-in">
+            <div className="bg-card/50 backdrop-blur rounded-2xl p-6 border border-border/40 shadow-card space-y-4">
+              <h3 className="text-xl font-bold font-poppins mb-4">Price Breakdown</h3>
+
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Base Case</span>
+                  <span className="font-semibold">$35.00</span>
+                </div>
+
+                {config.rimStyle && config.rimPrice > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Rim: {config.rimStyle}</span>
+                    <span className="font-semibold">+${config.rimPrice.toFixed(2)}</span>
+                  </div>
+                )}
+
+                {config.material && config.materialPrice > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Material: {config.material}</span>
+                    <span className="font-semibold">+${config.materialPrice.toFixed(2)}</span>
+                  </div>
+                )}
+
+                {config.carPhoto && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Car Photo</span>
+                    <span className="font-semibold">+$5.00</span>
+                  </div>
+                )}
+
+                {config.facePhoto && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Face Photo</span>
+                    <span className="font-semibold">+$3.00</span>
+                  </div>
+                )}
+
+                {config.customText && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Custom Text</span>
+                    <span className="font-semibold">+$3.00</span>
+                  </div>
+                )}
+
+                <div className="border-t border-border/40 pt-3 flex justify-between text-lg">
+                  <span className="font-bold">TOTAL</span>
+                  <span className="font-bold text-primary text-2xl">
+                    ${(
+                      35 +
+                      config.rimPrice +
+                      config.materialPrice +
+                      (config.carPhoto ? 5 : 0) +
+                      (config.facePhoto ? 3 : 0) +
+                      (config.customText ? 3 : 0)
+                    ).toFixed(2)}
+                  </span>
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-4">
+                <button
+                  onClick={handleAddToCart}
+                  className="w-full px-6 py-3 bg-gradient-accent rounded-lg font-semibold text-white shadow-glow"
+                >
+                  Add to Cart
+                </button>
+                <button
+                  onClick={handleAddToWishlist}
+                  className="w-full px-6 py-3 bg-secondary rounded-lg font-semibold"
+                >
+                  Add to Wishlist
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Mobile Preview (Bottom) */}

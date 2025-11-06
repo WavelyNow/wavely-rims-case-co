@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import CustomizeCTA from "@/components/CustomizeCTA";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -138,14 +139,7 @@ const FeaturedProducts = () => {
                         </span>
                       </div>
 
-                       <Button 
-                        className="w-full mt-4 bg-gradient-subtle hover:shadow-card text-foreground border border-border/40 hover:scale-105 transition-premium font-semibold group"
-                        variant="outline"
-                        onClick={() => window.location.href = '/customize'}
-                      >
-                        Customize Now
-                        <ShoppingCart className="ml-2 h-4 w-4 group-hover:scale-110 transition-smooth" />
-                      </Button>
+                      <CustomizeCTA location="featured-card" fullWidth className="mt-4" />
                     </div>
                   </CardContent>
                 </Card>

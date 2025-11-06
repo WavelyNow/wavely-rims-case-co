@@ -1,7 +1,9 @@
-import { Heart, User, Menu, ArrowRight } from "lucide-react";
+import { Heart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { CartDrawer } from "@/components/CartDrawer";
+import Logo from "@/components/Logo";
+import CustomizeCTA from "@/components/CustomizeCTA";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,9 +14,8 @@ const Navigation = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold font-poppins tracking-tight">
-              <span className="bg-gradient-accent bg-clip-text text-transparent">Wavely</span>
-            </a>
+            {/* Use accessible SVG logo with text fallback */}
+            <Logo />
           </div>
 
           {/* Desktop Navigation */}
@@ -22,13 +23,7 @@ const Navigation = () => {
             <a href="/" className="text-sm font-medium transition-smooth hover:text-primary">
               Home
             </a>
-            <Button 
-              className="bg-gradient-accent hover:shadow-glow hover:scale-105 transition-premium text-sm font-semibold h-9 group"
-              onClick={() => window.location.href = '/customize'}
-            >
-              Customize Now
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-smooth inline-block" />
-            </Button>
+            <CustomizeCTA location="nav-desktop" size="sm" />
             <a href="/shop" className="text-sm font-medium transition-smooth hover:text-primary">
               Shop
             </a>
@@ -71,13 +66,7 @@ const Navigation = () => {
             <a href="/" className="block text-sm font-medium transition-smooth hover:text-primary">
               Home
             </a>
-            <Button 
-              className="w-full bg-gradient-accent hover:shadow-glow hover:scale-105 transition-premium text-sm font-semibold group"
-              onClick={() => window.location.href = '/customize'}
-            >
-              Customize Now
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-smooth inline-block" />
-            </Button>
+            <CustomizeCTA location="nav-mobile" size="md" fullWidth />
             <a href="/shop" className="block text-sm font-medium transition-smooth hover:text-primary">
               Shop
             </a>

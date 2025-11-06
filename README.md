@@ -60,6 +60,14 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Recent Changes
+
+- 3D live preview functionality has been removed. The configurator now uses a static summary panel without WebGL. Dependencies `three`, `@react-three/fiber`, and `@react-three/drei` have been removed.
+
+### Migration Notes
+- If you previously relied on 3D preview, update any external docs or flows to reference the static price summary in `src/pages/Customize.tsx`.
+- Run `npm install` after pulling changes to reflect removed dependencies.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/7e22089b-e34e-49ef-ad12-73c70903571e) and click on Share -> Publish.

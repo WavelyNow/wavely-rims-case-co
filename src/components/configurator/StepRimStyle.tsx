@@ -41,7 +41,8 @@ const StepRimStyle = ({ selectedRim, onSelect, onNext, onBack }: StepRimStylePro
               <img
                 src={rim.image}
                 alt={rim.name}
-                className="w-full h-full object-cover transition-transform duration-[2s] group-hover:rotate-[360deg]"
+                className="w-full h-full object-cover transition-transform group-hover:rotate-[360deg]"
+                style={{ transitionDuration: "2000ms" }}
               />
             </div>
 
