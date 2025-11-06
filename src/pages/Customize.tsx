@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProgressBar from "@/components/configurator/ProgressBar";
@@ -9,6 +9,7 @@ import StepUploadPhoto from "@/components/configurator/StepUploadPhoto";
 import StepMaterial from "@/components/configurator/StepMaterial";
 import StepPersonalization from "@/components/configurator/StepPersonalization";
 import { ConfiguratorState } from "@/types/configurator";
+import { phoneModels } from "@/data/configuratorData";
 import { toast } from "sonner";
 import { ShoppingCart, Heart, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,23 @@ const Customize = () => {
     textPosition: "bottom",
     currentStep: 1
   });
+
+  // Preselect model from query params
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    const modelId = searchParams.get("model");
+    if (modelId) {
+      const m = phoneModels.find((x) => x.id === modelId);
+      if (m) {
+        setConfig((prev) => ({
+          ...prev,
+          phoneModel: m.id,
+          phoneModelImage: m.image
+        }));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handlePhoneSelect = (model: any) => {
     setConfig({

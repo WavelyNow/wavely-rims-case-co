@@ -21,6 +21,8 @@ import Auth from "./pages/Auth";
 import Account from "./pages/Account";
 import AdminLogin from "./pages/AdminLogin";
 import DiscountCodes from "./pages/admin/DiscountCodes";
+import PhoneCatalog from "./pages/PhoneCatalog";
+import PhoneModelDetail from "./pages/PhoneModelDetail";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +36,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/customize" element={<Customize />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/phones" element={<PhoneCatalog />} />
+          <Route path="/phones/:id" element={<PhoneModelDetail />} />
           <Route path="/product/:handle" element={<Product />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />

@@ -87,7 +87,7 @@ const Shop = () => {
             <span className="text-sm font-bold text-primary uppercase tracking-wider">Premium Collection</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black font-poppins tracking-tighter mb-4">
+          <h1 className="title-text text-5xl md:text-7xl font-black font-poppins tracking-tighter mb-4">
             <span className="bg-gradient-accent bg-clip-text text-transparent">Shop All Cases</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-medium">

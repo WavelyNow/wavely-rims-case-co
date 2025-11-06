@@ -78,7 +78,7 @@ const HowItWorks = () => {
             <span className="text-sm font-bold text-primary uppercase tracking-wider">Simple 4-Step Process</span>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-black font-poppins mb-6">
+          <h1 className="title-text text-6xl md:text-8xl font-black font-poppins mb-6">
             <span className="bg-gradient-accent bg-clip-text text-transparent">How It Works</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto font-medium">

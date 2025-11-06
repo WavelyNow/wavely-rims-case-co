@@ -149,7 +149,7 @@ const Product = () => {
           {/* Product Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-4xl font-bold font-poppins mb-2">{product.title}</h1>
+              <h1 className="title-text text-4xl font-bold font-poppins mb-2">{product.title}</h1>
               <div className="flex items-center gap-3">
                 <span className="text-3xl font-bold">
                   ${parseFloat(selectedVariant?.price.amount || product.priceRange.minVariantPrice.amount).toFixed(2)}

@@ -39,5 +39,24 @@ export interface PhoneModel {
   id: string;
   name: string;
   brand: string;
-  image: string;
+  image: string; // should be >=1000x1000px
+  releaseYear: number;
+  price: number; // approximate MSRP in USD
+  specs: {
+    display: string;
+    dimensions: string;
+    weight: string;
+    chipset: string;
+    ram: string;
+    storage: string;
+    battery: string;
+    camera: string;
+    wirelessCharging?: boolean;
+    magSafe?: boolean;
+  };
+  customizations: {
+    materials: string[]; // ids from materialOptions
+    rimStyles: string[]; // ids from rimOptions
+    engravingAvailable: boolean;
+  };
 }

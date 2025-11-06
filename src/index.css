@@ -48,13 +48,19 @@ All colors MUST be HSL.
     --metallic-gray: 0 0% 69%; /* #B0B0B0 Cool Gray */
     --neon-purple: 285 100% 50%; /* #C000FF Neon Purple Blend */
     
-    /* Neon Gradients */
-    --gradient-premium: linear-gradient(135deg, hsl(var(--hot-pink)), hsl(var(--electric-cyan)));
+    /* Neon Gradients (refined palettes) */
+    --gradient-premium: linear-gradient(135deg, hsl(330 80% 65%), hsl(200 85% 62%));
     --gradient-subtle: linear-gradient(180deg, hsl(220 15% 8%), hsl(220 12% 12%));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--hot-pink)), hsl(var(--lime-neon)));
-    --gradient-vibrant: linear-gradient(135deg, hsl(var(--electric-cyan)), hsl(var(--lime-neon)));
+    /* Default accent: balanced cyan → violet */
+    --gradient-accent: linear-gradient(135deg, hsl(195 90% 62%), hsl(275 80% 66%));
+    /* Alternates for text */
+    --gradient-accent-soft: linear-gradient(135deg, hsl(210 80% 70%), hsl(280 70% 70%));
+    --gradient-accent-warm: linear-gradient(135deg, hsl(350 70% 65%), hsl(25 85% 62%));
+    --gradient-accent-cool: linear-gradient(135deg, hsl(190 90% 62%), hsl(150 70% 58%));
+    --gradient-vibrant: linear-gradient(135deg, hsl(200 95% 60%), hsl(285 85% 60%));
     --gradient-hero: linear-gradient(135deg, hsl(330 100% 60% / 0.2), hsl(180 100% 50% / 0.2));
     --gradient-carbon: linear-gradient(125deg, hsl(220 15% 8%), hsl(220 10% 15%), hsl(220 15% 8%));
+    --gradient-metallic: linear-gradient(135deg, hsl(var(--metallic-gray)), hsl(220 12% 18%));
     
     /* Neon Glowing Shadows */
     --shadow-premium: 0 20px 70px -15px hsl(var(--hot-pink) / 0.7);
@@ -115,6 +121,18 @@ All colors MUST be HSL.
   .gradient-vibrant {
     background: var(--gradient-vibrant);
   }
+
+  /* Aliases with bg- prefix; use background-image to preserve bg-clip-text */
+  .bg-gradient-premium { background-image: var(--gradient-premium); }
+  .bg-gradient-subtle { background-image: var(--gradient-subtle); }
+  .bg-gradient-accent { background-image: var(--gradient-accent); }
+  .bg-gradient-accent-soft { background-image: var(--gradient-accent-soft); }
+  .bg-gradient-accent-warm { background-image: var(--gradient-accent-warm); }
+  .bg-gradient-accent-cool { background-image: var(--gradient-accent-cool); }
+  .bg-gradient-vibrant { background-image: var(--gradient-vibrant); }
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-carbon { background-image: var(--gradient-carbon); }
+  .bg-gradient-metallic { background-image: var(--gradient-metallic); }
   
   .shadow-premium {
     box-shadow: var(--shadow-premium);
@@ -138,6 +156,15 @@ All colors MUST be HSL.
   
   .transition-premium {
     transition: var(--transition-premium);
+  }
+
+  /* Ensure titles wrap and never get clipped/truncated */
+  .title-text {
+    overflow-wrap: anywhere;
+    word-break: normal;
+    white-space: normal;
+    hyphens: auto;
+    text-wrap: balance; /* progressive enhancement */
   }
 }
 

@@ -132,9 +132,9 @@ const Index = () => {
 
             {/* Main Heading */}
             <div className="space-y-6">
-              <h1 id="hero-title" className="text-6xl md:text-8xl lg:text-9xl font-black leading-none">
+              <h1 id="hero-title" className="title-text font-black leading-tight text-[clamp(2.5rem,10vw,8rem)]">
                 <span className="block text-white drop-shadow-2xl">Your Car.</span>
-                <span className="block mt-4 bg-gradient-to-r from-hot-pink via-neon-purple to-electric-cyan bg-clip-text text-transparent drop-shadow-2xl animate-gradient">
+                <span className="block mt-4 bg-gradient-accent-soft bg-clip-text text-transparent drop-shadow-2xl animate-gradient">
                   Your Case.
                 </span>
               </h1>
@@ -230,7 +230,7 @@ const Index = () => {
           <div className="container max-w-7xl mx-auto px-4 relative z-10">
             <div className="text-center mb-16 animate-fade-in">
               <h2 id="featured-title" className="text-4xl md:text-6xl font-black mb-4">
-                Featured <span className="bg-gradient-accent bg-clip-text text-transparent">Collection</span>
+                Featured <span className="bg-gradient-accent-warm bg-clip-text text-transparent">Collection</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Explore our premium automotive phone cases
@@ -347,7 +347,7 @@ const Index = () => {
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 id="how-it-works-title" className="text-4xl md:text-6xl font-black mb-4">
-                How It <span className="bg-gradient-accent bg-clip-text text-transparent">Works</span>
+                How It <span className="bg-gradient-accent-cool bg-clip-text text-transparent">Works</span>
               </h2>
               <p className="text-xl text-muted-foreground">
                 Get your custom case in 3 simple steps
@@ -418,7 +418,7 @@ const Index = () => {
               
               <div className="relative z-10 text-center space-y-6">
                 <h2 id="customize-title" className="text-4xl md:text-5xl font-black">
-                  Ready to Create <span className="bg-gradient-accent bg-clip-text text-transparent">Your Case?</span>
+                  Ready to Create <span className="bg-gradient-accent-soft bg-clip-text text-transparent">Your Case?</span>
                 </h2>
 
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
