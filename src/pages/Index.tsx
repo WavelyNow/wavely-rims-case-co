@@ -1,12 +1,75 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap, Shield, Truck, Star, ChevronRight } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Upload, Star, Quote, Instagram, Heart, ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import heroPhoneCase from "@/assets/hero-phone-case.jpg";
+import heroFerrariCase from "@/assets/hero-ferrari-case.jpg";
+import caseFerrari from "@/assets/case-ferrari.jpg";
+import caseGTR from "@/assets/case-gtr.jpg";
+import caseLamborghini from "@/assets/case-lamborghini.jpg";
+import caseBMW from "@/assets/case-bmw.jpg";
 
 const Index = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredCase, setHoveredCase] = useState<number | null>(null);
+
+  const featuredCases = [
+    {
+      id: 1,
+      name: "Ferrari F8",
+      image: caseFerrari,
+      price: "$49.99",
+      badge: "Best Seller",
+      color: "hot-pink"
+    },
+    {
+      id: 2,
+      name: "Nissan GTR R35",
+      image: caseGTR,
+      price: "$44.99",
+      badge: "Popular",
+      color: "electric-cyan"
+    },
+    {
+      id: 3,
+      name: "Lamborghini Huracán",
+      image: caseLamborghini,
+      price: "$54.99",
+      badge: "Premium",
+      color: "lime-neon"
+    },
+    {
+      id: 4,
+      name: "BMW M4",
+      image: caseBMW,
+      price: "$49.99",
+      badge: "New",
+      color: "electric-cyan"
+    }
+  ];
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "Alex M.",
+      role: "Car Enthusiast",
+      text: "The quality is insane! My GTR case looks exactly like the real thing. Everyone asks where I got it.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Jordan K.",
+      role: "Ferrari Owner",
+      text: "Finally a case that matches my passion. The carbon fiber texture and neon details are perfect!",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "Sam R.",
+      role: "Track Day Regular",
+      text: "Best purchase ever! Dropped my phone multiple times and it's still perfect. Looks amazing too.",
+      rating: 5
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -16,24 +79,39 @@ const Index = () => {
 
       <Navigation />
 
-      {/* HERO SECTION - Dramatic with product image */}
-      <header className="relative overflow-hidden min-h-screen" aria-labelledby="hero-title">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-subtle">
-          <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
+      {/* HERO SECTION - Parallax with 3D Elements */}
+      <header className="relative overflow-hidden min-h-screen carbon-fiber" aria-labelledby="hero-title">
+        {/* Neon Light Strips - like garage */}
+        <div className="absolute top-0 left-10 w-1 h-full bg-gradient-to-b from-primary via-primary to-transparent opacity-60 blur-sm" />
+        <div className="absolute top-0 right-10 w-1 h-full bg-gradient-to-b from-secondary via-secondary to-transparent opacity-60 blur-sm" />
+        
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
+
+        {/* 3D Rim Element - emerging from behind */}
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-20">
+          <div className="relative w-full h-full">
+            <div className="absolute inset-0 rounded-full border-8 border-metallic-gray opacity-40 animate-spin" style={{ animationDuration: '20s' }} />
+            <div className="absolute inset-8 rounded-full border-4 border-primary/30" />
+            <div className="absolute inset-16 rounded-full bg-gradient-radial from-primary/10 to-transparent" />
+          </div>
         </div>
 
-        {/* Floating animated particles */}
+        {/* Floating neon particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(40)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-2 h-2 bg-primary rounded-full opacity-20 animate-float"
+              className="absolute rounded-full animate-float"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                width: `${2 + Math.random() * 4}px`,
+                height: `${2 + Math.random() * 4}px`,
+                background: i % 3 === 0 ? 'hsl(var(--hot-pink))' : i % 3 === 1 ? 'hsl(var(--electric-cyan))' : 'hsl(var(--lime-neon))',
+                opacity: 0.3 + Math.random() * 0.3,
                 animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${5 + Math.random() * 10}s`
+                animationDuration: `${4 + Math.random() * 8}s`
               }}
             />
           ))}
@@ -43,34 +121,35 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
             {/* Left: Text content */}
             <div className="animate-fade-in space-y-8">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/20 border-2 border-primary/40 backdrop-blur-sm animate-pulse" style={{ animationDuration: '3s' }}>
-                <Sparkles className="h-5 w-5 text-primary animate-spin" style={{ animationDuration: '3s' }} />
-                <span className="text-sm font-bold text-primary uppercase tracking-wider">Automotive-Inspired Design</span>
+              {/* Neon Badge */}
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 border-2 border-primary/40 backdrop-blur-sm animate-neon-pulse">
+                <Zap className="h-6 w-6 text-primary" />
+                <span className="text-sm font-black text-primary uppercase tracking-widest">Premium Car Cases</span>
               </div>
 
               <div className="space-y-6">
-                <h1 id="hero-title" className="text-7xl md:text-9xl font-black font-poppins leading-none tracking-tighter">
-                  <span className="block text-white drop-shadow-[0_0_30px_rgba(255,100,50,0.5)]">Wavely</span>
-                  <span className="block text-transparent bg-gradient-accent bg-clip-text animate-pulse" style={{ animationDuration: '4s' }}>
-                    Cases
+                <h1 id="hero-title" className="text-7xl md:text-9xl font-black font-poppins leading-none tracking-tighter" style={{ fontFamily: "'Orbitron', 'Poppins', sans-serif" }}>
+                  <span className="block text-white drop-shadow-[0_0_40px_rgba(255,20,147,0.8)]">WAVELY</span>
+                  <span className="block text-transparent bg-gradient-accent bg-clip-text animate-neon-pulse">
+                    GARAGE
                   </span>
                 </h1>
                 
-                <p className="text-2xl md:text-3xl text-muted-foreground font-medium leading-relaxed max-w-xl">
-                  Premium phone cases inspired by <span className="text-primary font-bold">luxury car rims</span>. 
-                  Customize with your photos and style.
+                <p className="text-2xl md:text-3xl text-muted-foreground font-bold leading-relaxed max-w-xl" style={{ fontFamily: "'Urbanist', sans-serif" }}>
+                  Premium phone cases featuring <span className="text-primary">legendary sports cars</span>. 
+                  Carbon fiber texture. Neon accents. Pure performance.
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="h-16 px-8 bg-gradient-accent hover:shadow-neon transition-premium text-xl font-bold group relative overflow-hidden"
-                  onClick={() => (window.location.href = "/customize")}
+                  className="h-16 px-10 bg-gradient-accent hover:shadow-neon transition-premium text-xl font-black group relative overflow-hidden border-2 border-transparent hover:border-primary"
+                  onClick={() => (window.location.href = "/shop")}
                 >
                   <span className="relative z-10 flex items-center">
-                    Start Designing
+                    <ShoppingCart className="h-6 w-6 mr-3" />
+                    SHOP NOW
                     <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -79,263 +158,261 @@ const Index = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-16 px-8 border-2 border-primary/50 hover:bg-primary/10 hover:border-primary transition-smooth text-xl font-bold group backdrop-blur-sm"
-                  onClick={() => (window.location.href = "/shop")}
+                  className="h-16 px-10 border-2 border-secondary hover:bg-secondary/20 hover:border-secondary transition-smooth text-xl font-black group backdrop-blur-sm"
+                  onClick={() => (window.location.href = "/customize")}
                 >
-                  Browse Collection
-                  <ChevronRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                  <Sparkles className="h-6 w-6 mr-3 text-secondary group-hover:animate-spin" />
+                  EXPLORE DESIGNS
                 </Button>
               </div>
 
-              {/* Key features */}
-              <div className="flex flex-wrap gap-6 pt-6">
+              {/* Trust indicators */}
+              <div className="flex flex-wrap gap-6 pt-8 border-t border-border/40">
                 {[
-                  { icon: Shield, text: "Military Protection" },
-                  { icon: Truck, text: "5-7 Day Delivery" },
-                  { icon: Star, text: "Premium Quality" }
+                  { icon: Star, text: "Premium Quality", color: "primary" },
+                  { icon: Zap, text: "Fast Shipping", color: "secondary" },
+                  { icon: Heart, text: "100+ 5★ Reviews", color: "accent" }
                 ].map((item, i) => {
                   const Icon = item.icon;
                   return (
-                    <div key={i} className="flex items-center gap-2 text-sm font-semibold animate-fade-in" style={{ animationDelay: `${i * 200}ms` }}>
-                      <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-primary" />
+                    <div key={i} className="flex items-center gap-2 animate-fade-in" style={{ animationDelay: `${i * 200}ms` }}>
+                      <div className={`h-10 w-10 rounded-lg bg-${item.color}/20 flex items-center justify-center border border-${item.color}/40`}>
+                        <Icon className={`h-5 w-5 text-${item.color}`} />
                       </div>
-                      <span>{item.text}</span>
+                      <span className="text-sm font-bold uppercase tracking-wide">{item.text}</span>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Right: Dramatic product image */}
+            {/* Right: Hero Product with Parallax */}
             <div className="relative lg:h-screen flex items-center justify-center">
-              <div className="relative animate-float" style={{ animationDuration: '6s' }}>
-                {/* Glow effect behind image */}
-                <div className="absolute inset-0 bg-gradient-accent rounded-3xl blur-[100px] opacity-60 animate-pulse" style={{ animationDuration: '4s' }} />
+              <div className="relative animate-float animate-tilt-in" style={{ animationDuration: '8s' }}>
+                {/* Multiple glow layers for 3D effect */}
+                <div className="absolute -inset-20 bg-primary/40 rounded-full blur-[120px] animate-neon-pulse" />
+                <div className="absolute -inset-10 bg-secondary/40 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+                <div className="absolute -inset-5 bg-accent/30 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: '4s', animationDelay: '2s' }} />
                 
-                {/* Main product image */}
+                {/* Main hero image */}
                 <img
-                  src={heroPhoneCase}
-                  alt="Premium phone case with luxury car rim design"
+                  src={heroFerrariCase}
+                  alt="Ferrari phone case with neon lighting"
                   className="relative z-10 w-full max-w-2xl rounded-3xl shadow-premium transform hover:scale-105 transition-premium"
+                  style={{ filter: 'drop-shadow(0 0 40px rgba(255,20,147,0.6))' }}
                 />
                 
-                {/* Floating accent elements */}
-                <div className="absolute -top-10 -right-10 h-32 w-32 bg-primary/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '3s' }} />
-                <div className="absolute -bottom-10 -left-10 h-40 w-40 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+                {/* Reflective glow spots */}
+                <div className="absolute top-1/4 -left-10 h-32 w-32 bg-primary/60 rounded-full blur-2xl animate-pulse" />
+                <div className="absolute bottom-1/4 -right-10 h-40 w-40 bg-secondary/60 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }} />
               </div>
             </div>
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronRight className="h-8 w-8 text-primary rotate-90" />
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <span className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Scroll</span>
+          <ArrowRight className="h-6 w-6 text-primary rotate-90" />
         </div>
       </header>
 
-      <main id="main-content" className="container max-w-7xl mx-auto px-4">
-        {/* SERVICES SECTION - Interactive cards */}
-        <section aria-labelledby="services-title" className="py-20">
-          <div className="text-center mb-16 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-4">
-              <Zap className="h-4 w-4 text-accent" />
-              <span className="text-sm font-semibold text-accent">What We Offer</span>
-            </div>
-            <h2 id="services-title" className="text-5xl font-bold font-poppins mb-4">Services & Products</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to create a case that reflects your style.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Custom Cases",
-                desc: "Choose design, material, and add your own text or photos.",
-                icon: Sparkles,
-                gradient: "from-primary to-accent"
-              },
-              {
-                title: "Authentic Rim Designs",
-                desc: "Select from popular rim styles for an exclusive look.",
-                icon: Zap,
-                gradient: "from-accent to-secondary"
-              },
-              {
-                title: "Premium Materials",
-                desc: "Matte, glossy, leather, or metallic – durability and elegance.",
-                icon: Shield,
-                gradient: "from-secondary to-primary"
-              },
-              {
-                title: "Photo Upload",
-                desc: "Upload images of your car for a truly personal design.",
-                icon: Star,
-                gradient: "from-primary to-secondary"
-              }
-            ].map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <article
-                  key={i}
-                  className="group relative rounded-2xl border border-border/40 bg-card/50 p-8 transition-all hover:shadow-premium hover:-translate-y-2 cursor-pointer animate-fade-in backdrop-blur-sm"
-                  style={{ animationDelay: `${i * 100}ms` }}
-                  onMouseEnter={() => setHoveredCard(i)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  aria-label={item.title}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity`} />
-                  
-                  <div className="relative z-10">
-                    <div className="h-14 w-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-glow">
-                      <Icon className="h-7 w-7 text-white" />
-                    </div>
-                    
-                    <h3 className="font-bold font-poppins text-xl mb-3 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {item.desc}
-                    </p>
-
-                    <div className="mt-4 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-sm font-semibold">Learn more</span>
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* HOW IT WORKS - Animated timeline */}
-        <section aria-labelledby="how-title" className="py-20 relative">
-          <div className="absolute inset-0 bg-gradient-subtle rounded-3xl" />
+      <main id="main-content" className="relative">
+        {/* FEATURED CASES SECTION */}
+        <section className="py-24 relative overflow-hidden" aria-labelledby="featured-title">
+          <div className="absolute inset-0 carbon-fiber opacity-50" />
+          <div className="absolute inset-0 bg-gradient-subtle" />
           
-          <div className="relative z-10 p-12">
+          <div className="container max-w-7xl mx-auto px-4 relative z-10">
             <div className="text-center mb-16 animate-fade-in">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-4">
-                <Sparkles className="h-4 w-4 text-secondary" />
-                <span className="text-sm font-semibold text-secondary">Simple Process</span>
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent/10 border-2 border-accent/40 backdrop-blur-sm mb-6">
+                <Star className="h-5 w-5 text-accent" />
+                <span className="text-sm font-bold text-accent uppercase tracking-wider">Featured Collection</span>
               </div>
-              <h2 id="how-title" className="text-5xl font-bold font-poppins mb-4">How It Works</h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                A simple process designed for a fast and enjoyable experience.
+              
+              <h2 id="featured-title" className="text-6xl md:text-7xl font-black font-poppins mb-6" style={{ fontFamily: "'Orbitron', 'Poppins', sans-serif" }}>
+                <span className="bg-gradient-accent bg-clip-text text-transparent">LEGENDARY RIDES</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-semibold">
+                Premium cases featuring the world's most iconic sports cars
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                { step: "1", title: "Choose Model", desc: "Select your phone and preferred rim style.", delay: "0ms" },
-                { step: "2", title: "Customize", desc: "Choose material, add text and your own photos.", delay: "150ms" },
-                { step: "3", title: "Complete", desc: "Place order – fast production and 5-7 day delivery.", delay: "300ms" }
-              ].map((item, i) => (
-                <article
-                  key={i}
-                  className="relative group animate-fade-in"
-                  style={{ animationDelay: item.delay }}
-                  aria-label={`Step ${item.step}: ${item.title}`}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredCases.map((item, i) => (
+                <div
+                  key={item.id}
+                  className="group relative animate-fade-in cursor-pointer"
+                  style={{ animationDelay: `${i * 150}ms` }}
+                  onMouseEnter={() => setHoveredCase(i)}
+                  onMouseLeave={() => setHoveredCase(null)}
                 >
-                  {/* Connector line */}
-                  {i < 2 && (
-                    <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-primary to-secondary opacity-30" />
-                  )}
-                  
-                  <div className="relative rounded-2xl border border-border/40 bg-background p-8 hover:shadow-card transition-all hover:-translate-y-1">
-                    <div className="h-16 w-16 rounded-full bg-gradient-premium flex items-center justify-center mb-6 shadow-glow text-2xl font-bold text-white group-hover:scale-110 transition-transform">
-                      {item.step}
+                  <div className={`relative rounded-2xl border-2 border-border/40 bg-card/60 backdrop-blur-sm overflow-hidden transition-all hover:border-${item.color}/60 hover:shadow-premium hover:-translate-y-2`}>
+                    {/* Badge */}
+                    <div className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-${item.color}/90 text-white text-xs font-black uppercase backdrop-blur-sm`}>
+                      {item.badge}
                     </div>
+
+                    {/* Glow on hover */}
+                    <div className={`absolute inset-0 bg-${item.color}/20 opacity-0 group-hover:opacity-100 transition-opacity blur-xl`} />
                     
-                    <h3 className="font-bold font-poppins text-xl mb-3">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                    {/* Image */}
+                    <div className="aspect-square bg-gradient-subtle p-6 relative overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
+                      />
+                    </div>
+
+                    {/* Info */}
+                    <div className="p-6 relative z-10">
+                      <h3 className="text-xl font-black font-poppins mb-2 group-hover:text-primary transition-colors">
+                        {item.name}
+                      </h3>
+                      <div className="flex items-center justify-between">
+                        <span className="text-2xl font-black text-primary">{item.price}</span>
+                        <Button 
+                          size="sm" 
+                          className="bg-gradient-accent hover:shadow-glow transition-premium text-xs font-bold"
+                          onClick={() => window.location.href = "/shop"}
+                        >
+                          <ShoppingCart className="h-4 w-4 mr-1" />
+                          ADD
+                        </Button>
+                      </div>
+                    </div>
                   </div>
-                </article>
+                </div>
               ))}
             </div>
 
-            <div className="text-center mt-12 animate-fade-in">
+            <div className="text-center mt-12">
               <Button
                 size="lg"
-                className="bg-gradient-accent hover:shadow-glow transition-premium text-lg font-semibold group"
-                onClick={() => (window.location.href = "/customize")}
+                className="h-14 px-8 bg-gradient-vibrant hover:shadow-neon transition-premium text-lg font-black group"
+                onClick={() => window.location.href = "/shop"}
               >
-                Start Configuration
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                VIEW ALL CASES
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
               </Button>
             </div>
           </div>
         </section>
 
-        {/* TRUST BADGES - Animated on scroll */}
-        <section aria-labelledby="trust-title" className="py-20">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 id="trust-title" className="text-4xl font-bold font-poppins mb-4">Why Wavely</h2>
-            <p className="text-lg text-muted-foreground">Premium quality meets exceptional service</p>
-          </div>
+        {/* CUSTOMIZE YOURS SECTION */}
+        <section className="py-24 relative" aria-labelledby="customize-title">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
           
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Truck, title: "Fast Delivery", desc: "5-7 business days", gradient: "from-primary to-accent" },
-              { icon: Shield, title: "Premium Quality", desc: "Military-grade protection", gradient: "from-accent to-secondary" },
-              { icon: Star, title: "100% Satisfaction", desc: "Return guarantee", gradient: "from-secondary to-primary" },
-              { icon: Sparkles, title: "Unique Design", desc: "Inspired by automotive world", gradient: "from-primary to-secondary" }
-            ].map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={i}
-                  className="group relative rounded-2xl border border-border/40 bg-card/50 p-6 text-center hover:shadow-premium transition-all hover:-translate-y-2 animate-fade-in backdrop-blur-sm cursor-pointer"
-                  style={{ animationDelay: `${i * 100}ms` }}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity`} />
-                  
-                  <div className="relative z-10">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-accent mb-4 shadow-glow group-hover:scale-110 transition-transform">
-                      <Icon className="h-6 w-6 text-white" />
-                    </div>
-                    <p className="font-bold font-poppins text-lg mb-2">{item.title}</p>
-                    <p className="text-sm text-muted-foreground">{item.desc}</p>
-                  </div>
+          <div className="container max-w-6xl mx-auto px-4 relative z-10">
+            <div className="relative rounded-3xl border-2 border-primary/30 bg-card/80 backdrop-blur-xl p-12 md:p-16 overflow-hidden shadow-premium">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px]" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-[100px]" />
+              
+              <div className="relative z-10 text-center space-y-8">
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/10 border-2 border-secondary/40 backdrop-blur-sm">
+                  <Upload className="h-6 w-6 text-secondary" />
+                  <span className="text-sm font-bold text-secondary uppercase tracking-wider">Create Your Own</span>
                 </div>
-              );
-            })}
+
+                <h2 id="customize-title" className="text-5xl md:text-6xl font-black font-poppins" style={{ fontFamily: "'Orbitron', 'Poppins', sans-serif" }}>
+                  <span className="bg-gradient-accent bg-clip-text text-transparent">CUSTOMIZE YOURS</span>
+                </h2>
+
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-semibold leading-relaxed">
+                  Upload your own car photo or choose from our premium collection. 
+                  Add carbon fiber textures, neon accents, and make it truly yours.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-6 pt-8">
+                  {[
+                    { icon: Upload, title: "Upload Photo", desc: "Your car, your style" },
+                    { icon: Sparkles, title: "Choose Design", desc: "Premium templates" },
+                    { icon: Zap, title: "Get It Fast", desc: "5-7 day delivery" }
+                  ].map((step, i) => {
+                    const Icon = step.icon;
+                    return (
+                      <div key={i} className="text-center space-y-3">
+                        <div className="inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-accent shadow-glow">
+                          <Icon className="h-8 w-8 text-white" />
+                        </div>
+                        <h3 className="text-lg font-bold font-poppins">{step.title}</h3>
+                        <p className="text-sm text-muted-foreground">{step.desc}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <Button
+                  size="lg"
+                  className="h-16 px-10 bg-white text-background hover:bg-white/90 transition-premium text-xl font-black group shadow-premium mt-8"
+                  onClick={() => window.location.href = "/customize"}
+                >
+                  START CUSTOMIZING
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* CTA SECTION */}
-        <section className="py-20 animate-fade-in">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-premium p-12 md:p-16 text-center shadow-premium">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20" />
-            
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <Sparkles className="h-12 w-12 text-white mx-auto mb-6 animate-pulse" />
-              <h2 className="text-4xl md:text-5xl font-bold font-poppins text-white mb-6">
-                Ready to Create Your Perfect Case?
-              </h2>
-              <p className="text-xl text-white/90 mb-8">
-                Join thousands of satisfied customers who trust Wavely for premium custom cases.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-white text-primary hover:bg-white/90 transition-premium text-lg font-semibold group shadow-glow"
-                  onClick={() => (window.location.href = "/customize")}
-                >
-                  Start Designing Now
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/30 bg-white/10 text-white hover:bg-white/20 transition-smooth text-lg font-semibold backdrop-blur-sm"
-                  onClick={() => (window.location.href = "/how-it-works")}
-                >
-                  Learn More
-                </Button>
+        {/* TESTIMONIALS SECTION */}
+        <section className="py-24 relative carbon-fiber" aria-labelledby="testimonials-title">
+          <div className="absolute inset-0 bg-gradient-subtle opacity-90" />
+          
+          <div className="container max-w-7xl mx-auto px-4 relative z-10">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent/10 border-2 border-accent/40 backdrop-blur-sm mb-6">
+                <Quote className="h-5 w-5 text-accent" />
+                <span className="text-sm font-bold text-accent uppercase tracking-wider">Community Love</span>
               </div>
+              
+              <h2 id="testimonials-title" className="text-6xl font-black font-poppins mb-4" style={{ fontFamily: "'Orbitron', 'Poppins', sans-serif" }}>
+                <span className="bg-gradient-accent bg-clip-text text-transparent">CAR ENTHUSIASTS</span>
+              </h2>
+              <p className="text-xl text-muted-foreground font-semibold">See what our community says</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {testimonials.map((testimonial, i) => (
+                <div
+                  key={testimonial.id}
+                  className="relative rounded-2xl border-2 border-border/40 bg-card/80 backdrop-blur-sm p-6 hover:border-primary/50 transition-all hover:shadow-card animate-fade-in"
+                  style={{ animationDelay: `${i * 150}ms` }}
+                >
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  
+                  <p className="text-foreground mb-6 leading-relaxed italic">
+                    "{testimonial.text}"
+                  </p>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="h-12 w-12 rounded-full bg-gradient-accent" />
+                    <div>
+                      <p className="font-bold font-poppins">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-14 px-8 border-2 border-secondary hover:bg-secondary/20 transition-smooth text-lg font-black group"
+                onClick={() => window.open('https://instagram.com', '_blank')}
+              >
+                <Instagram className="h-5 w-5 mr-2" />
+                FOLLOW US @WAVELY
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+              </Button>
             </div>
           </div>
         </section>

@@ -8,60 +8,63 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Bold automotive-inspired color palette */
-    --background: 210 40% 8%;
-    --foreground: 0 0% 98%;
+    /* Carbon Fiber & Neon Palette - Car Lifestyle */
+    --background: 220 15% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 210 35% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 220 12% 12%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 210 35% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 220 12% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 15 90% 55%;
+    --primary: 330 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 95% 60%;
-    --secondary-foreground: 210 40% 8%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 220 15% 8%;
 
-    --muted: 210 20% 25%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 280 75% 58%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 140 100% 50%;
+    --accent-foreground: 220 15% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 22%;
-    --input: 210 30% 15%;
-    --ring: 15 90% 55%;
+    --border: 220 10% 18%;
+    --input: 220 12% 15%;
+    --ring: 330 100% 60%;
 
     --radius: 0.75rem;
 
-    /* Custom automotive design tokens */
-    --racing-red: 15 90% 55%;
-    --chrome-yellow: 45 95% 60%;
-    --electric-blue: 210 90% 58%;
-    --neon-purple: 280 75% 58%;
-    --midnight-black: 210 40% 8%;
+    /* Car-lifestyle neon design tokens */
+    --hot-pink: 330 100% 60%;
+    --electric-cyan: 180 100% 50%;
+    --lime-neon: 140 100% 50%;
+    --ferrari-red: 0 90% 55%;
+    --carbon-black: 220 15% 8%;
+    --metallic-gray: 220 8% 30%;
     
-    /* Dynamic Gradients */
-    --gradient-premium: linear-gradient(135deg, hsl(var(--racing-red)), hsl(var(--neon-purple)));
-    --gradient-subtle: linear-gradient(180deg, hsl(210 40% 8%), hsl(210 35% 12%));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--racing-red)), hsl(var(--chrome-yellow)));
-    --gradient-vibrant: linear-gradient(135deg, hsl(var(--electric-blue)), hsl(var(--neon-purple)));
-    --gradient-hero: linear-gradient(135deg, hsl(15 90% 55% / 0.3), hsl(280 75% 58% / 0.3));
+    /* Neon Gradients */
+    --gradient-premium: linear-gradient(135deg, hsl(var(--hot-pink)), hsl(var(--electric-cyan)));
+    --gradient-subtle: linear-gradient(180deg, hsl(220 15% 8%), hsl(220 12% 12%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--hot-pink)), hsl(var(--lime-neon)));
+    --gradient-vibrant: linear-gradient(135deg, hsl(var(--electric-cyan)), hsl(var(--lime-neon)));
+    --gradient-hero: linear-gradient(135deg, hsl(330 100% 60% / 0.2), hsl(180 100% 50% / 0.2));
+    --gradient-carbon: linear-gradient(125deg, hsl(220 15% 8%), hsl(220 10% 15%), hsl(220 15% 8%));
     
-    /* Glowing Shadows */
-    --shadow-premium: 0 20px 60px -10px hsl(var(--racing-red) / 0.6);
-    --shadow-card: 0 8px 40px hsl(15 90% 55% / 0.4);
-    --shadow-glow: 0 0 60px hsl(var(--racing-red) / 0.8);
-    --shadow-neon: 0 0 80px hsl(var(--chrome-yellow) / 0.6);
+    /* Neon Glowing Shadows */
+    --shadow-premium: 0 20px 70px -15px hsl(var(--hot-pink) / 0.7);
+    --shadow-card: 0 10px 50px hsl(330 100% 60% / 0.5);
+    --shadow-glow: 0 0 80px hsl(var(--hot-pink) / 0.9);
+    --shadow-neon: 0 0 100px hsl(var(--electric-cyan) / 0.8);
+    --shadow-lime: 0 0 60px hsl(var(--lime-neon) / 0.6);
     
     /* Smooth Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -155,12 +158,41 @@ All colors MUST be HSL.
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-30px); }
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-30px) scale(1.02); }
+}
+
+@keyframes tiltIn {
+  0% { transform: perspective(1000px) rotateX(45deg) scale(0.8); opacity: 0; }
+  100% { transform: perspective(1000px) rotateX(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes neonPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px currentColor) brightness(1); }
+  50% { filter: drop-shadow(0 0 30px currentColor) brightness(1.3); }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-tilt-in {
+  animation: tiltIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 3s ease-in-out infinite;
+}
+
+/* Carbon Fiber Texture */
+.carbon-fiber {
+  background-image: 
+    linear-gradient(27deg, transparent 5px, hsl(220 10% 15%) 5px, hsl(220 10% 15%) 10px, transparent 10px),
+    linear-gradient(207deg, transparent 5px, hsl(220 10% 15%) 5px, hsl(220 10% 15%) 10px, transparent 10px),
+    linear-gradient(27deg, transparent 5px, hsl(220 8% 18%) 5px, hsl(220 8% 18%) 10px, transparent 10px),
+    linear-gradient(207deg, transparent 5px, hsl(220 8% 18%) 5px, hsl(220 8% 18%) 10px, transparent 10px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
 }
 
 .aurora-blob {
