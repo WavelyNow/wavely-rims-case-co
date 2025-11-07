@@ -55,11 +55,10 @@ const Navigation = () => {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
-            {/* Use accessible SVG logo with text fallback */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-14 sm:h-16 items-center justify-between gap-2">
+          {/* Logo - Scaled for mobile */}
+          <div className="flex items-center shrink-0">
             <Logo />
           </div>
 
@@ -83,9 +82,13 @@ const Navigation = () => {
             </a>
           </div>
 
-          {/* Icons */}
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="relative transition-smooth hover:text-primary hover:scale-110 group">
+          {/* Icons - Mobile Optimized with proper tap targets */}
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative transition-smooth hover:text-primary hover:scale-110 group h-11 w-11 sm:h-10 sm:w-10"
+            >
               <Heart className="h-5 w-5 group-hover:fill-red-500 group-hover:text-red-500 transition-smooth" />
             </Button>
             <CartDrawer />
@@ -94,13 +97,17 @@ const Navigation = () => {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary hover:scale-110">
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="transition-smooth hover:text-primary hover:scale-110 h-11 w-11 sm:h-10 sm:w-10"
+                  >
                     <User className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <div className="px-2 py-1.5">
-                    <p className="text-sm font-medium">{user.email}</p>
+                    <p className="text-sm font-medium truncate">{user.email}</p>
                     <p className="text-xs text-muted-foreground">Wavely Member</p>
                   </div>
                   <DropdownMenuSeparator />
@@ -119,42 +126,66 @@ const Navigation = () => {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="transition-smooth hover:text-primary hover:scale-110"
+                className="transition-smooth hover:text-primary hover:scale-110 h-11 w-11 sm:h-10 sm:w-10"
                 onClick={() => navigate("/auth")}
               >
                 <User className="h-5 w-5" />
               </Button>
             )}
             
-            {/* Mobile menu button */}
+            {/* Mobile menu button - 44px tap target */}
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden hover:scale-110 transition-smooth"
+              className="lg:hidden hover:scale-110 transition-smooth h-11 w-11"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
             >
               <Menu className="h-5 w-5" />
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Improved spacing */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 space-y-3 animate-fade-in border-t border-border/40 mt-4">
-            <a href="/" className="block text-sm font-medium transition-smooth hover:text-primary">
+          <div className="lg:hidden py-4 space-y-4 animate-fade-in border-t border-border/40 mt-2">
+            <a 
+              href="/" 
+              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Home
             </a>
-            <CustomizeCTA location="nav-mobile" size="md" fullWidth />
-            <a href="/shop" className="block text-sm font-medium transition-smooth hover:text-primary">
+            <div onClick={() => setIsMenuOpen(false)}>
+              <CustomizeCTA location="nav-mobile" size="md" fullWidth />
+            </div>
+            <a 
+              href="/shop" 
+              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Shop
             </a>
-            <a href="/how-it-works" className="block text-sm font-medium transition-smooth hover:text-primary">
+            <a 
+              href="/how-it-works" 
+              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              onClick={() => setIsMenuOpen(false)}
+            >
               How It Works
             </a>
-            <a href="/faq" className="block text-sm font-medium transition-smooth hover:text-primary">
+            <a 
+              href="/faq" 
+              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              onClick={() => setIsMenuOpen(false)}
+            >
               FAQ
             </a>
-            <a href="/contact" className="block text-sm font-medium transition-smooth hover:text-primary">
+            <a 
+              href="/contact" 
+              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Contact
             </a>
           </div>

@@ -26,7 +26,16 @@ const PhoneModelDetail = () => {
     );
   }
 
-  const specs = model.specs || {};
+  const specs = model.specs || {
+    display: "",
+    dimensions: "",
+    weight: "",
+    chipset: "",
+    ram: "",
+    storage: "",
+    battery: "",
+    camera: ""
+  };
 
   const handleCustomize = () => {
     navigate(`/customize?model=${model.id}`);
