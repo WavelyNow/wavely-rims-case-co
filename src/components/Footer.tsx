@@ -6,13 +6,23 @@ const Footer = () => {
   return (
     <footer
       role="contentinfo"
-      className="relative mt-20 border-t-2 border-primary/20 carbon-fiber overflow-hidden"
+      className="relative mt-20 border-t-2 border-primary/40 overflow-hidden bg-black"
     >
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-subtle opacity-95" />
+      {/* Scanlines background */}
+      <div className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            white 2px,
+            white 4px
+          )`,
+        }}
+      />
       
       {/* Neon accent lines */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-accent" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-neon" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Top: Brand Story + Navigation sections */}
@@ -22,21 +32,21 @@ const Footer = () => {
             <div className="lg:col-span-2 space-y-6">
               <Logo className="group transition-transform duration-300 hover:scale-105 focus-visible:scale-105 outline-none" />
               <div className="space-y-4">
-                <h3 className="text-xl font-black font-poppins uppercase tracking-wider bg-gradient-accent bg-clip-text text-transparent">
-                  Born From Passion
+                <h3 className="text-xl font-racing uppercase tracking-wider neon-glow-orange text-primary">
+                  Street Tested. Race Proven.
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Wavely Garage combines automotive excellence with cutting-edge design. 
-                  Every case is a tribute to legendary sports cars and the enthusiasts who drive them.
+                <p className="text-sm text-white/60 leading-relaxed font-body">
+                  Wavely Garage merges underground racing culture with premium phone protection. 
+                  Every case is a tribute to the illegal street racing scene and the drivers who live for the rush.
                 </p>
-                <p className="text-xs text-muted-foreground italic">
-                  Your car. Your style. Your phone case.
+                <p className="text-xs text-white/40 italic font-body">
+                  Born from the streets. Built for speed.
                 </p>
               </div>
 
               {/* Social Media */}
               <div className="space-y-3">
-                <h4 className="text-sm font-bold uppercase tracking-wider text-primary">Join The Community</h4>
+                <h4 className="text-sm font-racing uppercase tracking-wider text-primary neon-glow-orange">Join The Crew</h4>
                 <div className="flex gap-3">
                   {[
                     { icon: Instagram, url: "https://instagram.com", color: "hot-pink" },
@@ -64,14 +74,14 @@ const Footer = () => {
 
             {/* Shop */}
             <nav aria-label="Shop">
-              <h2 className="font-black font-poppins mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
+              <h2 className="font-racing mb-6 uppercase tracking-wider text-sm flex items-center gap-2 text-primary">
                 <Zap className="h-4 w-4 text-primary" />
                 Shop
               </h2>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <ul className="space-y-3 text-sm text-white/60 font-body">
                 <li>
-                  <a href="/shop" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
-                    All Products
+                  <a href="/shop" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block">
+                    All Builds
                   </a>
                 </li>
                 <li>

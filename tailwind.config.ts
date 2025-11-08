@@ -124,9 +124,9 @@ export default {
         "shimmer": "shimmer 3s linear infinite"
       },
       fontFamily: {
-        'display': ['Playfair Display', 'serif'],
-        'heading': ['Montserrat', 'sans-serif'],
-        'body': ['Inter', 'sans-serif'],
+        'racing': ['Bebas Neue', 'sans-serif'],
+        'heading': ['Rajdhani', 'sans-serif'],
+        'body': ['Barlow Condensed', 'sans-serif'],
       },
     },
   },
