@@ -125,23 +125,22 @@ const Index = () => {
       </header>
 
       <main id="main-content" className="relative">
-        {/* FEATURES SECTION - Mobile Optimized */}
-        <section className="py-12 sm:py-16 md:py-20 relative" aria-labelledby="features-title">
+        {/* FEATURES SECTION - Clean & Minimal */}
+        <section className="py-16 md:py-20 bg-light-gray" aria-labelledby="features-title">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((feature, i) => {
                 const Icon = feature.icon;
                 return (
                   <Card
                     key={i}
-                    className="p-4 sm:p-6 text-center bg-card/50 backdrop-blur-sm border-2 border-border/40 hover:border-primary/50 transition-all hover:shadow-premium"
-                    style={{ animationDelay: `${i * 100}ms` }}
+                    className="p-6 text-center bg-white border border-gray-200 hover:shadow-lift transition-all"
                   >
-                    <div className="inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg bg-gradient-accent mb-3 sm:mb-4">
-                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-champagne/20 mb-4">
+                      <Icon className="h-6 w-6 text-deep-black" />
                     </div>
-                    <h3 className="font-bold mb-2 text-sm sm:text-base">{feature.title}</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">{feature.description}</p>
+                    <h3 className="font-heading font-semibold mb-2 text-base">{feature.title}</h3>
+                    <p className="text-sm text-warm-gray">{feature.description}</p>
                   </Card>
                 );
               })}
@@ -149,39 +148,38 @@ const Index = () => {
           </div>
         </section>
 
-        {/* FEATURED PRODUCTS SECTION - Mobile Optimized */}
-        <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden" aria-labelledby="featured-title">
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-card/20 to-background" />
-          
-          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-8 sm:mb-12 md:mb-16 animate-fade-in">
-              <h2 id="featured-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 sm:mb-4">
-                Featured <span className="bg-gradient-accent-warm bg-clip-text text-transparent">Collection</span>
+        {/* FEATURED PRODUCTS SECTION - Clean & Elegant */}
+        <section className="py-20 md:py-32 relative" aria-labelledby="featured-title">
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16 animate-fade-in">
+              <h2 id="featured-title" className="font-display text-5xl md:text-6xl font-black mb-4 text-deep-black">
+                Featured Collection
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-                Explore our premium automotive phone cases
+              <div className="w-24 h-[2px] bg-champagne mx-auto mb-6" />
+              <p className="text-xl text-warm-gray max-w-2xl mx-auto">
+                Explore our premium phone cases
               </p>
             </div>
 
             {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[...Array(4)].map((_, i) => (
-                  <Card key={i} className="animate-pulse border-2 border-border/40 bg-card/60 backdrop-blur-sm">
-                    <div className="aspect-square bg-muted" />
+                  <Card key={i} className="animate-pulse border border-gray-200 bg-white">
+                    <div className="aspect-square bg-light-gray" />
                     <div className="p-6 space-y-3">
-                      <div className="h-4 bg-muted rounded w-3/4" />
-                      <div className="h-4 bg-muted rounded w-1/2" />
-                      <div className="h-10 bg-muted rounded" />
+                      <div className="h-4 bg-light-gray rounded w-3/4" />
+                      <div className="h-4 bg-light-gray rounded w-1/2" />
+                      <div className="h-10 bg-light-gray rounded" />
                     </div>
                   </Card>
                 ))}
               </div>
             ) : products.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-xl text-muted-foreground">No products available yet</p>
+              <div className="text-center py-20">
+                <p className="text-xl text-warm-gray">No products available yet</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {products.map((product, i) => {
                   const image = product.node.images.edges[0]?.node;
                   const price = product.node.priceRange.minVariantPrice;
@@ -189,65 +187,51 @@ const Index = () => {
                   return (
                     <Card
                       key={product.node.id}
-                      className="group relative animate-fade-in overflow-hidden border-2 border-border/40 bg-card/60 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-premium hover:-translate-y-2"
-                      style={{ animationDelay: `${i * 150}ms` }}
+                      className="group relative animate-fade-in overflow-hidden border border-gray-200 bg-white hover:shadow-lift transition-all duration-300"
                     >
-                      {/* Glow effect on hover */}
-                      <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none" />
-                      
                       <a href={`/product/${product.node.handle}`}>
-                        <div className="aspect-square overflow-hidden bg-gradient-subtle p-6 relative">
+                        <div className="aspect-square overflow-hidden bg-light-gray p-6 relative">
                           {image ? (
                             <img
                               src={image.url}
                               alt={image.altText || product.node.title}
-                              className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                               loading="lazy"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center">
-                              <ShoppingCart className="h-20 w-20 text-muted-foreground" />
+                              <ShoppingCart className="h-20 w-20 text-warm-gray" />
                             </div>
                           )}
                         </div>
                       </a>
 
-                      <div className="p-6 relative z-10 space-y-4">
+                      <div className="p-6 space-y-4">
                         <div className="space-y-2">
                           <a href={`/product/${product.node.handle}`}>
-                            <h3 className="text-xl font-black font-poppins group-hover:text-primary transition-colors">
+                            <h3 className="font-heading text-lg font-semibold text-deep-black group-hover:text-champagne transition-colors">
                               {product.node.title}
                             </h3>
                           </a>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
+                          <p className="text-sm text-warm-gray line-clamp-2">
                             {product.node.description}
                           </p>
                         </div>
 
                         <div className="flex items-center justify-between">
-                          <span className="text-2xl font-black text-primary">
+                          <span className="text-2xl font-heading font-semibold text-champagne">
                             ${parseFloat(price.amount).toFixed(2)}
                           </span>
-                          <Badge variant="secondary" className="text-xs">{price.currencyCode}</Badge>
                         </div>
 
-                        <div className="flex gap-2">
-                          <Button
-                            size="sm"
-                            className="flex-1 bg-gradient-accent hover:shadow-glow transition-premium text-xs font-bold"
-                            onClick={() => handleAddToCart(product)}
-                          >
-                            <ShoppingCart className="h-4 w-4 mr-1" />
-                            ADD TO CART
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="border-2 border-primary/40 hover:bg-primary/10 hover:border-primary"
-                          >
-                            <Heart className="h-4 w-4 hover:fill-primary hover:text-primary transition-all" />
-                          </Button>
-                        </div>
+                        <Button
+                          size="sm"
+                          className="w-full bg-deep-black hover:bg-deep-black/90 text-white transition-all"
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          <ShoppingCart className="h-4 w-4 mr-2" />
+                          Add to Cart
+                        </Button>
                       </div>
                     </Card>
                   );
@@ -255,14 +239,15 @@ const Index = () => {
               </div>
             )}
 
-            <div className="text-center mt-8 sm:mt-10 md:mt-12">
+            <div className="text-center mt-12">
               <Button
                 size="lg"
-                className="h-12 sm:h-14 px-6 sm:px-8 bg-gradient-vibrant hover:shadow-neon transition-premium text-base sm:text-lg font-black group w-full sm:w-auto"
+                variant="outline"
+                className="px-8 py-6 border-2 border-deep-black text-deep-black hover:bg-deep-black hover:text-white transition-all font-heading text-base"
                 onClick={() => window.location.href = "/shop"}
               >
-                VIEW ALL CASES
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-2 transition-transform" />
+                View All Collection
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </div>
