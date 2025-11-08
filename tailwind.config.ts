@@ -60,6 +60,10 @@ export default {
         champagne: {
           DEFAULT: "hsl(var(--champagne-gold))",
         },
+        "deep-black": "hsl(var(--deep-black))",
+        "warm-gray": "hsl(var(--warm-gray))",
+        "soft-white": "hsl(var(--soft-white))",
+        "light-gray": "hsl(var(--light-gray))",
       },
       borderRadius: {
         lg: "var(--radius)",
