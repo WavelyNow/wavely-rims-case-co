@@ -57,6 +57,9 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        champagne: {
+          DEFAULT: "hsl(var(--champagne-gold))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -117,8 +120,9 @@ export default {
         "shimmer": "shimmer 3s linear infinite"
       },
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
-        'inter': ['Inter', 'sans-serif'],
+        'display': ['Playfair Display', 'serif'],
+        'heading': ['Montserrat', 'sans-serif'],
+        'body': ['Inter', 'sans-serif'],
       },
     },
   },

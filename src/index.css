@@ -8,66 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Carbon Fiber & Neon Palette - Car Lifestyle */
-    --background: 220 15% 8%;
-    --foreground: 0 0% 95%;
+    /* Premium Minimal Palette - Clean & Classy */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 12%;
 
-    --card: 220 12% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
 
-    --popover: 220 12% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
 
-    --primary: 330 100% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 12%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 180 100% 50%;
-    --secondary-foreground: 220 15% 8%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 12%;
 
-    --muted: 220 10% 20%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 30 5% 50%;
 
-    --accent: 140 100% 50%;
-    --accent-foreground: 220 15% 8%;
+    --accent: 45 60% 60%;
+    --accent-foreground: 0 0% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 18%;
-    --input: 220 12% 15%;
-    --ring: 330 100% 60%;
+    --border: 0 0% 88%;
+    --input: 0 0% 92%;
+    --ring: 45 60% 60%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Car-lifestyle neon design tokens - Updated Palette */
-    --hot-pink: 330 100% 50%; /* #FF00AA Neon Magenta */
-    --electric-cyan: 190 100% 50%; /* #00E0FF Electric Cyan */
-    --lime-neon: 140 100% 50%;
-    --ferrari-red: 0 90% 55%;
-    --carbon-black: 0 0% 4%; /* #0A0A0A Carbon Fiber Black */
-    --metallic-gray: 0 0% 69%; /* #B0B0B0 Cool Gray */
-    --neon-purple: 285 100% 50%; /* #C000FF Neon Purple Blend */
+    /* Luxury Design Tokens */
+    --champagne-gold: 45 60% 60%;
+    --deep-black: 0 0% 12%;
+    --soft-white: 0 0% 98%;
+    --warm-gray: 30 5% 50%;
+    --light-gray: 0 0% 96%;
     
-    /* Neon Gradients (refined palettes) */
-    --gradient-premium: linear-gradient(135deg, hsl(330 80% 65%), hsl(200 85% 62%));
-    --gradient-subtle: linear-gradient(180deg, hsl(220 15% 8%), hsl(220 12% 12%));
-    /* Default accent: balanced cyan → violet */
-    --gradient-accent: linear-gradient(135deg, hsl(195 90% 62%), hsl(275 80% 66%));
-    /* Alternates for text */
-    --gradient-accent-soft: linear-gradient(135deg, hsl(210 80% 70%), hsl(280 70% 70%));
-    --gradient-accent-warm: linear-gradient(135deg, hsl(350 70% 65%), hsl(25 85% 62%));
-    --gradient-accent-cool: linear-gradient(135deg, hsl(190 90% 62%), hsl(150 70% 58%));
-    --gradient-vibrant: linear-gradient(135deg, hsl(200 95% 60%), hsl(285 85% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(330 100% 60% / 0.2), hsl(180 100% 50% / 0.2));
-    --gradient-carbon: linear-gradient(125deg, hsl(220 15% 8%), hsl(220 10% 15%), hsl(220 15% 8%));
-    --gradient-metallic: linear-gradient(135deg, hsl(var(--metallic-gray)), hsl(220 12% 18%));
+    /* Elegant Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(45 60% 60%), hsl(45 70% 75%));
+    --gradient-text: linear-gradient(135deg, hsl(0 0% 12%) 0%, hsl(45 60% 60%) 50%, hsl(0 0% 12%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 96%));
     
-    /* Neon Glowing Shadows */
-    --shadow-premium: 0 20px 70px -15px hsl(var(--hot-pink) / 0.7);
-    --shadow-card: 0 10px 50px hsl(330 100% 60% / 0.5);
-    --shadow-glow: 0 0 80px hsl(var(--hot-pink) / 0.9);
-    --shadow-neon: 0 0 100px hsl(var(--electric-cyan) / 0.8);
-    --shadow-lime: 0 0 60px hsl(var(--lime-neon) / 0.6);
+    /* Soft Shadows */
+    --shadow-soft: 0 2px 8px hsl(0 0% 0% / 0.08);
+    --shadow-card: 0 4px 16px hsl(0 0% 0% / 0.1);
+    --shadow-lift: 0 8px 32px hsl(0 0% 0% / 0.12);
     
     /* Smooth Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -96,58 +83,30 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Playfair Display', serif;
   }
 }
 
 @layer utilities {
-  .gradient-premium {
-    background: var(--gradient-premium);
-  }
-  
-  .gradient-subtle {
-    background: var(--gradient-subtle);
-  }
-  
-  .gradient-accent {
-    background: var(--gradient-accent);
-  }
-  
-  .gradient-vibrant {
-    background: var(--gradient-vibrant);
-  }
-
-  /* Aliases with bg- prefix; use background-image to preserve bg-clip-text */
-  .bg-gradient-premium { background-image: var(--gradient-premium); }
+  .bg-gradient-gold { background-image: var(--gradient-gold); }
+  .bg-gradient-text { background-image: var(--gradient-text); }
   .bg-gradient-subtle { background-image: var(--gradient-subtle); }
-  .bg-gradient-accent { background-image: var(--gradient-accent); }
-  .bg-gradient-accent-soft { background-image: var(--gradient-accent-soft); }
-  .bg-gradient-accent-warm { background-image: var(--gradient-accent-warm); }
-  .bg-gradient-accent-cool { background-image: var(--gradient-accent-cool); }
-  .bg-gradient-vibrant { background-image: var(--gradient-vibrant); }
-  .bg-gradient-hero { background-image: var(--gradient-hero); }
-  .bg-gradient-carbon { background-image: var(--gradient-carbon); }
-  .bg-gradient-metallic { background-image: var(--gradient-metallic); }
   
-  .shadow-premium {
-    box-shadow: var(--shadow-premium);
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
   }
   
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
   
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
-  }
-  
-  .shadow-neon {
-    box-shadow: var(--shadow-neon);
+  .shadow-lift {
+    box-shadow: var(--shadow-lift);
   }
   
   .transition-smooth {
@@ -164,153 +123,31 @@ All colors MUST be HSL.
     word-break: normal;
     white-space: normal;
     hyphens: auto;
-    text-wrap: balance; /* progressive enhancement */
+    text-wrap: balance;
   }
 }
 
-/* --- Animated Background FX --- */
-@keyframes blobPulse {
-  0% { transform: translate3d(0,0,0) scale(1); opacity: 0.8; }
-  50% { transform: translate3d(0,-1%,0) scale(1.06); opacity: 1; }
-  100% { transform: translate3d(0,0,0) scale(1); opacity: 0.8; }
+/* Subtle Luxury Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes panSlow {
-  0% { transform: translate3d(0,0,0); }
-  100% { transform: translate3d(-10%, -10%, 0); }
+@keyframes scaleIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-@keyframes floatY {
-  0%, 100% { transform: translate3d(0,0,0); }
-  50% { transform: translate3d(0,-20px,0); }
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-30px) scale(1.02); }
-}
-
-@keyframes spin-slow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes neon-shimmer {
-  0%, 100% { 
-    box-shadow: 0 0 20px hsl(330 100% 50% / 0.5), 0 0 40px hsl(190 100% 50% / 0.3);
-  }
-  50% { 
-    box-shadow: 0 0 40px hsl(330 100% 50% / 0.8), 0 0 60px hsl(190 100% 50% / 0.5);
-  }
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.1);
-  }
-}
-
-@keyframes breathing {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes gradient {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-breathing {
-  animation: breathing 8s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% auto;
-  animation: gradient 6s ease infinite;
-}
-
-@keyframes tiltIn {
-  0% { transform: perspective(1000px) rotateX(45deg) scale(0.8); opacity: 0; }
-  100% { transform: perspective(1000px) rotateX(0deg) scale(1); opacity: 1; }
-}
-
-@keyframes neonPulse {
-  0%, 100% { filter: drop-shadow(0 0 10px currentColor) brightness(1); }
-  50% { filter: drop-shadow(0 0 30px currentColor) brightness(1.3); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-tilt-in {
-  animation: tiltIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-neon-pulse {
-  animation: neonPulse 3s ease-in-out infinite;
-}
-
-/* Carbon Fiber Texture */
-.carbon-fiber {
-  background-image: 
-    linear-gradient(27deg, transparent 5px, hsl(220 10% 15%) 5px, hsl(220 10% 15%) 10px, transparent 10px),
-    linear-gradient(207deg, transparent 5px, hsl(220 10% 15%) 5px, hsl(220 10% 15%) 10px, transparent 10px),
-    linear-gradient(27deg, transparent 5px, hsl(220 8% 18%) 5px, hsl(220 8% 18%) 10px, transparent 10px),
-    linear-gradient(207deg, transparent 5px, hsl(220 8% 18%) 5px, hsl(220 8% 18%) 10px, transparent 10px);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
-}
-
-.aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(40px);
-  will-change: transform, opacity;
-  animation: blobPulse 12s ease-in-out infinite;
-}
-.blob-primary {
-  background: radial-gradient(60% 60% at 50% 50%, rgba(20, 120, 255, 0.25) 0%, rgba(20, 120, 255, 0) 70%);
-}
-.blob-accent {
-  background: radial-gradient(60% 60% at 50% 50%, rgba(255, 120, 20, 0.20) 0%, rgba(255, 120, 20, 0) 70%);
-}
-.blob-neutral {
-  background: radial-gradient(60% 60% at 50% 50%, rgba(120, 140, 160, 0.18) 0%, rgba(120, 140, 160, 0) 70%);
-}
-
-.grid-pan {
-  animation: panSlow 40s linear infinite;
-}
-
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background: currentColor;
-  color: rgba(255,255,255,0.3);
-  will-change: transform, opacity;
-  animation: floatY 7s ease-in-out infinite;
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob,
-  .grid-pan,
-  .particle {
+  * {
     animation: none !important;
   }
 }

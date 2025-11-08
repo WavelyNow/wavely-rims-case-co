@@ -54,7 +54,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between gap-2">
           {/* Logo - Scaled for mobile */}
@@ -63,34 +63,35 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <a href="/" className="text-sm font-medium transition-smooth hover:text-primary">
-              Home
+          <div className="hidden lg:flex items-center space-x-8">
+            <a 
+              href="/shop" 
+              className="text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-champagne hover:after:w-full after:transition-all"
+            >
+              Collection
             </a>
-            <CustomizeCTA location="nav-desktop" size="sm" />
-            <a href="/shop" className="text-sm font-medium transition-smooth hover:text-primary">
-              Shop
+            <a 
+              href="/how-it-works" 
+              className="text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-champagne hover:after:w-full after:transition-all"
+            >
+              Craft
             </a>
-            <a href="/how-it-works" className="text-sm font-medium transition-smooth hover:text-primary">
-              How It Works
+            <a 
+              href="/about" 
+              className="text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-champagne hover:after:w-full after:transition-all"
+            >
+              About
             </a>
-            <a href="/faq" className="text-sm font-medium transition-smooth hover:text-primary">
-              FAQ
-            </a>
-            <a href="/contact" className="text-sm font-medium transition-smooth hover:text-primary">
+            <a 
+              href="/contact" 
+              className="text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-champagne hover:after:w-full after:transition-all"
+            >
               Contact
             </a>
           </div>
 
           {/* Icons - Mobile Optimized with proper tap targets */}
           <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="relative transition-smooth hover:text-primary hover:scale-110 group h-11 w-11 sm:h-10 sm:w-10"
-            >
-              <Heart className="h-5 w-5 group-hover:fill-red-500 group-hover:text-red-500 transition-smooth" />
-            </Button>
             <CartDrawer />
             
             {/* Account Menu */}
@@ -100,7 +101,7 @@ const Navigation = () => {
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="transition-smooth hover:text-primary hover:scale-110 h-11 w-11 sm:h-10 sm:w-10"
+                    className="text-gray-700 hover:text-champagne transition-smooth h-11 w-11 sm:h-10 sm:w-10"
                   >
                     <User className="h-5 w-5" />
                   </Button>
@@ -126,7 +127,7 @@ const Navigation = () => {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="transition-smooth hover:text-primary hover:scale-110 h-11 w-11 sm:h-10 sm:w-10"
+                className="text-gray-700 hover:text-champagne transition-smooth h-11 w-11 sm:h-10 sm:w-10"
                 onClick={() => navigate("/auth")}
               >
                 <User className="h-5 w-5" />
@@ -137,7 +138,7 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden hover:scale-110 transition-smooth h-11 w-11"
+              className="lg:hidden text-gray-700 hover:text-champagne transition-smooth h-11 w-11"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
@@ -149,45 +150,38 @@ const Navigation = () => {
 
         {/* Mobile Navigation - Improved spacing */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 space-y-4 animate-fade-in border-t border-border/40 mt-2">
-            <a 
-              href="/" 
-              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </a>
-            <div onClick={() => setIsMenuOpen(false)}>
-              <CustomizeCTA location="nav-mobile" size="md" fullWidth />
-            </div>
+          <div className="lg:hidden py-4 space-y-4 animate-fade-in border-t border-gray-200 mt-2">
             <a 
               href="/shop" 
-              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              className="block py-2 text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth"
               onClick={() => setIsMenuOpen(false)}
             >
-              Shop
+              Collection
             </a>
             <a 
               href="/how-it-works" 
-              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              className="block py-2 text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth"
               onClick={() => setIsMenuOpen(false)}
             >
-              How It Works
+              Craft
             </a>
             <a 
-              href="/faq" 
-              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              href="/about" 
+              className="block py-2 text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth"
               onClick={() => setIsMenuOpen(false)}
             >
-              FAQ
+              About
             </a>
             <a 
               href="/contact" 
-              className="block py-2 text-sm font-medium transition-smooth hover:text-primary active:scale-95"
+              className="block py-2 text-sm font-heading font-medium text-gray-700 hover:text-champagne transition-smooth"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
             </a>
+            <div onClick={() => setIsMenuOpen(false)}>
+              <CustomizeCTA location="nav-mobile" size="md" fullWidth />
+            </div>
           </div>
         )}
       </div>
