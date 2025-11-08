@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RacingBackground from "@/components/RacingBackground";
 import ProgressBar from "@/components/configurator/ProgressBar";
 import StepPhoneModel from "@/components/configurator/StepPhoneModel";
 import StepRimStyle from "@/components/configurator/StepRimStyle";
@@ -123,20 +124,9 @@ const Customize = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Animated background particles */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary rounded-full opacity-30 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 7}s`
-            }}
-          />
-        ))}
+      {/* Racing Background */}
+      <div className="fixed inset-0">
+        <RacingBackground />
       </div>
 
       <Navigation />
@@ -150,10 +140,10 @@ const Customize = () => {
       <div className="container mx-auto px-4 py-8 lg:py-12 relative z-10">
         {/* Page header */}
         <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-black font-poppins mb-3 bg-gradient-accent bg-clip-text text-transparent">
-            Design Your Case
+          <h1 className="font-racing text-4xl md:text-6xl mb-3 text-white uppercase tracking-wider animate-glitch-text">
+            Build Your <span className="text-primary neon-glow-orange">Legend</span>
           </h1>
-          <p className="text-lg text-muted-foreground">Create something unique in just 5 simple steps</p>
+          <p className="text-lg text-white/60 font-body">Create your street-inspired armor in 5 steps</p>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_400px] gap-8 max-w-7xl mx-auto">

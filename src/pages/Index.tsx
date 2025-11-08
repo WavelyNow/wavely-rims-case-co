@@ -102,17 +102,12 @@ const Index = () => {
               Underground Racing Style
             </Badge>
 
-            {/* Main Title with Neon Glow */}
+            {/* Main Title with Gradient Colors + Neon Glow + Glitch */}
             <h1 
               id="hero-title" 
-              className="font-racing text-7xl sm:text-8xl md:text-9xl font-bold mb-6 uppercase tracking-wider text-white"
+              className="font-racing text-7xl sm:text-8xl md:text-9xl font-bold mb-6 uppercase tracking-wider bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-glitch-text"
               style={{
-                textShadow: `
-                  0 0 10px hsl(25 100% 50%),
-                  0 0 20px hsl(190 100% 50%),
-                  0 0 30px hsl(120 100% 60%),
-                  0 0 40px hsl(25 100% 50%)
-                `
+                filter: `drop-shadow(0 0 20px hsl(var(--neon-orange) / 0.8)) drop-shadow(0 0 40px hsl(var(--neon-blue) / 0.6))`,
               }}
             >
               WAVELY

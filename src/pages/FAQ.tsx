@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RacingBackground from "@/components/RacingBackground";
 import {
   Accordion,
   AccordionContent,
@@ -121,23 +122,27 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
+      <div className="fixed inset-0">
+        <RacingBackground />
+      </div>
+      
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-subtle">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 animate-fade-in">
-            Frequently Asked <span className="bg-gradient-accent bg-clip-text text-transparent">Questions</span>
+      <section className="relative py-20 px-4">
+        <div className="container mx-auto text-center relative z-10">
+          <h1 className="font-racing text-4xl md:text-6xl mb-6 text-white uppercase tracking-wider animate-fade-in animate-glitch-text">
+            FAQ <span className="text-primary neon-glow-orange">Zone</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            All the answers you need about our products, delivery, and services
+          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto animate-fade-in font-body">
+            Everything you need to know about street-inspired armor
           </p>
         </div>
       </section>
 
       {/* FAQ Content */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 relative z-10">
         <div className="container mx-auto max-w-4xl">
           {faqs.map((category, idx) => (
             <div key={idx} className="mb-12 animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>

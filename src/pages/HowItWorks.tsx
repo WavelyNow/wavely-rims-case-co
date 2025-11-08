@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RacingBackground from "@/components/RacingBackground";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Smartphone, Palette, Upload, Sparkles, Check, Shield, Truck, Star, Zap } from "lucide-react";
 import { useState } from "react";
@@ -47,25 +48,9 @@ const HowItWorks = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Animated background */}
-      <div className="fixed inset-0 bg-gradient-subtle">
-        <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
-      </div>
-
-      {/* Floating particles */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary rounded-full opacity-30 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 10}s`
-            }}
-          />
-        ))}
+      {/* Racing Background */}
+      <div className="fixed inset-0">
+        <RacingBackground />
       </div>
 
       <Navigation />
@@ -73,16 +58,16 @@ const HowItWorks = () => {
       {/* Hero Section */}
       <section className="relative py-20 px-4">
         <div className="container mx-auto text-center relative z-10 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/20 border-2 border-primary/40 backdrop-blur-sm mb-6 animate-pulse" style={{ animationDuration: '3s' }}>
-            <Sparkles className="h-5 w-5 text-primary animate-spin" style={{ animationDuration: '3s' }} />
-            <span className="text-sm font-bold text-primary uppercase tracking-wider">Simple 4-Step Process</span>
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black/40 border-2 border-primary/50 backdrop-blur-sm mb-6 animate-neon-pulse">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="text-sm font-racing text-primary uppercase tracking-widest">Underground Process</span>
           </div>
           
-          <h1 className="title-text text-6xl md:text-8xl font-black font-poppins mb-6">
-            <span className="bg-gradient-accent bg-clip-text text-transparent">How It Works</span>
+          <h1 className="font-racing text-6xl md:text-8xl mb-6 text-white uppercase tracking-wider animate-glitch-text">
+            How It <span className="text-primary neon-glow-orange">Works</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto font-medium">
-            Creating your perfect custom case is easier than you think. Follow our simple process and get your unique design delivered in days.
+          <p className="text-xl md:text-2xl text-white/60 leading-relaxed max-w-3xl mx-auto font-body">
+            Building your custom street armor is fast and easy. Follow these 4 steps.
           </p>
         </div>
       </section>

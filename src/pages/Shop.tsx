@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Heart, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import BackgroundFX from "@/components/BackgroundFX";
+import RacingBackground from "@/components/RacingBackground";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -56,25 +56,9 @@ const Shop = () => {
 
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
-      {/* Animated background */}
-      <div className="fixed inset-0 bg-gradient-subtle">
-        <div className="absolute inset-0 bg-gradient-hero animate-pulse" style={{ animationDuration: '8s' }} />
-      </div>
-
-      {/* Floating particles */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-primary rounded-full opacity-20 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${4 + Math.random() * 8}s`
-            }}
-          />
-        ))}
+      {/* Racing Background */}
+      <div className="fixed inset-0">
+        <RacingBackground />
       </div>
 
       <Navigation />
@@ -82,16 +66,16 @@ const Shop = () => {
       <main className="container mx-auto px-4 py-12 relative z-10">
         {/* Page Header */}
         <header className="text-center mb-14 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/20 border-2 border-primary/40 backdrop-blur-sm mb-6 animate-pulse" style={{ animationDuration: '3s' }}>
-            <Sparkles className="h-5 w-5 text-primary animate-spin" style={{ animationDuration: '3s' }} />
-            <span className="text-sm font-bold text-primary uppercase tracking-wider">Premium Collection</span>
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black/40 border-2 border-primary/50 backdrop-blur-sm mb-6 animate-neon-pulse">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="text-sm font-racing text-primary uppercase tracking-widest">Street Collection</span>
           </div>
           
-          <h1 className="title-text text-5xl md:text-7xl font-black font-poppins tracking-tighter mb-4">
-            <span className="bg-gradient-accent bg-clip-text text-transparent">Shop All Cases</span>
+          <h1 className="font-racing text-5xl md:text-7xl mb-4 text-white uppercase tracking-wider animate-glitch-text">
+            Shop All <span className="text-primary neon-glow-orange">Builds</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-medium">
-            Browse our complete collection of <span className="text-primary font-bold">automotive-inspired</span> phone cases
+          <p className="text-xl md:text-2xl text-white/60 max-w-2xl mx-auto font-body">
+            Browse our complete collection of street-inspired armor
           </p>
         </header>
 
@@ -122,67 +106,68 @@ const Shop = () => {
               return (
                 <Card 
                   key={product.node.id} 
-                  className="group relative overflow-hidden border-2 border-border/40 hover:border-primary/50 transition-all hover:shadow-premium hover:-translate-y-2 focus-within:shadow-premium bg-card/60 backdrop-blur-sm"
+                  className="group relative overflow-hidden border-2 border-white/10 hover:border-primary/60 bg-black/60 backdrop-blur hover:scale-105 transition-premium"
                 >
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none" />
                   <a href={`/product/${product.node.handle}`}>
-                    <div className="aspect-square overflow-hidden bg-secondary/20">
+                    <div className="aspect-square overflow-hidden relative">
                       {image ? (
                         <img
                           src={image.url}
                           alt={image.altText || product.node.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          style={{
+                            filter: 'contrast(1.1) brightness(0.9)',
+                          }}
                           loading="lazy"
                           decoding="async"
                           sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
                           fetchPriority="low"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <ShoppingCart className="h-20 w-20 text-muted-foreground" />
+                        <div className="w-full h-full flex items-center justify-center bg-muted/20">
+                          <ShoppingCart className="h-20 w-20 text-white/20" />
                         </div>
                       )}
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
                     </div>
                   </a>
 
                   <div className="p-6 space-y-4">
                     <div className="space-y-2">
                       <a href={`/product/${product.node.handle}`}>
-                        <h3 className="font-semibold text-lg font-poppins transition-colors hover:text-primary">
+                        <h3 className="font-racing text-xl text-white uppercase tracking-wide group-hover:text-primary transition-colors">
                           {product.node.title}
                         </h3>
                       </a>
-                      <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                      <p className="text-sm text-white/60 line-clamp-2 font-body">
                         {product.node.description}
                       </p>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold font-poppins">
+                      <span className="text-3xl font-racing text-primary neon-glow-orange">
                         ${parseFloat(price.amount).toFixed(2)}
                       </span>
-                      <Badge variant="secondary">{price.currencyCode}</Badge>
                     </div>
 
                     <div className="flex gap-2">
                       <Button
-                        className="flex-1 bg-gradient-accent hover:shadow-neon transition-premium font-bold group relative overflow-hidden"
+                        variant="neon"
+                        size="sm"
+                        className="flex-1"
                         onClick={() => handleAddToCart(product)}
                       >
-                        <span className="relative z-10 flex items-center">
-                          <ShoppingCart className="h-4 w-4 mr-2" />
-                          Add to Cart
-                        </span>
-                        <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ShoppingCart className="h-4 w-4 mr-2" />
+                        Add To Cart
                       </Button>
                       <Button 
                         variant="outline" 
                         size="icon" 
                         aria-label="Add to wishlist"
-                        className="border-2 border-primary/40 hover:bg-primary/10 hover:border-primary group"
+                        className="border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue"
                       >
-                        <Heart className="h-4 w-4 group-hover:fill-primary group-hover:text-primary group-hover:scale-110 transition-all" />
+                        <Heart className="h-4 w-4 group-hover:fill-secondary transition-all" />
                       </Button>
                     </div>
                   </div>

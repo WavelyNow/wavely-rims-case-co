@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Heart, Check } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RacingBackground from "@/components/RacingBackground";
 import { getProductByHandle } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -102,10 +103,14 @@ const Product = () => {
   const selectedVariant = variants.find((v: any) => v.node.id === selectedVariantId)?.node;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <div className="fixed inset-0">
+        <RacingBackground />
+      </div>
+      
       <Navigation />
       
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid md:grid-cols-2 gap-12">
           {/* Image Gallery */}
           <div className="space-y-4">
@@ -147,20 +152,20 @@ const Product = () => {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 bg-black/60 backdrop-blur-xl p-8 rounded-2xl border-2 border-white/10">
             <div>
-              <h1 className="title-text text-4xl font-bold font-poppins mb-2">{product.title}</h1>
+              <h1 className="font-racing text-4xl text-white uppercase tracking-wider mb-4 animate-glitch-text">{product.title}</h1>
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-bold">
+                <span className="text-5xl font-racing text-primary neon-glow-orange">
                   ${parseFloat(selectedVariant?.price.amount || product.priceRange.minVariantPrice.amount).toFixed(2)}
                 </span>
-                <Badge variant="secondary">
+                <Badge className="bg-secondary/20 text-secondary border border-secondary/50">
                   {selectedVariant?.price.currencyCode || product.priceRange.minVariantPrice.currencyCode}
                 </Badge>
               </div>
             </div>
 
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-white/70 leading-relaxed font-body">
               {product.description}
             </p>
 
@@ -200,7 +205,8 @@ const Product = () => {
             <div className="space-y-3 pt-4">
               <Button
                 size="lg"
-                className="w-full bg-gradient-accent hover:shadow-glow transition-premium text-lg font-semibold"
+                variant="neon"
+                className="w-full text-lg font-racing uppercase tracking-wider"
                 onClick={handleAddToCart}
                 disabled={!selectedVariant?.availableForSale}
               >
@@ -208,9 +214,9 @@ const Product = () => {
                 {selectedVariant?.availableForSale ? "Add to Cart" : "Out of Stock"}
               </Button>
 
-              <Button variant="outline" size="lg" className="w-full">
+              <Button variant="outline" size="lg" className="w-full border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue font-racing uppercase">
                 <Heart className="h-5 w-5 mr-2" />
-                Add to Wishlist
+                Save to Garage
               </Button>
             </div>
 

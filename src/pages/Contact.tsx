@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RacingBackground from "@/components/RacingBackground";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -41,23 +42,27 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
+      <div className="fixed inset-0">
+        <RacingBackground />
+      </div>
+      
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-subtle">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 animate-fade-in">
-            Let's Talk <span className="bg-gradient-accent bg-clip-text text-transparent">Together</span>
+      <section className="relative py-20 px-4">
+        <div className="container mx-auto text-center relative z-10">
+          <h1 className="font-racing text-4xl md:text-6xl mb-6 text-white uppercase tracking-wider animate-fade-in animate-glitch-text">
+            Get in <span className="text-primary neon-glow-orange">Touch</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            We're here to answer all your questions about products, orders, or customization
+          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto animate-fade-in font-body">
+            Questions about builds, orders, or customization? We're here to help.
           </p>
         </div>
       </section>
 
       {/* Contact Content */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
