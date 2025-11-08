@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import MeshGradient from "@/components/MeshGradient";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -86,8 +87,8 @@ const Index = () => {
 
       {/* HERO SECTION - Clean & Minimal */}
       <header className="relative overflow-hidden min-h-screen flex items-center justify-center" aria-labelledby="hero-title">
-        {/* Clean Background with Subtle Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50" />
+        {/* Animated Mesh Gradient Background */}
+        <MeshGradient />
 
         {/* Content */}
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
