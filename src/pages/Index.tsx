@@ -10,6 +10,7 @@ import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import heroBg from "@/assets/hero-bg.jpg";
+import bgVideo from "@/assets/video-background.mp4";
 
 const Index = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -118,7 +119,7 @@ const Index = () => {
             }
           }}
         >
-          <source src="/video%20background.mp4" type="video/mp4" />
+          <source src={bgVideo} type="video/mp4" />
         </video>
 
         {/* Content */}
