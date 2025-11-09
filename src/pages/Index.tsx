@@ -502,7 +502,7 @@ const Index = () => {
             <div className="space-y-8">
               <div>
                 <h2 id="social-title" className="text-4xl md:text-5xl font-black mb-4">
-                  Join the <span className="bg-gradient-accent bg-clip-text text-transparent">Community</span>
+                  Join the <span className="text-primary">Community</span>
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                   Follow us on Instagram for inspiration, updates, and exclusive offers
@@ -512,7 +512,7 @@ const Index = () => {
               <div className="flex flex-wrap justify-center gap-6 pt-4">
                 <Button
                   size="lg"
-                  className="h-14 px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-glow transition-premium font-bold group focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
+                  className="h-14 px-8 bg-primary hover:bg-primary/90 transition-smooth font-bold group focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                   onClick={() => window.open('https://instagram.com', '_blank')}
                 >
                   <Instagram className="h-5 w-5 mr-2" aria-hidden="true" />

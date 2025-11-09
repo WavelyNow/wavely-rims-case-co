@@ -8,21 +8,8 @@ const Footer = () => {
       role="contentinfo"
       className="relative mt-20 border-t-2 border-primary/40 overflow-hidden bg-black"
     >
-      {/* Scanlines background */}
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            white 2px,
-            white 4px
-          )`,
-        }}
-      />
-      
-      {/* Neon accent lines */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-neon" />
+      {/* Subtle accent line */}
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-primary/40" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Top: Brand Story + Navigation sections */}
@@ -32,7 +19,7 @@ const Footer = () => {
             <div className="lg:col-span-2 space-y-6">
               <Logo className="group transition-transform duration-300 hover:scale-105 focus-visible:scale-105 outline-none" />
               <div className="space-y-4">
-                <h3 className="text-xl font-racing uppercase tracking-wider neon-glow-orange text-primary">
+                <h3 className="text-xl font-racing uppercase tracking-wider text-primary">
                   Street Tested. Race Proven.
                 </h3>
                 <p className="text-sm text-white/60 leading-relaxed font-body">
@@ -46,13 +33,13 @@ const Footer = () => {
 
               {/* Social Media */}
               <div className="space-y-3">
-                <h4 className="text-sm font-racing uppercase tracking-wider text-primary neon-glow-orange">Join The Crew</h4>
+                <h4 className="text-sm font-racing uppercase tracking-wider text-primary">Join The Crew</h4>
                 <div className="flex gap-3">
                   {[
-                    { icon: Instagram, url: "https://instagram.com", color: "hot-pink" },
-                    { icon: Twitter, url: "https://twitter.com", color: "electric-cyan" },
-                    { icon: Facebook, url: "https://facebook.com", color: "primary" },
-                    { icon: Youtube, url: "https://youtube.com", color: "ferrari-red" }
+                    { icon: Instagram, url: "https://instagram.com" },
+                    { icon: Twitter, url: "https://twitter.com" },
+                    { icon: Facebook, url: "https://facebook.com" },
+                    { icon: Youtube, url: "https://youtube.com" }
                   ].map((social, i) => {
                     const Icon = social.icon;
                     return (
@@ -61,10 +48,10 @@ const Footer = () => {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`h-10 w-10 rounded-lg bg-${social.color}/10 border border-${social.color}/30 flex items-center justify-center hover:bg-${social.color}/20 hover:border-${social.color}/50 transition-all hover:scale-110 hover:shadow-glow`}
+                        className="h-10 w-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all hover:scale-110"
                         aria-label={`Visit our ${social.icon.name}`}
                       >
-                        <Icon className={`h-5 w-5 text-${social.color}`} />
+                        <Icon className="h-5 w-5 text-primary" />
                       </a>
                     );
                   })}
@@ -105,32 +92,32 @@ const Footer = () => {
             {/* Support */}
             <nav aria-label="Support">
               <h2 className="font-black font-poppins mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
-                <Zap className="h-4 w-4 text-secondary" />
+                <Zap className="h-4 w-4 text-primary" />
                 Support
               </h2>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li>
-                  <a href="/faq" className="transition-colors duration-200 hover:text-secondary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-secondary/40 rounded-sm">
+                  <a href="/faq" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     FAQ
                   </a>
                 </li>
                 <li>
-                  <a href="/contact" className="transition-colors duration-200 hover:text-secondary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-secondary/40 rounded-sm">
+                  <a href="/contact" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     Contact
                   </a>
                 </li>
                 <li>
-                  <a href="/return-policy" className="transition-colors duration-200 hover:text-secondary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-secondary/40 rounded-sm">
+                  <a href="/return-policy" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     Returns & Refunds
                   </a>
                 </li>
                 <li>
-                  <a href="/giveaway" className="transition-colors duration-200 hover:text-secondary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-secondary/40 rounded-sm">
+                  <a href="/giveaway" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     Giveaways
                   </a>
                 </li>
                 <li>
-                  <a href="/referral" className="transition-colors duration-200 hover:text-secondary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-secondary/40 rounded-sm">
+                  <a href="/referral" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     Refer & Earn
                   </a>
                 </li>
@@ -140,22 +127,22 @@ const Footer = () => {
             {/* Legal */}
             <nav aria-label="Legal">
               <h2 className="font-black font-poppins mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
-                <Zap className="h-4 w-4 text-accent" />
+                <Zap className="h-4 w-4 text-primary" />
                 Legal
               </h2>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li>
-                  <a href="/privacy-policy" className="transition-colors duration-200 hover:text-accent hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-accent/40 rounded-sm">
+                  <a href="/privacy-policy" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="/terms" className="transition-colors duration-200 hover:text-accent hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-accent/40 rounded-sm">
+                  <a href="/terms" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     Terms & Conditions
                   </a>
                 </li>
                 <li>
-                  <a href="/cookie-policy" className="transition-colors duration-200 hover:text-accent hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-accent/40 rounded-sm">
+                  <a href="/cookie-policy" className="transition-colors duration-200 hover:text-primary hover:translate-x-1 inline-block focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm">
                     Cookie Policy
                   </a>
                 </li>

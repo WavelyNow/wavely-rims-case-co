@@ -18,49 +18,37 @@ All colors MUST be HSL.
     --popover: 220 20% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 25 100% 50%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 14 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 190 100% 50%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 0 0% 90%;
 
     --muted: 220 20% 12%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 120 100% 60%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 220 20% 15%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 340 100% 60%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 15%;
     --input: 220 20% 12%;
-    --ring: 25 100% 50%;
+    --ring: 14 100% 60%;
 
     --radius: 0.5rem;
 
-    /* Neon Racing Colors */
-    --neon-orange: 25 100% 50%;
-    --neon-blue: 190 100% 50%;
-    --neon-green: 120 100% 60%;
-    --neon-pink: 340 100% 60%;
+    /* Clean Orange Accent */
+    --neon-orange: 14 100% 60%;
     
-    /* Neon Glow Shadows */
-    --glow-orange: 0 0 20px hsl(25 100% 50% / 0.6), 0 0 40px hsl(25 100% 50% / 0.4);
-    --glow-blue: 0 0 20px hsl(190 100% 50% / 0.6), 0 0 40px hsl(190 100% 50% / 0.4);
-    --glow-green: 0 0 20px hsl(120 100% 60% / 0.6), 0 0 40px hsl(120 100% 60% / 0.4);
-    --glow-pink: 0 0 20px hsl(340 100% 60% / 0.6), 0 0 40px hsl(340 100% 60% / 0.4);
+    /* Subtle Glow Shadow */
+    --glow-orange: 0 4px 20px hsl(14 100% 60% / 0.3);
+    --shadow-subtle: 0 2px 10px hsl(0 0% 0% / 0.2);
     
-    /* Racing Gradients */
-    --gradient-neon: linear-gradient(135deg, hsl(25 100% 50%), hsl(190 100% 50%), hsl(120 100% 60%));
-    /* Custom tuning gradient (more vivid spectrum) */
-    --gradient-tuning: linear-gradient(135deg,
-      hsl(285 100% 62%), /* electric violet */
-      hsl(200 100% 60%), /* neon cyan */
-      hsl(50 100% 55%),  /* turbo yellow */
-      hsl(330 100% 60%)  /* hot magenta */
-    );
-    --gradient-dark: linear-gradient(180deg, hsl(220 20% 4%), hsl(220 20% 8%));
+    /* Clean Gradients */
+    --gradient-subtle: linear-gradient(180deg, hsl(220 20% 4%), hsl(220 20% 8%));
+    --gradient-accent: linear-gradient(135deg, hsl(14 100% 60%), hsl(14 100% 50%));
     
     /* Smooth Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -100,23 +88,15 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  .bg-gradient-neon { background-image: var(--gradient-neon); }
-  .bg-gradient-dark { background-image: var(--gradient-dark); }
+  .bg-gradient-subtle { background-image: var(--gradient-subtle); }
+  .bg-gradient-accent { background-image: var(--gradient-accent); }
   
-  .neon-glow-orange {
-    text-shadow: var(--glow-orange);
+  .shadow-glow {
+    box-shadow: var(--glow-orange);
   }
   
-  .neon-glow-blue {
-    text-shadow: var(--glow-blue);
-  }
-  
-  .neon-glow-green {
-    text-shadow: var(--glow-green);
-  }
-  
-  .neon-glow-pink {
-    text-shadow: var(--glow-pink);
+  .text-shadow-subtle {
+    text-shadow: 0 2px 10px hsl(0 0% 0% / 0.5);
   }
   
   .border-neon-orange {
