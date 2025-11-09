@@ -1,19 +1,21 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import RacingBackground from "@/components/RacingBackground";
+// import RacingBackground from "@/components/RacingBackground";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Sparkles, Zap, Upload, Star, Instagram, Heart, ShoppingCart, Shield, Truck, RefreshCw, CheckCircle2, Package } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const Index = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const addItem = useCartStore(state => state.addItem);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -29,6 +31,13 @@ const Index = () => {
     };
 
     loadProducts();
+  }, []);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) {
+      v.playbackRate = 0.5;
+    }
   }, []);
 
   const handleAddToCart = (product: ShopifyProduct) => {
@@ -82,63 +91,77 @@ const Index = () => {
       </a>
 
       <Navigation />
-      <header className="relative overflow-hidden min-h-screen flex items-center justify-center" aria-labelledby="hero-title">
-        {/* Racing Background */}
-        <RacingBackground />
+      <header className="relative overflow-hidden min-h-[75vh] lg:min-h-[70vh] flex items-center justify-center" aria-labelledby="hero-title">
+        {/* Video Background */}
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover opacity-100"
+          preload="auto"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={heroBg}
+          aria-hidden="true"
+          onLoadedMetadata={() => {
+            const v = videoRef.current;
+            if (v) {
+              v.playbackRate = 1.0;
+              v.play().catch(() => {});
+            }
+          }}
+          onCanPlay={() => {
+            const v = videoRef.current;
+            if (v) {
+              v.playbackRate = 1.0;
+              v.play().catch(() => {});
+            }
+          }}
+        >
+          <source src="/video%20background.mp4" type="video/mp4" />
+        </video>
 
         {/* Content */}
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="space-y-8 animate-fade-in">
+          <div className="space-y-24 animate-fade-in">
             {/* Badge */}
             <Badge 
               variant="outline" 
-              className="mb-8 border-primary/50 text-primary backdrop-blur-sm bg-black/40 px-6 py-2 text-sm font-heading uppercase tracking-widest animate-neon-pulse"
+              className="mb-0 -translate-y-36 sm:-translate-y-48 md:-translate-y-64 lg:-translate-y-72 border-primary/50 text-primary backdrop-blur-sm bg-black/40 px-6 py-2 text-sm font-heading uppercase tracking-widest animate-neon-pulse"
             >
               <Zap className="mr-2 h-4 w-4" />
               Underground Racing Style
             </Badge>
 
-            {/* Main Title with brand-colored logo (matches header) */}
+            {/* Main Title accessible label */}
             <h1 id="hero-title" className="sr-only">Wavely</h1>
-            <img
-              src="/wavely-logo.svg"
-              alt="Wavely"
-              className="mx-auto h-24 sm:h-32 md:h-40 lg:h-48 w-auto select-none animate-glitch"
-              decoding="async"
-              loading="eager"
-            />
 
-            {/* Tagline */}
-            <p className="text-xl sm:text-2xl md:text-3xl text-white/90 mb-4 font-heading tracking-wide uppercase">
-              Street-Inspired <span className="text-primary neon-glow-orange">Armor</span>
-            </p>
-            
-            <p className="text-base sm:text-lg text-white/60 mb-12 max-w-2xl mx-auto font-body">
-              Custom phone cases built for the streets. Fuse your ride's DNA with cutting-edge protection.
-            </p>
+            {/* Tagline removed per request */}
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                size="lg" 
-                variant="neon"
-                className="text-lg px-8 py-6 h-auto focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
-                onClick={() => window.location.href = '/customize'}
-              >
-                <Sparkles className="mr-2 h-5 w-5" aria-hidden="true" />
-                Build Your Case
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="text-lg px-8 py-6 h-auto border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue focus-visible:ring-2 focus-visible:ring-secondary/40 focus-visible:outline-none"
-                onClick={() => window.location.href = '/shop'}
-              >
-                Browse Builds
-                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-              </Button>
-            </div>
+            {/* CTA Buttons moved below as absolute bottom */}
           </div>
+        </div>
+
+        {/* CTA Buttons (absolute bottom, clearly visible) */}
+        <div className="absolute inset-x-0 bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-20 flex flex-col sm:flex-row gap-5 justify-center items-center z-20">
+          <Button 
+            size="lg" 
+            variant="neon"
+            className="text-xl sm:text-2xl px-10 sm:px-12 py-6 sm:py-7 h-auto font-semibold uppercase tracking-wide text-white bg-black/40 backdrop-blur-md border-2 border-primary/60 neon-glow-orange hover:bg-black/50 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+            onClick={() => window.location.href = '/customize'}
+          >
+            <Sparkles className="mr-3 h-6 w-6 text-primary" aria-hidden="true" />
+            Build Your Case
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline"
+            className="text-xl sm:text-2xl px-10 sm:px-12 py-6 sm:py-7 h-auto font-semibold uppercase tracking-wide text-white bg-black/40 backdrop-blur-md border-2 border-secondary/60 hover:neon-glow-blue hover:bg-black/50 focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:outline-none"
+            onClick={() => window.location.href = '/shop'}
+          >
+            Browse Builds
+            <ArrowRight className="ml-3 h-6 w-6 text-secondary" aria-hidden="true" />
+          </Button>
         </div>
 
         {/* Speed lines effect */}
@@ -146,13 +169,16 @@ const Index = () => {
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="absolute h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+              className="absolute h-px bg-gradient-to-r from-transparent via-primary to-transparent speedline"
               style={{
                 top: `${20 + i * 15}%`,
                 left: '-100%',
                 right: '100%',
                 animation: `speedLine ${2 + i * 0.3}s ease-in-out infinite`,
                 animationDelay: `${i * 0.2}s`,
+                // Preserve durations for force-motion override
+                ['--speedline-duration' as any]: `${2 + i * 0.3}s`,
+                ['--speedline-delay' as any]: `${i * 0.2}s`,
               }}
             />
           ))}
@@ -238,7 +264,7 @@ const Index = () => {
                               }}
                               loading="lazy"
                               decoding="async"
-                              fetchPriority="low"
+                              ref={(el) => { if (el) el.setAttribute('fetchpriority', 'low'); }}
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-muted/20">

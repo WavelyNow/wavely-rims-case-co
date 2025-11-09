@@ -54,7 +54,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-primary/30 bg-black/80 backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 w-full relative bg-gradient-to-b from-[#0b1324]/85 to-[#0a101b]/85 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between gap-2">
           {/* Logo - Scaled for mobile */}
@@ -66,25 +66,31 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <a 
               href="/shop" 
-              className="text-sm font-heading font-semibold text-white/80 hover:text-primary transition-smooth hover:neon-glow-orange uppercase tracking-wider"
+              className="inline-flex items-center px-4 py-2 rounded-full text-sm font-heading font-semibold text-white/85 bg-white/5 border border-white/10 hover:text-white hover:bg-white/10 hover:border-primary/40 transition-smooth"
             >
               Collection
             </a>
             <a 
-              href="/how-it-works" 
-              className="text-sm font-heading font-semibold text-white/80 hover:text-secondary transition-smooth hover:neon-glow-blue uppercase tracking-wider"
+              href="/customize" 
+              className="inline-flex items-center px-6 py-3 rounded-full text-lg font-heading font-extrabold text-white bg-gradient-to-r from-fuchsia-500 via-violet-500 to-blue-500 shadow-glow hover:shadow-neon hover:scale-[1.02] focus-visible:ring-4 focus-visible:ring-violet-400 transition-smooth uppercase tracking-wider"
             >
-              How It Works
+              Build Your Case
+            </a>
+            <a 
+              href="/accessories" 
+              className="inline-flex items-center px-4 py-2 rounded-full text-sm font-heading font-semibold text-white/85 bg-white/5 border border-white/10 hover:text-white hover:bg-white/10 hover:border-secondary/40 transition-smooth"
+            >
+              Accessories
             </a>
             <a 
               href="/about" 
-              className="text-sm font-heading font-semibold text-white/80 hover:text-accent transition-smooth hover:neon-glow-green uppercase tracking-wider"
+              className="inline-flex items-center px-4 py-2 rounded-full text-sm font-heading font-semibold text-white/85 bg-white/5 border border-white/10 hover:text-white hover:bg-white/10 hover:border-accent/40 transition-smooth"
             >
               About
             </a>
             <a 
               href="/contact" 
-              className="text-sm font-heading font-semibold text-white/80 hover:text-primary transition-smooth hover:neon-glow-orange uppercase tracking-wider"
+              className="inline-flex items-center px-4 py-2 rounded-full text-sm font-heading font-semibold text-white/85 bg-white/5 border border-white/10 hover:text-white hover:bg-white/10 hover:border-primary/40 transition-smooth"
             >
               Contact
             </a>
@@ -150,31 +156,38 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 space-y-4 animate-fade-in border-t border-primary/30 mt-2">
+          <div className="lg:hidden py-4 space-y-3 animate-fade-in border-t border-white/10 mt-2">
             <a 
               href="/shop" 
-              className="block py-2 text-sm font-heading font-semibold text-white hover:text-primary transition-smooth uppercase tracking-wider"
+              className="block py-2 px-4 rounded-full text-sm font-heading font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-smooth"
               onClick={() => setIsMenuOpen(false)}
             >
               Collection
             </a>
             <a 
-              href="/how-it-works" 
-              className="block py-2 text-sm font-heading font-semibold text-white hover:text-secondary transition-smooth uppercase tracking-wider"
+              href="/customize" 
+              className="block py-3 px-5 rounded-full text-base font-heading font-extrabold text-white bg-gradient-to-r from-fuchsia-500 via-violet-500 to-blue-500 shadow-glow transition-smooth uppercase tracking-wider"
               onClick={() => setIsMenuOpen(false)}
             >
-              How It Works
+              Build Your Case
+            </a>
+            <a 
+              href="/accessories" 
+              className="block py-2 px-4 rounded-full text-sm font-heading font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-smooth"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Accessories
             </a>
             <a 
               href="/about" 
-              className="block py-2 text-sm font-heading font-semibold text-white hover:text-accent transition-smooth uppercase tracking-wider"
+              className="block py-2 px-4 rounded-full text-sm font-heading font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-smooth"
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </a>
             <a 
               href="/contact" 
-              className="block py-2 text-sm font-heading font-semibold text-white hover:text-primary transition-smooth uppercase tracking-wider"
+              className="block py-2 px-4 rounded-full text-sm font-heading font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-smooth"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
@@ -185,6 +198,8 @@ const Navigation = () => {
           </div>
         )}
       </div>
+      {/* Neon gradient baseline */}
+      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-primary via-secondary to-accent opacity-90" aria-hidden="true" />
     </nav>
   );
 };

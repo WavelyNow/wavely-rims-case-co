@@ -11,7 +11,7 @@ import StepPersonalization from "@/components/configurator/StepPersonalization";
 import { ConfiguratorState } from "@/types/configurator";
 import { phoneModels } from "@/data/configuratorData";
 import { toast } from "sonner";
-import { ShoppingCart, Heart, Sparkles, ArrowRight } from "lucide-react";
+import { ShoppingCart, Heart, Sparkles, ArrowRight, ShieldCheck, Truck, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import StarfieldBackground from "@/components/StarfieldBackground";
 
@@ -171,11 +171,43 @@ const Customize = () => {
 
       <div className="container mx-auto px-4 py-8 lg:py-12 relative z-10" id="main-content">
         {/* Page header */}
-        <div className="text-center mb-8 animate-fade-in">
-          <h1 className="font-racing text-4xl md:text-6xl mb-3 text-white uppercase tracking-wider animate-glitch-text">
+        <div className="text-center mb-10 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black/40 border-2 border-secondary/60 backdrop-blur-sm mb-6 animate-neon-pulse">
+            <Sparkles className="h-5 w-5 text-secondary" />
+            <span className="text-sm font-racing text-secondary uppercase tracking-widest">Configurator</span>
+          </div>
+          <h1 className="font-racing text-5xl md:text-7xl mb-4 text-white uppercase tracking-wider animate-glitch-text">
             Build Your <span className="text-primary neon-glow-orange">Legend</span>
           </h1>
-          <p className="text-lg text-white/60 font-body">Create your street-inspired armor in 5 steps</p>
+          <p className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto font-body">
+            Design your street-inspired armor in a few guided steps
+          </p>
+          <div className="mt-6 flex justify-center">
+            <Button
+              variant="neon"
+              size="lg"
+              className="uppercase font-semibold"
+              onClick={() => document.getElementById('main-content')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Start Your Build
+              <ArrowRight className="h-5 w-5 ml-2" />
+            </Button>
+          </div>
+          {/* Trust badges */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/80">
+            <div className="flex items-center gap-2">
+              <Truck className="h-5 w-5 text-primary" />
+              <span className="text-sm">Fast shipping</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5 text-secondary" />
+              <span className="text-sm">12-month warranty</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Lock className="h-5 w-5 text-accent" />
+              <span className="text-sm">Secure checkout</span>
+            </div>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_400px] gap-8 max-w-7xl mx-auto">
