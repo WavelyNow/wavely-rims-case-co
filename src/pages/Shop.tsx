@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Heart, Sparkles } from "lucide-react";
+import { ShoppingCart, Sparkles } from "lucide-react";
+import BrandGlyph from "@/components/BrandGlyph";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RacingBackground from "@/components/RacingBackground";
@@ -167,7 +168,7 @@ const Shop = () => {
                         aria-label="Add to wishlist"
                         className="border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue"
                       >
-                        <Heart className="h-4 w-4 group-hover:fill-secondary transition-all" />
+                        <BrandGlyph className="h-4 w-4 transition-all" title="Wavely" />
                       </Button>
                     </div>
                   </div>

@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Sparkles, Zap, Upload, Star, Instagram, Heart, ShoppingCart, Shield, Truck, RefreshCw, CheckCircle2, Package } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Upload, Star, Instagram, ShoppingCart, Shield, Truck, RefreshCw, CheckCircle2, Package } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -200,10 +200,6 @@ const Index = () => {
 
             {/* Main Title accessible label */}
             <h1 id="hero-title" className="sr-only">Wavely</h1>
-
-            {/* Tagline removed per request */}
-
-            {/* CTA Buttons moved below as absolute bottom */}
           </div>
         </div>
 
@@ -241,7 +237,6 @@ const Index = () => {
                 right: '100%',
                 animation: `speedLine ${2 + i * 0.3}s ease-in-out infinite`,
                 animationDelay: `${i * 0.2}s`,
-                // Preserve durations for force-motion override
                 ['--speedline-duration' as any]: `${2 + i * 0.3}s`,
                 ['--speedline-delay' as any]: `${i * 0.2}s`,
               }}
@@ -251,23 +246,19 @@ const Index = () => {
       </header>
 
       <main id="main-content" className="relative">
-        {/* FEATURES SECTION */}
-        <section className="py-20 relative" aria-labelledby="features-title">
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* FEATURES SECTION (redesign) */}
+        <section className="py-20" aria-labelledby="features-title">
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((feature, i) => {
                 const Icon = feature.icon;
                 return (
-                  <Card
-                    key={i}
-                    className="p-6 text-center bg-black/60 backdrop-blur border-2 border-white/10 hover:border-primary/50 hover:shadow-lift transition-all"
-                  >
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 border border-primary/40 mb-4 neon-glow-orange">
-                      <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                  <Card key={i} className="feature-card p-6 text-center">
+                    <div className="feature-icon mb-4">
+                      <Icon className="h-6 w-6 text-white" aria-hidden="true" />
                     </div>
-                    <h3 className="font-racing text-base mb-2 text-white uppercase tracking-wide">{feature.title}</h3>
-                    <p className="text-sm text-white/60 font-body">{feature.description}</p>
+                    <h3 className="feature-title text-white text-sm mb-2">{feature.title}</h3>
+                    <p className="text-sm text-white/70 font-body">{feature.description}</p>
                   </Card>
                 );
               })}

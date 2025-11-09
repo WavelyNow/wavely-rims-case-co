@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Heart, Check } from "lucide-react";
+import { ShoppingCart, Check } from "lucide-react";
+import BrandGlyph from "@/components/BrandGlyph";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RacingBackground from "@/components/RacingBackground";
@@ -215,7 +216,7 @@ const Product = () => {
               </Button>
 
               <Button variant="outline" size="lg" className="w-full border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue font-racing uppercase">
-                <Heart className="h-5 w-5 mr-2" />
+                <BrandGlyph className="h-5 w-5 mr-2" title="Wavely" />
                 Save to Garage
               </Button>
             </div>

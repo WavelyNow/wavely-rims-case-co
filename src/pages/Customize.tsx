@@ -11,7 +11,8 @@ import StepPersonalization from "@/components/configurator/StepPersonalization";
 import { ConfiguratorState } from "@/types/configurator";
 import { phoneModels } from "@/data/configuratorData";
 import { toast } from "sonner";
-import { ShoppingCart, Heart, Sparkles, ArrowRight, ShieldCheck, Truck, Lock } from "lucide-react";
+import { ShoppingCart, Sparkles, ArrowRight, ShieldCheck, Truck, Lock } from "lucide-react";
+import BrandGlyph from "@/components/BrandGlyph";
 import { Button } from "@/components/ui/button";
 import StarfieldBackground from "@/components/StarfieldBackground";
 
@@ -455,7 +456,7 @@ const Customize = () => {
                         aria-label="Save to Wishlist"
                         className="w-full h-14 border-2 border-primary/40 hover:bg-primary/10 hover:border-primary transition-smooth text-lg font-bold group focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                       >
-                        <Heart className="h-5 w-5 mr-2 group-hover:fill-primary group-hover:text-primary group-hover:scale-110 transition-all" aria-hidden="true" />
+                        <BrandGlyph className="h-5 w-5 mr-2 group-hover:opacity-90 group-hover:scale-110 transition-all" title="Wavely" />
                         Save to Wishlist
                       </Button>
                     )}

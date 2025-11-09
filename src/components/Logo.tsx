@@ -1,27 +1,19 @@
 import React from "react";
 
 /**
- * Logo component
- * - Uses an accessible inline image with alt text
- * - Falls back to styled text if the SVG is unavailable
- * - Keeps brand readable for screen readers and high-contrast modes
+ * Logo component (wordmark)
+ * - Renders the text "Wavely" with an animated neon gradient background
+ * - Accessible and performant; no external image dependency
  */
 const Logo: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <a href="/" className={`flex items-center gap-2 ${className ?? ""}`} aria-label="Wavely homepage">
-      {/* Primary: SVG wordmark for crisp rendering and good performance */}
-      <img
-        src="/wavely-logo.svg"
-        alt="Wavely logo"
-        width={132}
-        height={36}
-        className="h-9 w-auto select-none"
-        decoding="async"
-        loading="eager" /* Logo is part of the LCP; eager prevents late rendering */
-      />
-
-      {/* Text fallback for environments without image support */}
-      <span className="sr-only">Wavely</span>
+    <a href="/" className={`relative inline-flex items-center ${className ?? ""}`} aria-label="Wavely homepage">
+      {/* Capsule cu border neon roșu-albastru cu flux continuu, forțat vizibil */}
+      <span className="relative inline-flex items-center px-9 py-3 rounded-full backdrop-blur-md rb-flow-force rb-border-glow">
+        <span className="relative z-10 text-white font-heading font-extrabold uppercase tracking-wider select-none">
+          Wavely
+        </span>
+      </span>
     </a>
   );
 };

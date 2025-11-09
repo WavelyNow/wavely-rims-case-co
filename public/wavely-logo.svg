@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Simple wordmark-style SVG for the Wavely logo. Accessible via <img alt="Wavely logo" /> -->
-<svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" role="img" aria-labelledby="title desc">
-  <title id="title">Wavely logo</title>
-  <desc id="desc">Stylized text logo spelling Wavely</desc>
+<!-- Wavely mark with stylized W and arced 'WAVELY' wordmark to match the provided image -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Wavely logo">
+  <title>Wavely</title>
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0ea5e9"/>
-      <stop offset="50%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#f97316"/>
+    <linearGradient id="glyphShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#505050"/>
+      <stop offset="100%" stop-color="#3a3a3a"/>
     </linearGradient>
+    <!-- Arc path for the curved text -->
+    <path id="wavely-arc" d="M 28 96 A 36 36 0 0 0 100 96" />
   </defs>
-  <rect x="0" y="0" width="220" height="60" fill="transparent" />
-  <text x="10" y="42" font-family="'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="0.5">
-    <tspan fill="url(#g)">WAVELY</tspan>
+
+  <rect width="128" height="128" fill="none"/>
+
+  <!-- Stylized W glyph -->
+  <path d="M 18 28 L 40 100 L 64 52 L 88 100 L 110 28"
+        fill="none"
+        stroke="url(#glyphShade)"
+        stroke-width="12"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Curved WAVELY label -->
+  <text fill="#4b4b4b" font-size="14" font-family="'Bebas Neue','Rajdhani','Barlow Condensed',system-ui,Segoe UI,Arial,sans-serif" letter-spacing="3">
+    <textPath href="#wavely-arc" startOffset="50%" text-anchor="middle">WAVELY</textPath>
   </text>
 </svg>
 

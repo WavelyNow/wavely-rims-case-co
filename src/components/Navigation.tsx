@@ -1,4 +1,4 @@
-import { Heart, User, Menu, LogOut, UserCircle } from "lucide-react";
+import { User, Menu, LogOut, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

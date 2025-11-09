@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingCart, ArrowRight } from "lucide-react";
+import { ShoppingCart, ArrowRight } from "lucide-react";
+import BrandGlyph from "@/components/BrandGlyph";
 import { useEffect, useState } from "react";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -106,7 +107,7 @@ const FeaturedProducts = () => {
                               toast.success("Added to wishlist!");
                             }}
                           >
-                            <Heart className="h-5 w-5" />
+                            <BrandGlyph className="h-5 w-5" title="Wavely" />
                           </Button>
                           <Button
                             size="icon"
