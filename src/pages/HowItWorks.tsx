@@ -18,9 +18,9 @@ const HowItWorks = () => {
     },
     {
       icon: Palette,
-      title: "Pick Rim Style & Material",
-      description: "Choose from authentic automotive rim designs and premium materials. Each combination creates a unique masterpiece.",
-      highlights: ["15+ rim designs", "5 premium materials", "Matte, glossy, metallic"],
+      title: "Pick Material & Finish",
+      description: "Choose from premium materials and finishes. Each combination creates a unique case.",
+      highlights: ["5 premium materials", "Protection levels available", "Matte, glossy, metallic"],
       color: "from-accent to-secondary"
     },
     {
@@ -56,7 +56,7 @@ const HowItWorks = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4">
+      <section className="relative py-20 px-4" aria-labelledby="hiw-title">
         <div className="container mx-auto text-center relative z-10 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black/40 border-2 border-primary/50 backdrop-blur-sm mb-6 animate-neon-pulse">
             <Sparkles className="h-5 w-5 text-primary" />
@@ -72,13 +72,13 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         {/* Interactive Steps Section */}
-        <section className="py-20">
+        <section className="py-20" role="region" aria-label="Pași de configurare">
           <div className="container mx-auto max-w-7xl px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Left - Step Navigation */}
-              <div className="space-y-4 lg:sticky lg:top-24">
+              <div className="space-y-4 lg:sticky lg:top-24" role="group" aria-label="Navigare pași">
                 {steps.map((step, index) => {
                   const Icon = step.icon;
                   const isActive = activeStep === index;
@@ -87,11 +87,14 @@ const HowItWorks = () => {
                     <button
                       key={index}
                       onClick={() => setActiveStep(index)}
-                      className={`w-full text-left p-6 rounded-2xl border-2 transition-all group ${
+                      className={`w-full text-left p-6 rounded-2xl border-2 transition-all group focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none ${
                         isActive
                           ? 'border-primary bg-gradient-to-br from-primary/20 to-accent/20 shadow-premium scale-105'
                           : 'border-border/40 bg-card/60 hover:border-primary/50 hover:shadow-card backdrop-blur-sm'
                       }`}
+                      aria-pressed={isActive}
+                      aria-label={`Pas ${index + 1}: ${step.title}`}
+                      aria-controls="hiw-step-details"
                     >
                       <div className="flex items-start gap-4">
                         <div className={`h-16 w-16 rounded-xl flex items-center justify-center flex-shrink-0 transition-all ${
@@ -99,7 +102,7 @@ const HowItWorks = () => {
                             ? `bg-gradient-to-br ${step.color} shadow-glow scale-110`
                             : 'bg-muted group-hover:bg-gradient-accent'
                         }`}>
-                          <Icon className={`h-8 w-8 ${isActive ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`} />
+                          <Icon className={`h-8 w-8 ${isActive ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`} aria-hidden="true" />
                         </div>
                         
                         <div className="flex-1">
@@ -127,16 +130,16 @@ const HowItWorks = () => {
 
               {/* Right - Active Step Details */}
               <div className="lg:sticky lg:top-24">
-                <div className="relative rounded-3xl border-2 border-primary/30 bg-card/60 p-8 backdrop-blur-xl shadow-premium animate-fade-in overflow-hidden group hover:border-primary/50 transition-all">
+                <div id="hiw-step-details" className="relative rounded-3xl border-2 border-primary/30 bg-card/60 p-8 backdrop-blur-xl shadow-premium animate-fade-in overflow-hidden group hover:border-primary/50 transition-all" role="region" aria-live="polite" aria-label={`Detalii pentru: ${steps[activeStep].title}`}>
                   {/* Decorative gradients */}
-                  <div className="absolute inset-0 bg-gradient-premium opacity-10 group-hover:opacity-20 transition-opacity" />
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-accent opacity-30 blur-3xl rounded-full animate-pulse" style={{ animationDuration: '4s' }} />
+                  <div className="absolute inset-0 bg-gradient-premium opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-accent opacity-30 blur-3xl rounded-full animate-pulse" style={{ animationDuration: '4s' }} aria-hidden="true" />
                   
                   <div className="relative z-10">
                     <div className={`h-24 w-24 rounded-2xl bg-gradient-to-br ${steps[activeStep].color} flex items-center justify-center mb-6 shadow-premium`}>
                       {(() => {
                         const Icon = steps[activeStep].icon;
-                        return <Icon className="h-12 w-12 text-white" />;
+                        return <Icon className="h-12 w-12 text-white" aria-hidden="true" />;
                       })()}
                     </div>
 
@@ -161,12 +164,12 @@ const HowItWorks = () => {
 
                     <Button
                       size="lg"
-                      className="w-full mt-8 h-14 bg-gradient-accent hover:shadow-neon transition-premium text-lg font-bold group relative overflow-hidden"
+                      className="w-full mt-8 h-14 bg-gradient-accent hover:shadow-neon transition-premium text-lg font-bold group relative overflow-hidden focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                       onClick={() => window.location.href = "/customize"}
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         Start This Step
-                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" aria-hidden="true" />
                       </span>
                       <div className="absolute inset-0 bg-gradient-vibrant opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Button>
@@ -201,9 +204,9 @@ const HowItWorks = () => {
                     <div className="absolute inset-0 bg-gradient-premium opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity" />
                     
                     <div className="relative z-10">
-                      <div className="h-14 w-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform">
-                        <Icon className="h-7 w-7 text-white" />
-                      </div>
+              <div className="h-14 w-14 rounded-xl bg-gradient-accent flex items-center justify-center mb-4 shadow-glow group-hover:scale-110 transition-transform" aria-hidden="true">
+                <Icon className="h-7 w-7 text-white" aria-hidden="true" />
+              </div>
                       <h3 className="font-bold font-poppins text-xl mb-2">{feature.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
                     </div>

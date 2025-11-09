@@ -36,7 +36,7 @@ const Newsletter = () => {
           </h2>
           
           <p className="text-white/90 text-lg mb-8">
-            Plus exclusive designs & early access to new rim styles
+            Plus exclusive designs & early access to new collections
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">

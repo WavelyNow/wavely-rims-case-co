@@ -6,8 +6,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Sparkles, Zap, Upload, Star, Instagram, Heart, ShoppingCart, Shield, Truck, RefreshCw, CheckCircle2, Package } from "lucide-react";
 import { useState, useEffect } from "react";
-import heroPhoneCase from "@/assets/hero-phone-case.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -102,12 +100,18 @@ const Index = () => {
               Underground Racing Style
             </Badge>
 
-            {/* Main Title with Gradient Colors + Neon Glow + Glitch */}
+            {/* Main Title with Neon Glow */}
             <h1 
               id="hero-title" 
-              className="font-racing text-7xl sm:text-8xl md:text-9xl font-bold mb-6 uppercase tracking-wider bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-glitch-text"
+              className="font-racing text-7xl sm:text-8xl md:text-9xl font-bold mb-6 uppercase tracking-wider text-white"
               style={{
-                filter: `drop-shadow(0 0 20px hsl(var(--neon-orange) / 0.8)) drop-shadow(0 0 40px hsl(var(--neon-blue) / 0.6))`,
+                textShadow: `
+                  0 0 10px hsl(25 100% 50%),
+                  0 0 20px hsl(190 100% 50%),
+                  0 0 30px hsl(120 100% 60%),
+                  0 0 40px hsl(25 100% 50%)
+                `
+              }}
               }}
             >
               WAVELY
@@ -127,20 +131,20 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="neon"
-                className="text-lg px-8 py-6 h-auto"
+                className="text-lg px-8 py-6 h-auto focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                 onClick={() => window.location.href = '/customize'}
               >
-                <Sparkles className="mr-2 h-5 w-5" />
+                <Sparkles className="mr-2 h-5 w-5" aria-hidden="true" />
                 Build Your Case
               </Button>
               <Button 
                 size="lg" 
                 variant="outline"
-                className="text-lg px-8 py-6 h-auto border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue"
+                className="text-lg px-8 py-6 h-auto border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue focus-visible:ring-2 focus-visible:ring-secondary/40 focus-visible:outline-none"
                 onClick={() => window.location.href = '/shop'}
               >
                 Browse Builds
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -178,7 +182,7 @@ const Index = () => {
                     className="p-6 text-center bg-black/60 backdrop-blur border-2 border-white/10 hover:border-primary/50 hover:shadow-lift transition-all"
                   >
                     <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 border border-primary/40 mb-4 neon-glow-orange">
-                      <Icon className="h-6 w-6 text-primary" />
+                      <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
                     </div>
                     <h3 className="font-racing text-base mb-2 text-white uppercase tracking-wide">{feature.title}</h3>
                     <p className="text-sm text-white/60 font-body">{feature.description}</p>
@@ -231,7 +235,7 @@ const Index = () => {
                       key={product.node.id}
                       className="group relative animate-fade-in overflow-hidden border-2 border-white/10 hover:border-primary/60 bg-black/60 backdrop-blur hover:scale-105 transition-premium"
                     >
-                      <a href={`/product/${product.node.handle}`}>
+                      <a href={`/product/${product.node.handle}`} aria-label={`View ${product.node.title} details`}>
                         <div className="aspect-square overflow-hidden relative">
                           {image ? (
                             <img
@@ -242,10 +246,12 @@ const Index = () => {
                                 filter: 'contrast(1.1) brightness(0.9)',
                               }}
                               loading="lazy"
+                              decoding="async"
+                              fetchpriority="low"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-muted/20">
-                              <ShoppingCart className="h-20 w-20 text-white/20" />
+                              <ShoppingCart className="h-20 w-20 text-white/20" aria-hidden="true" />
                             </div>
                           )}
                           {/* Hover overlay */}
@@ -274,10 +280,10 @@ const Index = () => {
                         <Button
                           variant="neon"
                           size="sm"
-                          className="w-full"
+                          className="w-full focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                           onClick={() => handleAddToCart(product)}
                         >
-                          <ShoppingCart className="h-4 w-4 mr-2" />
+                          <ShoppingCart className="h-4 w-4 mr-2" aria-hidden="true" />
                           Add To Cart
                         </Button>
                       </div>
@@ -291,11 +297,11 @@ const Index = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="px-8 py-6 border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue font-racing uppercase tracking-wider"
+                className="px-8 py-6 border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue font-racing uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-secondary/40 focus-visible:outline-none"
                 onClick={() => window.location.href = "/shop"}
               >
                 View All Builds
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -346,7 +352,11 @@ const Index = () => {
                       {item.step}
                     </div>
                     <div className="inline-flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl bg-primary/20 border-2 border-primary mb-3 sm:mb-4 mt-3 sm:mt-4 neon-glow-orange">
+<<<<<<< HEAD
                       <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+=======
+                      <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" aria-hidden="true" />
+>>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                     </div>
                     <h3 className="text-lg sm:text-xl font-racing mb-2 sm:mb-3 text-white uppercase tracking-wide">{item.title}</h3>
                     <p className="text-sm sm:text-base text-white/60 font-body">{item.description}</p>
@@ -359,11 +369,15 @@ const Index = () => {
               <Button
                 size="lg"
                 variant="neon"
+<<<<<<< HEAD
                 className="h-14 px-8 font-racing uppercase tracking-wider"
+=======
+                className="h-14 px-8 font-racing uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
+>>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                 onClick={() => window.location.href = "/how-it-works"}
               >
                 Learn More
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -391,18 +405,26 @@ const Index = () => {
                   <Button
                     size="lg"
                     variant="neon"
+<<<<<<< HEAD
                     className="h-14 px-10 text-lg font-racing uppercase tracking-wider group"
+=======
+                    className="h-14 px-10 text-lg font-racing uppercase tracking-wider group focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
+>>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                     onClick={() => window.location.href = "/customize"}
                   >
-                    <Upload className="h-5 w-5 mr-2" />
+                    <Upload className="h-5 w-5 mr-2" aria-hidden="true" />
                     Start Customizing
-                    <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" aria-hidden="true" />
                   </Button>
                   
                   <Button
                     size="lg"
                     variant="outline"
+<<<<<<< HEAD
                     className="h-14 px-10 border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue text-lg font-racing uppercase tracking-wider"
+=======
+                    className="h-14 px-10 border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue text-lg font-racing uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-secondary/40 focus-visible:outline-none"
+>>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                     onClick={() => window.location.href = "/shop"}
                   >
                     Browse Builds
@@ -429,18 +451,18 @@ const Index = () => {
               <div className="flex flex-wrap justify-center gap-6 pt-4">
                 <Button
                   size="lg"
-                  className="h-14 px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-glow transition-premium font-bold group"
+                  className="h-14 px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-glow transition-premium font-bold group focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                   onClick={() => window.open('https://instagram.com', '_blank')}
                 >
-                  <Instagram className="h-5 w-5 mr-2" />
+                  <Instagram className="h-5 w-5 mr-2" aria-hidden="true" />
                   Follow @WAVELY
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" aria-hidden="true" />
                 </Button>
 
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-14 px-8 border-2 hover:bg-card transition-smooth font-bold"
+                  className="h-14 px-8 border-2 hover:bg-card transition-smooth font-bold focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                   onClick={() => window.location.href = "/contact"}
                 >
                   Get in Touch
@@ -459,7 +481,7 @@ const Index = () => {
                   return (
                     <div key={i} className="flex flex-col items-center gap-2">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Icon className="h-6 w-6 text-primary" />
+                        <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
                       </div>
                       <span className="text-sm font-medium">{item.label}</span>
                     </div>

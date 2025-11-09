@@ -6,10 +6,9 @@ interface ProgressBarProps {
 
 const steps = [
   { id: 1, name: "Phone Model" },
-  { id: 2, name: "Rim Style" },
+  { id: 2, name: "Material" },
   { id: 3, name: "Upload Photos" },
-  { id: 4, name: "Material" },
-  { id: 5, name: "Personalization" }
+  { id: 4, name: "Personalization" }
 ];
 
 const ProgressBar = ({ currentStep }: ProgressBarProps) => {

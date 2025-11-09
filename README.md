@@ -64,6 +64,12 @@ This project is built with:
 
 - 3D live preview functionality has been removed. The configurator now uses a static summary panel without WebGL. Dependencies `three`, `@react-three/fiber`, and `@react-three/drei` have been removed.
 
+### Catalog Cleanup
+- Removed materials: "Biodegradable" and "Fully printed" from `materialOptions`.
+- Removed temporary banner about rim style selection from `Customize` page.
+- Updated copy to remove rim style references across `Newsletter`, `StyleQuiz`, `ReturnPolicy`, and `HowItWorks`.
+- Deleted unused `StepRimStyle` component.
+
 ### Migration Notes
 - If you previously relied on 3D preview, update any external docs or flows to reference the static price summary in `src/pages/Customize.tsx`.
 - Run `npm install` after pulling changes to reflect removed dependencies.

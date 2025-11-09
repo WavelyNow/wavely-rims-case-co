@@ -74,7 +74,7 @@ const ReturnPolicy = () => {
               "supply of goods made to customer specifications or clearly personalized"
             </blockquote>
             <p>
-              All Wavely products fall into this category, being created individually for each customer based on selected options (phone model, rim style, material, photos, text).
+              All Wavely products fall into this category, being created individually for each customer based on selected options (phone model, material, photos, text).
             </p>
           </section>
 
@@ -86,7 +86,7 @@ const ReturnPolicy = () => {
 
             <h3 className="text-xl font-semibold text-foreground mb-2 mt-4">3.1. Covered Manufacturing Defects:</h3>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Defective bonding of 3D rim to case</li>
+              <li>Defective bonding of printed layers to case</li>
               <li>Material issues caused by manufacturing process</li>
               <li>Poor quality printing or premature discoloration</li>
               <li>Cracks or damage not caused by normal use</li>
@@ -270,7 +270,7 @@ const ReturnPolicy = () => {
 
           <div className="border-t border-border/40 pt-6 mt-8">
             <p className="text-sm text-center">
-              <strong>Important Note:</strong> Before placing your order, carefully verify all selected options (phone model, rim style, photos, text) in the configurator. Being customized products, we cannot accept returns for change of mind or selection errors.
+              <strong>Important Note:</strong> Before placing your order, carefully verify all selected options (phone model, material, photos, text) in the configurator. Being customized products, we cannot accept returns for change of mind or selection errors.
             </p>
           </div>
         </div>

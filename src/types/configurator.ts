@@ -11,6 +11,11 @@ export interface ConfiguratorState {
   licensePlateText: string;
   material: string;
   materialPrice: number;
+  // Case feature options
+  magSafeCompatible: boolean;
+  caseThickness: string; // e.g., 'slim' | 'standard' | 'rugged'
+  texture: string; // e.g., 'matte' | 'glossy' | 'carbon' | 'sandstone'
+  protectionLevel: string; // e.g., 'standard' | 'shockproof' | 'ultra'
   customText: string;
   textColor: string;
   textPosition: string;
@@ -33,6 +38,8 @@ export interface MaterialOption {
   description: string;
   image: string;
   popular?: boolean;
+  group?: string; // e.g., 'soft' | 'hard' | 'premium'
+  isNew?: boolean; // shows NEW badge
 }
 
 export interface PhoneModel {

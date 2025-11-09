@@ -63,34 +63,61 @@ export const rimOptions: RimOption[] = [
 ];
 
 export const materialOptions: MaterialOption[] = [
+  // Soft cases
   {
-    id: "matte",
-    name: "Matte Finish",
+    id: "soft-back-printed",
+    name: "Back printed",
     price: 0,
-    description: "Classic feel, anti-fingerprint",
+    description: "Soft TPU, print pe spate",
     image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=200&h=200&fit=crop",
+    group: "soft",
+    popular: true
+  },
+
+  // Hard cases
+  {
+    id: "hard-back-printed",
+    name: "Back printed",
+    price: 4,
+    description: "Policarbonat dur, print pe spate",
+    image: "https://images.unsplash.com/photo-1620799139834-6b8f844fbe61?w=200&h=200&fit=crop",
+    group: "hard"
+  },
+
+  // Premium cases
+  {
+    id: "premium-tough",
+    name: "Tough cases",
+    price: 12,
+    description: "Protecție avansată, margini întărite",
+    image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=200&h=200&fit=crop",
+    group: "premium"
+  },
+  {
+    id: "premium-tough-magsafe",
+    name: "Tough cases with MagSafe",
+    price: 15,
+    description: "Protecție + compatibil MagSafe",
+    image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&h=200&fit=crop",
+    group: "premium",
+    isNew: true
+  },
+  {
+    id: "premium-hybrid-magsafe",
+    name: "Hybrid cases with MagSafe",
+    price: 14,
+    description: "Spate dur + laterale TPU, MagSafe",
+    image: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=200&h=200&fit=crop",
+    group: "premium",
     popular: true
   },
   {
-    id: "glossy",
-    name: "Glossy Finish",
-    price: 5,
-    description: "High shine, vibrant colors",
-    image: "https://images.unsplash.com/photo-1620799139834-6b8f844fbe61?w=200&h=200&fit=crop"
-  },
-  {
-    id: "leather",
-    name: "Leather Texture",
-    price: 8,
-    description: "Premium grip, elegant",
-    image: "https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=200&h=200&fit=crop"
-  },
-  {
-    id: "metallic",
-    name: "Metallic Finish",
-    price: 10,
-    description: "Automotive metallic shine",
-    image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=200&h=200&fit=crop"
+    id: "premium-crossbody",
+    name: "Crossbody cases",
+    price: 16,
+    description: "Curea integrată pentru purtare la umăr",
+    image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200&h=200&fit=crop",
+    group: "premium"
   }
 ];
 
@@ -674,6 +701,78 @@ export const phoneModels: PhoneModel[] = [
 
   // ===================== Samsung Galaxy =====================
   {
+    id: "galaxy-s25-ultra",
+    name: "Galaxy S25 Ultra",
+    brand: "Samsung Galaxy",
+    image: "https://via.placeholder.com/1200?text=Galaxy+S25+Ultra",
+    releaseYear: 2025,
+    price: 1199,
+    specs: {
+      display: "6.8\" AMOLED 120Hz",
+      dimensions: "162.3 x 79 x 8.6 mm",
+      weight: "233 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "12GB",
+      storage: "256/512/1024GB",
+      battery: "5000 mAh",
+      camera: "200MP + 12MP + 10MP + 10MP",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "carbon-pro", "diamond-cut", "matte-gunmetal"],
+      engravingAvailable: true
+    }
+  },
+  {
+    id: "galaxy-s25-plus",
+    name: "Galaxy S25+",
+    brand: "Samsung Galaxy",
+    image: "https://via.placeholder.com/1200?text=Galaxy+S25+Plus",
+    releaseYear: 2025,
+    price: 999,
+    specs: {
+      display: "6.7\" AMOLED 120Hz",
+      dimensions: "158.5 x 75.9 x 7.7 mm",
+      weight: "196 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "12GB",
+      storage: "256/512GB",
+      battery: "4900 mAh",
+      camera: "50MP + 12MP + 10MP",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "street-drift", "matte-gunmetal"],
+      engravingAvailable: true
+    }
+  },
+  {
+    id: "galaxy-s25",
+    name: "Galaxy S25",
+    brand: "Samsung Galaxy",
+    image: "https://via.placeholder.com/1200?text=Galaxy+S25",
+    releaseYear: 2025,
+    price: 799,
+    specs: {
+      display: "6.2\" AMOLED 120Hz",
+      dimensions: "147 x 70.6 x 7.6 mm",
+      weight: "168 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "8GB",
+      storage: "128/256/512GB",
+      battery: "4000 mAh",
+      camera: "50MP + 12MP + 10MP",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "street-drift", "rally-red"],
+      engravingAvailable: true
+    }
+  },
+  {
     id: "galaxy-s24-ultra",
     name: "Galaxy S24 Ultra",
     brand: "Samsung Galaxy",
@@ -1034,6 +1133,56 @@ export const phoneModels: PhoneModel[] = [
     }
   },
 
+  // 2024 foldables refresh
+  {
+    id: "galaxy-z-fold-6",
+    name: "Galaxy Z Fold6",
+    brand: "Samsung Galaxy",
+    image: "https://via.placeholder.com/1200?text=Galaxy+Z+Fold6",
+    releaseYear: 2024,
+    price: 1899,
+    specs: {
+      display: "7.6\" AMOLED 120Hz (foldable)",
+      dimensions: "155 x 129 x 6.0 mm (unfolded)",
+      weight: "252 g",
+      chipset: "Snapdragon 8 Gen 3",
+      ram: "12/16GB",
+      storage: "256/512/1024GB",
+      battery: "4600 mAh",
+      camera: "50MP + 12MP + 10MP",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "carbon-pro", "matte-gunmetal"],
+      engravingAvailable: true
+    }
+  },
+  {
+    id: "galaxy-z-flip-6",
+    name: "Galaxy Z Flip6",
+    brand: "Samsung Galaxy",
+    image: "https://via.placeholder.com/1200?text=Galaxy+Z+Flip6",
+    releaseYear: 2024,
+    price: 1099,
+    specs: {
+      display: "6.7\" AMOLED 120Hz (flip)",
+      dimensions: "165 x 71.8 x 6.8 mm (unfolded)",
+      weight: "186 g",
+      chipset: "Snapdragon 8 Gen 3",
+      ram: "8/12GB",
+      storage: "128/256/512GB",
+      battery: "4000 mAh",
+      camera: "50MP + 12MP",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "street-drift", "rally-red"],
+      engravingAvailable: true
+    }
+  },
+
   // ===================== Google Pixel =====================
   {
     id: "pixel-9-pro",
@@ -1230,6 +1379,30 @@ export const phoneModels: PhoneModel[] = [
 
   // ===================== OnePlus =====================
   {
+    id: "oneplus-13",
+    name: "OnePlus 13",
+    brand: "OnePlus",
+    image: "https://via.placeholder.com/1200?text=OnePlus+13",
+    releaseYear: 2025,
+    price: 799,
+    specs: {
+      display: "6.8\" LTPO AMOLED 120Hz",
+      dimensions: "163 x 75 x 8.7 mm",
+      weight: "205 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "12/16GB",
+      storage: "256/512GB",
+      battery: "5500 mAh",
+      camera: "50MP + 50MP + 64MP",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "matte-gunmetal", "rally-red"],
+      engravingAvailable: true
+    }
+  },
+  {
     id: "oneplus-12",
     name: "OnePlus 12",
     brand: "OnePlus",
@@ -1351,6 +1524,78 @@ export const phoneModels: PhoneModel[] = [
   },
 
   // ===================== Xiaomi =====================
+  {
+    id: "xiaomi-15-ultra",
+    name: "Xiaomi 15 Ultra",
+    brand: "Xiaomi",
+    image: "https://via.placeholder.com/1200?text=Xiaomi+15+Ultra",
+    releaseYear: 2025,
+    price: 1299,
+    specs: {
+      display: "6.73\" AMOLED 120Hz",
+      dimensions: "161.4 x 75.3 x 9.2 mm",
+      weight: "224 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "12/16GB",
+      storage: "256/512/1024GB",
+      battery: "5000 mAh",
+      camera: "50MP quad Leica",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "leather", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "carbon-pro", "diamond-cut"],
+      engravingAvailable: true
+    }
+  },
+  {
+    id: "xiaomi-15-pro",
+    name: "Xiaomi 15 Pro",
+    brand: "Xiaomi",
+    image: "https://via.placeholder.com/1200?text=Xiaomi+15+Pro",
+    releaseYear: 2025,
+    price: 999,
+    specs: {
+      display: "6.73\" AMOLED 120Hz",
+      dimensions: "161.4 x 75.3 x 8.5 mm",
+      weight: "223 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "12/16GB",
+      storage: "256/512GB",
+      battery: "4880 mAh",
+      camera: "50MP triple Leica",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "carbon-pro"],
+      engravingAvailable: true
+    }
+  },
+  {
+    id: "xiaomi-15",
+    name: "Xiaomi 15",
+    brand: "Xiaomi",
+    image: "https://via.placeholder.com/1200?text=Xiaomi+15",
+    releaseYear: 2025,
+    price: 699,
+    specs: {
+      display: "6.36\" AMOLED 120Hz",
+      dimensions: "152.8 x 71.5 x 8.2 mm",
+      weight: "189 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "8/12GB",
+      storage: "256/512GB",
+      battery: "4610 mAh",
+      camera: "50MP triple Leica",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "metallic"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "street-drift"],
+      engravingAvailable: true
+    }
+  },
   {
     id: "xiaomi-14-ultra",
     name: "Xiaomi 14 Ultra",
@@ -1548,6 +1793,30 @@ export const phoneModels: PhoneModel[] = [
 
   // ===================== Nothing =====================
   {
+    id: "nothing-phone-3",
+    name: "Nothing Phone (3)",
+    brand: "Nothing",
+    image: "https://via.placeholder.com/1200?text=Nothing+Phone+3",
+    releaseYear: 2025,
+    price: 699,
+    specs: {
+      display: "6.7\" OLED 120Hz",
+      dimensions: "162 x 76 x 8.6 mm",
+      weight: "201 g",
+      chipset: "Snapdragon 8s Gen 3",
+      ram: "12GB",
+      storage: "256/512GB",
+      battery: "4700 mAh",
+      camera: "50MP + 50MP",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy", "transparent"],
+      rimStyles: ["classic-chrome", "sport-gt-black", "street-drift"],
+      engravingAvailable: true
+    }
+  },
+  {
     id: "nothing-phone-2",
     name: "Nothing Phone (2)",
     brand: "Nothing",
@@ -1621,6 +1890,30 @@ export const phoneModels: PhoneModel[] = [
   },
 
   // ===================== Sony =====================
+  {
+    id: "sony-xperia-1-vii",
+    name: "Sony Xperia 1 VII",
+    brand: "Sony",
+    image: "https://via.placeholder.com/1200?text=Xperia+1+VII",
+    releaseYear: 2025,
+    price: 1299,
+    specs: {
+      display: "6.5\" 4K OLED 120Hz",
+      dimensions: "165 x 71 x 8.2 mm",
+      weight: "187 g",
+      chipset: "Snapdragon 8 Gen 4",
+      ram: "12GB",
+      storage: "256/512GB",
+      battery: "5000 mAh",
+      camera: "48MP + 12MP + 12MP (ZEISS optics)",
+      wirelessCharging: true
+    },
+    customizations: {
+      materials: ["matte", "glossy"],
+      rimStyles: ["classic-chrome", "matte-gunmetal", "sport-gt-black"],
+      engravingAvailable: true
+    }
+  },
   {
     id: "sony-xperia-1-vi",
     name: "Sony Xperia 1 VI",

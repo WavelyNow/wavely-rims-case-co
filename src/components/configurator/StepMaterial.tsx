@@ -11,68 +11,56 @@ interface StepMaterialProps {
 }
 
 const StepMaterial = ({ selectedMaterial, onSelect, onNext, onBack }: StepMaterialProps) => {
+  const groups = [
+    { id: "soft", title: "Soft cases" },
+    { id: "hard", title: "Hard cases" },
+    { id: "premium", title: "Premium cases" },
+  ];
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center">
-        <h2 className="text-3xl font-bold font-poppins mb-2">Choose Your Material</h2>
-        <p className="text-muted-foreground">Select the finish that matches your style</p>
+        <h2 className="text-3xl font-bold font-poppins mb-2">Choose Your Case Type</h2>
+        <p className="text-muted-foreground">Pick the case construction and features</p>
       </div>
 
-      {/* Material Grid */}
-      <div className="grid md:grid-cols-2 gap-4">
-        {materialOptions.map((material) => (
-          <button
-            key={material.id}
-            onClick={() => onSelect(material)}
-            className={`relative p-6 rounded-xl border-2 transition-premium hover:shadow-premium text-left ${
-              selectedMaterial === material.id
-                ? "border-primary bg-primary/10 shadow-premium"
-                : "border-border/40 bg-card/50 hover:border-primary/50"
-            }`}
-          >
-            {material.popular && (
-              <Badge className="absolute top-3 right-3 bg-gradient-accent border-0 text-xs">
-                Most Popular
-              </Badge>
-            )}
-
-            <div className="flex items-start gap-4">
-              {/* Radio Button */}
-              <div
-                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-1 ${
-                  selectedMaterial === material.id
-                    ? "border-primary"
-                    : "border-muted-foreground"
-                }`}
-              >
-                {selectedMaterial === material.id && (
-                  <div className="w-3 h-3 rounded-full bg-primary" />
-                )}
-              </div>
-
-              {/* Material Swatch */}
-              <div className="w-20 h-20 rounded-lg overflow-hidden border border-border/40">
-                <img
-                  src={material.image}
-                  alt={material.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Material Info */}
-              <div className="flex-1">
-                <h3 className="font-bold font-poppins text-lg mb-1">
-                  {material.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-2">
-                  {material.description}
-                </p>
-                <p className="text-xl font-bold text-primary">
-                  {material.price === 0 ? "Included" : `+$${material.price}`}
-                </p>
-              </div>
+      {/* Case type columns */}
+      <div className="grid md:grid-cols-3 gap-6">
+        {groups.map((g) => (
+          <div key={g.id} className="space-y-3">
+            <h3 className="text-xl font-bold font-poppins text-pink-500">{g.title}</h3>
+            <div className="space-y-2">
+              {materialOptions.filter((m) => m.group === g.id).map((material) => (
+                <button
+                  key={material.id}
+                  onClick={() => onSelect(material)}
+                  className={`flex items-center justify-between w-full rounded-lg border px-3 py-2 transition-smooth text-left ${
+                    selectedMaterial === material.id
+                      ? "border-primary bg-primary/10"
+                      : "border-border/40 bg-card/50 hover:border-primary/40"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                        selectedMaterial === material.id ? "border-primary" : "border-muted-foreground"
+                      }`}
+                      aria-hidden="true"
+                    >
+                      {selectedMaterial === material.id && <div className="w-2 h-2 rounded-full bg-primary" />}
+                    </div>
+                    <span className="font-medium">{material.name}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {material.isNew && <Badge className="bg-fuchsia-600">NEW</Badge>}
+                    {material.popular && <Badge className="bg-orange-500">Popular</Badge>}
+                    <span className="text-sm font-semibold text-primary">
+                      {material.price === 0 ? "Included" : `+$${material.price}`}
+                    </span>
+                  </div>
+                </button>
+              ))}
             </div>
-          </button>
+          </div>
         ))}
       </div>
 
@@ -92,7 +80,7 @@ const StepMaterial = ({ selectedMaterial, onSelect, onNext, onBack }: StepMateri
           size="lg"
           className="flex-1 bg-gradient-accent hover:shadow-glow transition-premium font-semibold"
         >
-          Continue to Personalization
+          Continue to Upload Photos
         </Button>
       </div>
     </div>

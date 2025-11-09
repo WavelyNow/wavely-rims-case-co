@@ -202,7 +202,7 @@ const StepUploadPhoto = ({
           size="lg"
           className="flex-1 bg-gradient-accent hover:shadow-glow transition-premium font-semibold"
         >
-          Continue to Material
+          Continue to Personalization
         </Button>
       </div>
     </div>

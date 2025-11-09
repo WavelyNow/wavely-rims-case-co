@@ -44,7 +44,7 @@ const quizQuestions = [
       "My car photo",
       "My face/portrait",
       "License plate text",
-      "Just the rim design"
+      "Just the design"
     ]
   }
 ];
@@ -143,7 +143,7 @@ const StyleQuiz = () => {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-              Not Sure Which Rim Style Fits You?
+              Not Sure Which Case Style Fits You?
             </h2>
             
             <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">

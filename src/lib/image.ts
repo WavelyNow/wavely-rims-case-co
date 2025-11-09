@@ -1,5 +1,9 @@
 export function normalizeModelImage(url: string): string {
   if (!url) return url;
+  // Avoid remote hosts that can trigger ORB blocks in preview (e.g., Unsplash)
+  if (url.includes("images.unsplash.com")) {
+    return "https://placehold.co/300x300/png?text=Phone";
+  }
   return url.replace("https://via.placeholder.com/1200", "https://placehold.co/1200x1200");
 }
 
