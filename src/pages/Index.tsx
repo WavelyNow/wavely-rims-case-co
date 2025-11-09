@@ -34,11 +34,46 @@ const Index = () => {
     loadProducts();
   }, []);
 
+  // Ensure autoplay works across browsers in production
   useEffect(() => {
     const v = videoRef.current;
-    if (v) {
-      v.playbackRate = 0.5;
-    }
+    if (!v) return;
+
+    // Force properties before loading
+    v.muted = true;
+    // @ts-expect-error playsInline exists on HTMLVideoElement in browsers
+    v.playsInline = true;
+    v.playbackRate = 1.0;
+
+    const tryPlay = () => {
+      v.play().catch(() => {
+        // Autoplay may be blocked; will retry on user interaction
+      });
+    };
+
+    const onLoaded = () => tryPlay();
+    v.addEventListener("loadeddata", onLoaded);
+
+    // Attempt immediately
+    tryPlay();
+
+    // Fallback: retry once on first user interaction
+    const onInteract = () => {
+      tryPlay();
+      window.removeEventListener("pointerdown", onInteract);
+      window.removeEventListener("touchstart", onInteract);
+      window.removeEventListener("keydown", onInteract);
+    };
+    window.addEventListener("pointerdown", onInteract, { once: true });
+    window.addEventListener("touchstart", onInteract, { once: true });
+    window.addEventListener("keydown", onInteract, { once: true });
+
+    return () => {
+      v.removeEventListener("loadeddata", onLoaded);
+      window.removeEventListener("pointerdown", onInteract);
+      window.removeEventListener("touchstart", onInteract);
+      window.removeEventListener("keydown", onInteract);
+    };
   }, []);
 
   const handleAddToCart = (product: ShopifyProduct) => {
@@ -104,6 +139,9 @@ const Index = () => {
           playsInline
           poster={heroBg}
           aria-hidden="true"
+          onError={(e) => {
+            console.error("Background video failed to load/play", e);
+          }}
           onLoadedMetadata={() => {
             const v = videoRef.current;
             if (v) {
