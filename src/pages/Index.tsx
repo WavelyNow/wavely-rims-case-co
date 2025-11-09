@@ -10,11 +10,12 @@ import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import heroBg from "@/assets/hero-bg.jpg";
-import bgVideo from "@/assets/video-background.mp4";
+import bgVideoOriginal from "@/assets/video-background-original.mp4";
 
 const Index = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [canPlayVideo, setCanPlayVideo] = useState(true);
   const addItem = useCartStore(state => state.addItem);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -38,6 +39,14 @@ const Index = () => {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
+
+    // Detect basic MP4 playback support; if none, fallback to poster
+    const probe = document.createElement('video');
+    const support = probe.canPlayType('video/mp4');
+    if (!support) {
+      setCanPlayVideo(false);
+      return;
+    }
 
     // Force properties before loading
     v.muted = true;
@@ -127,38 +136,55 @@ const Index = () => {
       </a>
 
       <Navigation />
-      <header className="relative overflow-hidden min-h-[75vh] lg:min-h-[70vh] flex items-center justify-center" aria-labelledby="hero-title">
-        {/* Video Background */}
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover opacity-100"
-          preload="auto"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={heroBg}
-          aria-hidden="true"
-          onError={(e) => {
-            console.error("Background video failed to load/play", e);
-          }}
-          onLoadedMetadata={() => {
-            const v = videoRef.current;
-            if (v) {
-              v.playbackRate = 1.0;
-              v.play().catch(() => {});
-            }
-          }}
-          onCanPlay={() => {
-            const v = videoRef.current;
-            if (v) {
-              v.playbackRate = 1.0;
-              v.play().catch(() => {});
-            }
-          }}
-        >
-          <source src={bgVideo} type="video/mp4" />
-        </video>
+      <header className="relative overflow-hidden min-h-[75vh] lg:minh-[70vh] flex items-center justify-center" aria-labelledby="hero-title">
+        {/* Background media */}
+        {canPlayVideo ? (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover opacity-100"
+            preload="metadata"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={heroBg}
+            aria-hidden="true"
+            onError={(e) => {
+              const v = videoRef.current;
+              console.error("Background video failed to load/play", {
+                event: e,
+                currentSrc: v?.currentSrc,
+                error: v?.error,
+                networkState: v?.networkState,
+                readyState: v?.readyState,
+              });
+              setCanPlayVideo(false);
+            }}
+            onLoadedMetadata={() => {
+              const v = videoRef.current;
+              if (v) {
+                v.playbackRate = 1.0;
+                v.play().catch(() => {});
+              }
+            }}
+            onCanPlay={() => {
+              const v = videoRef.current;
+              if (v) {
+                v.playbackRate = 1.0;
+                v.play().catch(() => {});
+              }
+            }}
+          >
+            <source src={bgVideoOriginal} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={heroBg}
+            alt="Racing case background"
+            className="absolute inset-0 w-full h-full object-cover opacity-100"
+            aria-hidden="true"
+          />
+        )}
 
         {/* Content */}
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">

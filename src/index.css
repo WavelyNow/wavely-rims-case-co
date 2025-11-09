@@ -213,4 +213,16 @@ All colors MUST be HSL.
   * {
     animation: none !important;
   }
+
+  /* Force essential animations when 'force-motion' is set on <html> */
+  .force-motion .animate-fade-in { animation: fadeIn 0.6s ease-out !important; }
+  .force-motion .animate-scale-in { animation: scaleIn 0.4s ease-out !important; }
+  .force-motion .animate-neon-pulse { animation: neonPulse 2s ease-in-out infinite !important; }
+  .force-motion .animate-glitch { animation: glitchText 0.3s ease-in-out infinite !important; }
+  .force-motion .animate-scanline { animation: scanlineMove 8s linear infinite !important; }
+  .force-motion .animate-grid { animation: gridMove 20s ease-in-out infinite !important; }
+  .force-motion .speedline { 
+    animation: speedLine var(--speedline-duration, 2s) ease-in-out infinite !important; 
+    animation-delay: var(--speedline-delay, 0s) !important;
+  }
 }
