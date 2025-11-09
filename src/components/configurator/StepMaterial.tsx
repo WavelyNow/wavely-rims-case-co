@@ -8,6 +8,15 @@ interface StepMaterialProps {
   onSelect: (material: MaterialOption) => void;
   onNext: () => void;
   onBack: () => void;
+  // Optional extended controls passed by parent, not used here but kept for API stability
+  magSafeCompatible?: boolean;
+  caseThickness?: string;
+  texture?: string;
+  protectionLevel?: string;
+  onMagSafeChange?: (value: boolean) => void;
+  onThicknessChange?: (value: string) => void;
+  onTextureChange?: (value: string) => void;
+  onProtectionChange?: (value: string) => void;
 }
 
 const StepMaterial = ({ selectedMaterial, onSelect, onNext, onBack }: StepMaterialProps) => {

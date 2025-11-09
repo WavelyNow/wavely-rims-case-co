@@ -121,7 +121,7 @@ const Shop = () => {
                           loading="lazy"
                           decoding="async"
                           sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                          fetchpriority="low"
+                          fetchPriority="low"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-muted/20">

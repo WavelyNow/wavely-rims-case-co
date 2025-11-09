@@ -82,8 +82,6 @@ const Index = () => {
       </a>
 
       <Navigation />
-
-      {/* HERO SECTION - Street Racing Style */}
       <header className="relative overflow-hidden min-h-screen flex items-center justify-center" aria-labelledby="hero-title">
         {/* Racing Background */}
         <RacingBackground />
@@ -100,22 +98,15 @@ const Index = () => {
               Underground Racing Style
             </Badge>
 
-            {/* Main Title with Neon Glow */}
-            <h1 
-              id="hero-title" 
-              className="font-racing text-7xl sm:text-8xl md:text-9xl font-bold mb-6 uppercase tracking-wider text-white"
-              style={{
-                textShadow: `
-                  0 0 10px hsl(25 100% 50%),
-                  0 0 20px hsl(190 100% 50%),
-                  0 0 30px hsl(120 100% 60%),
-                  0 0 40px hsl(25 100% 50%)
-                `
-              }}
-              }}
-            >
-              WAVELY
-            </h1>
+            {/* Main Title with brand-colored logo (matches header) */}
+            <h1 id="hero-title" className="sr-only">Wavely</h1>
+            <img
+              src="/wavely-logo.svg"
+              alt="Wavely"
+              className="mx-auto h-24 sm:h-32 md:h-40 lg:h-48 w-auto select-none animate-glitch"
+              decoding="async"
+              loading="eager"
+            />
 
             {/* Tagline */}
             <p className="text-xl sm:text-2xl md:text-3xl text-white/90 mb-4 font-heading tracking-wide uppercase">
@@ -247,7 +238,7 @@ const Index = () => {
                               }}
                               loading="lazy"
                               decoding="async"
-                              fetchpriority="low"
+                              fetchPriority="low"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-muted/20">
@@ -352,11 +343,7 @@ const Index = () => {
                       {item.step}
                     </div>
                     <div className="inline-flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl bg-primary/20 border-2 border-primary mb-3 sm:mb-4 mt-3 sm:mt-4 neon-glow-orange">
-<<<<<<< HEAD
-                      <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-=======
                       <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" aria-hidden="true" />
->>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                     </div>
                     <h3 className="text-lg sm:text-xl font-racing mb-2 sm:mb-3 text-white uppercase tracking-wide">{item.title}</h3>
                     <p className="text-sm sm:text-base text-white/60 font-body">{item.description}</p>
@@ -369,11 +356,7 @@ const Index = () => {
               <Button
                 size="lg"
                 variant="neon"
-<<<<<<< HEAD
-                className="h-14 px-8 font-racing uppercase tracking-wider"
-=======
                 className="h-14 px-8 font-racing uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
->>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                 onClick={() => window.location.href = "/how-it-works"}
               >
                 Learn More
@@ -405,11 +388,7 @@ const Index = () => {
                   <Button
                     size="lg"
                     variant="neon"
-<<<<<<< HEAD
-                    className="h-14 px-10 text-lg font-racing uppercase tracking-wider group"
-=======
                     className="h-14 px-10 text-lg font-racing uppercase tracking-wider group focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
->>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                     onClick={() => window.location.href = "/customize"}
                   >
                     <Upload className="h-5 w-5 mr-2" aria-hidden="true" />
@@ -420,11 +399,7 @@ const Index = () => {
                   <Button
                     size="lg"
                     variant="outline"
-<<<<<<< HEAD
-                    className="h-14 px-10 border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue text-lg font-racing uppercase tracking-wider"
-=======
                     className="h-14 px-10 border-2 border-secondary/50 text-secondary hover:bg-secondary/20 hover:border-secondary hover:neon-glow-blue text-lg font-racing uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-secondary/40 focus-visible:outline-none"
->>>>>>> adc880a (Curățare catalog: eliminare referințe la rim style, ștergere StepRimStyle; actualizări README; eliminare banner temporar; actualizări copy (Newsletter, StyleQuiz, ReturnPolicy, HowItWorks); curățare materiale în configuratorData)
                     onClick={() => window.location.href = "/shop"}
                   >
                     Browse Builds

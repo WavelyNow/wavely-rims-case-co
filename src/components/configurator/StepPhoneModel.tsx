@@ -315,7 +315,7 @@ const StepPhoneModel = ({ selectedModel, onSelect }: StepPhoneModelProps) => {
                         crossOrigin="anonymous"
                         loading="lazy"
                         decoding="async"
-                        fetchpriority="low"
+                        fetchPriority="low"
                         onError={(e) => { e.currentTarget.src = buildFallbackSvg(model.name); }}
                       />
                       <div className="min-w-0">
@@ -344,7 +344,7 @@ const StepPhoneModel = ({ selectedModel, onSelect }: StepPhoneModelProps) => {
               crossOrigin="anonymous"
               loading="lazy"
               decoding="async"
-              fetchpriority="low"
+              fetchPriority="low"
               onError={(e) => { const m = phoneModels.find((x) => x.id === selectedModel); e.currentTarget.src = buildFallbackSvg(m?.name || "Selected"); }}
             />
             <span className="text-base md:text-lg font-semibold font-poppins">
