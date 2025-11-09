@@ -246,28 +246,24 @@ const Index = () => {
 
       <main id="main-content" className="relative">
         {/* FEATURES SECTION */}
-        <section className="py-16 relative" aria-labelledby="features-title">
-          <div className="absolute inset-0 bg-black/40" />
+        <section className="py-20 relative" aria-labelledby="features-title">
+          <div className="absolute inset-0 bg-background" />
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, i) => {
                 const Icon = feature.icon;
                 return (
-                  <Card 
+                  <div 
                     key={i} 
-                    className="group relative overflow-hidden p-8 text-center bg-black/60 backdrop-blur-sm border-2 border-white/10 hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,127,0,0.3)]"
+                    className="group text-center animate-fade-in"
+                    style={{ animationDelay: `${i * 100}ms` }}
                   >
-                    {/* Neon glow background effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    <div className="relative z-10">
-                      <div className="inline-flex h-16 w-16 items-center justify-center rounded-xl bg-primary/20 border-2 border-primary mb-4 group-hover:scale-110 transition-transform duration-300 neon-glow-orange">
-                        <Icon className="h-8 w-8 text-primary" aria-hidden="true" />
-                      </div>
-                      <h3 className="font-racing text-lg mb-2 text-white uppercase tracking-wide">{feature.title}</h3>
-                      <p className="text-sm text-white/60 font-body leading-relaxed">{feature.description}</p>
+                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                      <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
                     </div>
-                  </Card>
+                    <h3 className="font-heading text-base mb-2 text-foreground font-semibold">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                  </div>
                 );
               })}
             </div>
@@ -275,28 +271,18 @@ const Index = () => {
         </section>
 
         {/* FEATURED PRODUCTS SECTION */}
-        <section className="py-24 md:py-32 relative overflow-hidden" aria-labelledby="featured-title">
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black" />
-          
-          {/* Animated background grid */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-              backgroundSize: '50px 50px'
-            }} />
-          </div>
+        <section className="py-24 md:py-32 relative" aria-labelledby="featured-title">
+          <div className="absolute inset-0 bg-muted/30" />
 
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-20 animate-fade-in">
-              <Badge variant="outline" className="mb-6 border-primary/50 text-primary backdrop-blur-sm bg-black/40 px-6 py-2 text-sm font-heading uppercase tracking-widest">
-                <Star className="mr-2 h-4 w-4" />
+            <div className="text-center mb-16 animate-fade-in">
+              <Badge variant="outline" className="mb-4 px-4 py-1 text-xs font-medium">
                 Premium Collection
               </Badge>
-              <h2 id="featured-title" className="font-racing text-5xl md:text-7xl mb-6 text-white uppercase tracking-wider animate-glitch-text">
-                Featured <span className="text-primary neon-glow-orange">Builds</span>
+              <h2 id="featured-title" className="font-heading text-4xl md:text-5xl mb-4 text-foreground font-bold tracking-tight">
+                Featured Builds
               </h2>
-              <div className="w-32 h-1 bg-gradient-neon mx-auto mb-8 rounded-full" />
-              <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto font-body leading-relaxed">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Premium phone cases inspired by legendary race machines
               </p>
             </div>
@@ -319,7 +305,7 @@ const Index = () => {
                 <p className="text-xl text-white/60 font-body">No builds available yet. Check back soon!</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {products.map((product, i) => {
                   const image = product.node.images.edges[0]?.node;
                   const price = product.node.priceRange.minVariantPrice;
@@ -327,70 +313,51 @@ const Index = () => {
                   return (
                     <Card
                       key={product.node.id}
-                      className="group relative animate-fade-in overflow-hidden border-2 border-white/5 hover:border-primary/70 bg-gradient-to-b from-black/80 to-black/60 backdrop-blur-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,127,0,0.4)]"
+                      className="group animate-fade-in overflow-hidden border border-border bg-card hover:shadow-lg transition-all duration-300"
                       style={{ animationDelay: `${i * 100}ms` }}
                     >
-                      {/* Scanline effect */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none">
-                        <div className="absolute inset-0" style={{
-                          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px)'
-                        }} />
-                      </div>
-
                       <a href={`/product/${product.node.handle}`} aria-label={`View ${product.node.title} details`}>
-                        <div className="aspect-square overflow-hidden relative">
+                        <div className="aspect-square overflow-hidden relative bg-muted/50">
                           {image ? (
                             <img
                               src={image.url}
                               alt={image.altText || product.node.title}
-                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-                              style={{
-                                filter: 'contrast(1.1) brightness(0.95)',
-                              }}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                               loading="lazy"
                               decoding="async"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-black/40">
-                              <Package className="h-24 w-24 text-white/10" aria-hidden="true" />
+                            <div className="w-full h-full flex items-center justify-center">
+                              <Package className="h-16 w-16 text-muted-foreground/20" aria-hidden="true" />
                             </div>
                           )}
-                          {/* Gradient overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                          
-                          {/* Hover glow effect */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
                       </a>
 
-                      <div className="p-6 space-y-4">
-                        <div className="space-y-3">
+                      <div className="p-5 space-y-4">
+                        <div className="space-y-2">
                           <a href={`/product/${product.node.handle}`}>
-                            <h3 className="font-racing text-2xl text-white uppercase tracking-wide group-hover:text-primary transition-colors duration-300">
+                            <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                               {product.node.title}
                             </h3>
                           </a>
-                          <p className="text-sm text-white/50 line-clamp-2 font-body leading-relaxed">
+                          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                             {product.node.description}
                           </p>
                         </div>
 
                         <div className="flex items-center justify-between pt-2">
-                          <div className="flex flex-col">
-                            <span className="text-xs text-white/40 uppercase tracking-wider font-body mb-1">Price</span>
-                            <span className="text-3xl font-racing text-primary neon-glow-orange">
-                              ${parseFloat(price.amount).toFixed(2)}
-                            </span>
-                          </div>
+                          <span className="text-2xl font-semibold text-foreground">
+                            ${parseFloat(price.amount).toFixed(2)}
+                          </span>
                         </div>
 
                         <Button
-                          variant="neon"
-                          size="lg"
-                          className="w-full h-12 font-racing uppercase tracking-wider group-hover:scale-105 transition-transform focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
+                          size="default"
+                          className="w-full"
                           onClick={() => handleAddToCart(product)}
                         >
-                          <ShoppingCart className="h-5 w-5 mr-2" aria-hidden="true" />
+                          <ShoppingCart className="h-4 w-4 mr-2" aria-hidden="true" />
                           Add To Cart
                         </Button>
                       </div>
@@ -400,53 +367,35 @@ const Index = () => {
               </div>
             )}
 
-            <div className="text-center mt-16">
+            <div className="text-center mt-12">
               <Button
                 size="lg"
                 variant="outline"
-                className="h-16 px-12 border-2 border-secondary/60 text-secondary hover:bg-secondary/20 hover:border-secondary hover:scale-105 hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] font-racing text-lg uppercase tracking-widest transition-all duration-300 focus-visible:ring-2 focus-visible:ring-secondary/40 focus-visible:outline-none group"
+                className="group"
                 onClick={() => window.location.href = "/shop"}
               >
                 View All Builds
-                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" aria-hidden="true" />
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Button>
             </div>
           </div>
         </section>
 
         {/* HOW IT WORKS SECTION */}
-        <section className="py-20 md:py-28 relative overflow-hidden" aria-labelledby="how-it-works-title">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/90 to-black/80" />
-          
-          {/* Animated lines background */}
-          <div className="absolute inset-0 opacity-5">
-            {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute h-px bg-gradient-to-r from-transparent via-primary to-transparent"
-                style={{
-                  top: `${20 + i * 20}%`,
-                  left: '-100%',
-                  right: '100%',
-                  animation: `speedLine ${3 + i * 0.5}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.4}s`,
-                }}
-              />
-            ))}
-          </div>
+        <section className="py-24 relative" aria-labelledby="how-it-works-title">
+          <div className="absolute inset-0 bg-background" />
 
           <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16 md:mb-20">
-              <h2 id="how-it-works-title" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-racing mb-6 text-white uppercase tracking-wider animate-glitch-text">
-                Build Your <span className="text-primary neon-glow-orange">Legend</span>
+            <div className="text-center mb-16">
+              <h2 id="how-it-works-title" className="text-4xl md:text-5xl font-heading mb-4 text-foreground font-bold tracking-tight">
+                Build Your Legend
               </h2>
-              <div className="w-32 h-1 bg-gradient-neon mx-auto mb-8 rounded-full" />
-              <p className="text-lg sm:text-xl md:text-2xl text-white/70 px-4 font-body max-w-3xl mx-auto leading-relaxed">
-                Three simple steps to create your custom street-inspired case
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Three simple steps to create your custom case
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   step: "1",
@@ -469,109 +418,74 @@ const Index = () => {
               ].map((item, i) => {
                 const Icon = item.icon;
                 return (
-                  <Card
+                  <div
                     key={i}
-                    className="group relative p-8 md:p-10 bg-gradient-to-b from-black/70 to-black/50 backdrop-blur-xl border-2 border-white/10 hover:border-primary/60 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,127,0,0.3)] text-center"
-                    style={{ animationDelay: `${i * 150}ms` }}
+                    className="relative text-center animate-fade-in"
+                    style={{ animationDelay: `${i * 100}ms` }}
                   >
-                    {/* Step number badge */}
-                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-racing text-2xl shadow-[0_0_20px_rgba(255,127,0,0.5)] group-hover:scale-110 transition-transform">
+                    {/* Step number */}
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold text-lg mb-6">
                       {item.step}
                     </div>
 
                     {/* Icon */}
-                    <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/20 border-2 border-primary mb-6 mt-6 neon-glow-orange group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="h-10 w-10 text-primary" aria-hidden="true" />
+                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted mb-4">
+                      <Icon className="h-8 w-8 text-primary" aria-hidden="true" />
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-2xl font-racing mb-4 text-white uppercase tracking-wide group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-xl font-heading font-semibold mb-3 text-foreground">
                       {item.title}
                     </h3>
-                    <p className="text-base text-white/60 font-body leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {item.description}
                     </p>
-
-                    {/* Hover effect */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none" />
-                  </Card>
+                  </div>
                 );
               })}
             </div>
 
-            <div className="text-center mt-16">
+            <div className="text-center mt-12">
               <Button
                 size="lg"
-                variant="neon"
-                className="h-16 px-12 text-lg font-racing uppercase tracking-widest group hover:scale-105 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
                 onClick={() => window.location.href = "/how-it-works"}
               >
                 Learn More
-                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" aria-hidden="true" />
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
           </div>
         </section>
 
         {/* CUSTOMIZE CTA SECTION */}
-        <section className="py-24 md:py-32 relative overflow-hidden" aria-labelledby="customize-title">
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black" />
-          
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-              backgroundSize: '60px 60px',
-              animation: 'gridMove 20s linear infinite'
-            }} />
-          </div>
+        <section className="py-24 relative" aria-labelledby="customize-title">
+          <div className="absolute inset-0 bg-muted/30" />
 
-          <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <Card className="relative overflow-hidden p-12 md:p-20 bg-gradient-to-br from-black/80 via-black/70 to-black/60 backdrop-blur-2xl border-2 border-primary/40 shadow-[0_0_60px_rgba(255,127,0,0.3)]">
-              {/* Multiple neon glow effects */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-primary/30 rounded-full blur-[120px] animate-neon-pulse" />
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/30 rounded-full blur-[120px] animate-neon-pulse" style={{ animationDelay: '1s' }} />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/20 rounded-full blur-[100px] animate-neon-pulse" style={{ animationDelay: '2s' }} />
-              
-              {/* Scanlines overlay */}
-              <div className="absolute inset-0 opacity-5 pointer-events-none">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px)'
-                }} />
-              </div>
-
-              <div className="relative z-10 text-center space-y-8">
-                <Badge variant="outline" className="mb-4 border-primary/50 text-primary backdrop-blur-sm bg-black/40 px-6 py-2 text-sm font-heading uppercase tracking-widest">
-                  <Zap className="mr-2 h-4 w-4" />
-                  Start Your Build
-                </Badge>
-
-                <h2 id="customize-title" className="text-5xl md:text-6xl lg:text-7xl font-racing text-white uppercase tracking-wider animate-glitch-text">
-                  Ready to <span className="text-primary neon-glow-orange">Build?</span>
+          <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <Card className="p-12 md:p-16 text-center border-border">
+              <div className="space-y-6">
+                <h2 id="customize-title" className="text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight">
+                  Ready to Build?
                 </h2>
 
-                <div className="w-32 h-1 bg-gradient-neon mx-auto rounded-full" />
-
-                <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto font-body leading-relaxed px-4">
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                   Transform your favorite car into a unique phone case with our customization tool
                 </p>
 
-                <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 pt-8">
+                <div className="flex flex-col sm:flex-row justify-center gap-4 pt-6">
                   <Button
                     size="lg"
-                    variant="neon"
-                    className="h-16 px-12 text-xl font-racing uppercase tracking-widest group hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,127,0,0.4)] hover:shadow-[0_0_50px_rgba(255,127,0,0.6)] focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
+                    className="group"
                     onClick={() => window.location.href = "/customize"}
                   >
-                    <Upload className="h-6 w-6 mr-3" aria-hidden="true" />
+                    <Upload className="h-4 w-4 mr-2" aria-hidden="true" />
                     Start Customizing
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" aria-hidden="true" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </Button>
                   
                   <Button
                     size="lg"
                     variant="outline"
-                    className="h-16 px-12 border-2 border-secondary/60 text-secondary hover:bg-secondary/20 hover:border-secondary hover:scale-105 hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] text-xl font-racing uppercase tracking-widest transition-all duration-300 focus-visible:ring-2 focus-visible:ring-secondary/40 focus-visible:outline-none"
                     onClick={() => window.location.href = "/shop"}
                   >
                     Browse Builds
