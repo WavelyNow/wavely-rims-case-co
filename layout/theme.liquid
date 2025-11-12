@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    
+    <title>{{ page_title | escape }}</title>
+    
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+    
+    <!-- Lovable Theme Styles -->
+    {{ 'tailwind.css' | asset_url | stylesheet_tag }}
+    {{ 'hero-lovable.css' | asset_url | stylesheet_tag }}
+    {{ 'featured-products-lovable.css' | asset_url | stylesheet_tag }}
+    {{ 'features-lovable.css' | asset_url | stylesheet_tag }}
+    {{ 'how-it-works-lovable.css' | asset_url | stylesheet_tag }}
+    {{ 'customize-cta-lovable.css' | asset_url | stylesheet_tag }}
+    {{ 'social-lovable.css' | asset_url | stylesheet_tag }}
+    {{ 'navigation-lovable.css' | asset_url | stylesheet_tag }}
+    {{ 'footer-lovable.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Critical CSS -->
+    {{ 'critical.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Custom CSS Variables -->
+    {% render 'css-variables' %}
+    
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+    
+    {% sections 'header-group' %}
+    
+    <main id="MainContent" class="content-for-layout">
+      {{ content_for_layout }}
+    </main>
+    
+    {% sections 'footer-group' %}
+    
+    <!-- Lovable Theme Scripts -->
+    {{ 'hero-lovable.js' | asset_url | script_tag }}
+    {{ 'featured-products-lovable.js' | asset_url | script_tag }}
+    {{ 'navigation-lovable.js' | asset_url | script_tag }}
+    {{ 'cart-lovable.js' | asset_url | script_tag }}
+    
+    <!-- Cart functionality -->
+    <script>
+      window.cartStrings = {
+        addToCart: '{{ 'products.product.add_to_cart' | t }}',
+        soldOut: '{{ 'products.product.sold_out' | t }}',
+        unavailable: '{{ 'products.product.unavailable' | t }}'
+      };
+    </script>
+  </body>
+</html>

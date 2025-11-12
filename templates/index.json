@@ -1,0 +1,97 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-lovable",
+      "settings": {
+        "video_url": "shopify://shop_images/video-background-original.mp4",
+        "image_fallback": "shopify://shop_images/hero-bg.jpg",
+        "title": "Wavely",
+        "subtitle": "Underground Racing Style",
+        "cta_primary_text": "Start Customizing",
+        "cta_primary_link": "/pages/customize",
+        "cta_secondary_text": "Browse Shop",
+        "cta_secondary_link": "/collections/all"
+      }
+    },
+    "features": {
+      "type": "features-lovable",
+      "settings": {
+        "heading": "Why Choose Wavely",
+        "feature_1_title": "Premium Quality",
+        "feature_1_description": "Military-grade protection with 3D-printed precision",
+        "feature_1_icon": "shield",
+        "feature_2_title": "Full Customization",
+        "feature_2_description": "Upload your car photo or choose from our designs",
+        "feature_2_icon": "sparkles",
+        "feature_3_title": "Fast Shipping",
+        "feature_3_description": "Free shipping on orders over $50",
+        "feature_3_icon": "truck",
+        "feature_4_title": "12-Month Warranty",
+        "feature_4_description": "Quality guarantee on all products",
+        "feature_4_icon": "refresh-cw"
+      }
+    },
+    "featured_products": {
+      "type": "featured-products-lovable",
+      "settings": {
+        "heading": "Featured Builds",
+        "subheading": "Premium phone cases inspired by legendary race machines",
+        "collection": "all",
+        "products_per_row": 4,
+        "rows": 1,
+        "show_vendor": false,
+        "show_price": true,
+        "show_quick_buy": true
+      }
+    },
+    "how_it_works": {
+      "type": "how-it-works-lovable",
+      "settings": {
+        "heading": "Build Your Legend",
+        "subheading": "Three simple steps to create your custom case",
+        "step_1_title": "Choose or Upload",
+        "step_1_description": "Select from our collection or upload your own ride's photo",
+        "step_1_icon": "upload",
+        "step_2_title": "Customize Design",
+        "step_2_description": "Pick rims, colors, and finishes. Make it yours.",
+        "step_2_icon": "sparkles",
+        "step_3_title": "Receive Your Case",
+        "step_3_description": "Premium materials, precision crafted, delivered fast",
+        "step_3_icon": "package",
+        "cta_text": "Learn More",
+        "cta_link": "/pages/how-it-works"
+      }
+    },
+    "customize_cta": {
+      "type": "customize-cta-lovable",
+      "settings": {
+        "heading": "Ready to Build?",
+        "description": "Transform your favorite car into a unique phone case with our customization tool",
+        "cta_primary_text": "Start Customizing",
+        "cta_primary_link": "/pages/customize",
+        "cta_secondary_text": "Browse Shop",
+        "cta_secondary_link": "/collections/all"
+      }
+    },
+    "social_section": {
+      "type": "social-lovable",
+      "settings": {
+        "heading": "Join the Community",
+        "subheading": "Follow us on Instagram for inspiration, updates, and exclusive offers",
+        "instagram_handle": "@WAVELY",
+        "instagram_url": "https://instagram.com/wavely",
+        "contact_text": "Get in Touch",
+        "contact_link": "/pages/contact",
+        "show_trust_badges": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "features",
+    "featured_products",
+    "how_it_works",
+    "customize_cta",
+    "social_section"
+  ]
+}

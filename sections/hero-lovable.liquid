@@ -1,0 +1,117 @@
+{{ 'hero-lovable.css' | asset_url | stylesheet_tag }}
+
+<div class="hero-lovable-section">
+  <div class="hero-background">
+    {% if section.settings.video_url != blank %}
+      <video 
+        class="hero-video" 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        preload="metadata"
+        {% if section.settings.image_fallback != blank %}poster="{{ section.settings.image_fallback | image_url }}"{% endif %}
+      >
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {% elsif section.settings.image_fallback != blank %}
+      <img 
+        class="hero-image" 
+        src="{{ section.settings.image_fallback | image_url }}" 
+        alt="{{ section.settings.title }}"
+      >
+    {% endif %}
+  </div>
+  
+  <div class="hero-content">
+    <div class="container">
+      {% if section.settings.subtitle != blank %}
+        <div class="hero-badge">
+          <span class="hero-badge-icon">⚡</span>
+          {{ section.settings.subtitle }}
+        </div>
+      {% endif %}
+      
+      <h1 class="hero-title">{{ section.settings.title }}</h1>
+      
+      <div class="hero-buttons">
+        {% if section.settings.cta_primary_text != blank %}
+          <a href="{{ section.settings.cta_primary_link }}" class="btn btn-primary btn-lg">
+            {{ section.settings.cta_primary_text }}
+          </a>
+        {% endif %}
+        
+        {% if section.settings.cta_secondary_text != blank %}
+          <a href="{{ section.settings.cta_secondary_link }}" class="btn btn-outline btn-lg">
+            {{ section.settings.cta_secondary_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Speed lines effect -->
+  <div class="hero-effects">
+    {% for i in (1..5) %}
+      <div class="speed-line" style="top: {{ 20 | plus: i.times: 15 }}%; animation-duration: {{ 2 | plus: i.times: 0.3 }}s; animation-delay: {{ i.times: 0.2 }}s;"></div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Lovable",
+  "settings": [
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Background Video URL",
+      "accept": ["mp4"]
+    },
+    {
+      "type": "image_picker",
+      "id": "image_fallback",
+      "label": "Fallback Image (for mobile/browsers without video support)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero Title",
+      "default": "Wavely"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle/Badge Text",
+      "default": "Underground Racing Style"
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_text",
+      "label": "Primary CTA Text",
+      "default": "Start Customizing"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Primary CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_text",
+      "label": "Secondary CTA Text",
+      "default": "Browse Shop"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Secondary CTA Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Lovable"
+    }
+  ]
+}
+{% endschema %}

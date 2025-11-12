@@ -1,0 +1,159 @@
+{{ 'features-lovable.css' | asset_url | stylesheet_tag }}
+
+<div class="features-lovable-section">
+  <div class="container">
+    <div class="features-grid">
+      {% for i in (1..4) %}
+        {% assign feature_title = section.settings['feature_' | append: i | append: '_title'] %}
+        {% assign feature_desc = section.settings['feature_' | append: i | append: '_description'] %}
+        {% assign feature_icon = section.settings['feature_' | append: i | append: '_icon'] %}
+        
+        {% if feature_title != blank %}
+          <div class="feature-item">
+            <div class="feature-icon">
+              {% case feature_icon %}
+                {% when 'shield' %}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                {% when 'sparkles' %}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3L9.5 8.5L4 11l5.5 2.5L12 19l2.5-5.5L20 11l-5.5-2.5z"></path>
+                  </svg>
+                {% when 'truck' %}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 17h4v5h-4zM14 7h6v5h-6zM5 17h4v5H5zM3 7h6v5H3z"></path>
+                  </svg>
+                {% when 'refresh-cw' %}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"></path>
+                  </svg>
+                {% else %}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                  </svg>
+              {% endcase %}
+            </div>
+            <h3 class="feature-title">{{ feature_title }}</h3>
+            <p class="feature-description">{{ feature_desc }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Features Lovable",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Why Choose Wavely"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_title",
+      "label": "Feature 1 Title",
+      "default": "Premium Quality"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_1_description",
+      "label": "Feature 1 Description",
+      "default": "Military-grade protection with 3D-printed precision"
+    },
+    {
+      "type": "select",
+      "id": "feature_1_icon",
+      "label": "Feature 1 Icon",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "refresh-cw", "label": "Refresh" }
+      ],
+      "default": "shield"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_title",
+      "label": "Feature 2 Title",
+      "default": "Full Customization"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_2_description",
+      "label": "Feature 2 Description",
+      "default": "Upload your car photo or choose from our designs"
+    },
+    {
+      "type": "select",
+      "id": "feature_2_icon",
+      "label": "Feature 2 Icon",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "refresh-cw", "label": "Refresh" }
+      ],
+      "default": "sparkles"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_title",
+      "label": "Feature 3 Title",
+      "default": "Fast Shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_3_description",
+      "label": "Feature 3 Description",
+      "default": "Free shipping on orders over $50"
+    },
+    {
+      "type": "select",
+      "id": "feature_3_icon",
+      "label": "Feature 3 Icon",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "refresh-cw", "label": "Refresh" }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_title",
+      "label": "Feature 4 Title",
+      "default": "12-Month Warranty"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_4_description",
+      "label": "Feature 4 Description",
+      "default": "Quality guarantee on all products"
+    },
+    {
+      "type": "select",
+      "id": "feature_4_icon",
+      "label": "Feature 4 Icon",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "refresh-cw", "label": "Refresh" }
+      ],
+      "default": "refresh-cw"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Lovable"
+    }
+  ]
+}
+{% endschema %}

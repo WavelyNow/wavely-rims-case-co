@@ -1,0 +1,11 @@
+# Wavely Lovable Theme Configuration
+
+development:
+  password: Businesscubani25!
+  store: wavelynow.myshopify.com
+  theme_id: # Will be set when theme is created
+  
+production:
+  password: Businesscubani25!
+  store: wavelynow.myshopify.com
+  theme_id: # Will be set when theme is created
