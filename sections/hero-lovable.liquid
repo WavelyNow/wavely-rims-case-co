@@ -2,7 +2,7 @@
 
 <div class="hero-lovable-section">
   <div class="hero-background">
-    {% if section.settings.video_url != blank %}
+    {% if section.settings.enable_video %}
       <video 
         class="hero-video" 
         autoplay 
@@ -10,9 +10,13 @@
         muted 
         playsinline 
         preload="metadata"
-        {% if section.settings.image_fallback != blank %}poster="{{ section.settings.image_fallback | image_url }}"{% endif %}
+        {% if section.settings.poster_image != blank %}poster="{{ section.settings.poster_image | image_url }}"{% elsif section.settings.image_fallback != blank %}poster="{{ section.settings.image_fallback | image_url }}"{% endif %}
       >
-        <source src="{{ section.settings.video_url }}" type="video/mp4">
+        {% if section.settings.video_url != blank %}
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        {% else %}
+          <source src="{{ 'hero.mp4' | asset_url }}" type="video/mp4">
+        {% endif %}
       </video>
     {% elsif section.settings.image_fallback != blank %}
       <img 
@@ -66,6 +70,11 @@
       "type": "url",
       "id": "video_url",
       "label": "Background Video URL (MP4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster Image (shown before video plays)"
     },
     {
       "type": "image_picker",
