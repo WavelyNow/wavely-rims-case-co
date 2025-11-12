@@ -4,9 +4,12 @@
   <div class="container">
     <div class="features-grid">
       {% for i in (1..4) %}
-        {% assign feature_title = section.settings['feature_' | append: i | append: '_title'] %}
-        {% assign feature_desc = section.settings['feature_' | append: i | append: '_description'] %}
-        {% assign feature_icon = section.settings['feature_' | append: i | append: '_icon'] %}
+        {% assign key_title = 'feature_' | append: i | append: '_title' %}
+        {% assign key_desc = 'feature_' | append: i | append: '_description' %}
+        {% assign key_icon = 'feature_' | append: i | append: '_icon' %}
+        {% assign feature_title = section.settings[key_title] %}
+        {% assign feature_desc = section.settings[key_desc] %}
+        {% assign feature_icon = section.settings[key_icon] %}
         
         {% if feature_title != blank %}
           <div class="feature-item">

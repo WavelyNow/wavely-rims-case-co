@@ -53,7 +53,7 @@
   <!-- Speed lines effect -->
   <div class="hero-effects">
     {% for i in (1..5) %}
-      <div class="speed-line" style="top: {{ 20 | plus: i.times: 15 }}%; animation-duration: {{ 2 | plus: i.times: 0.3 }}s; animation-delay: {{ i.times: 0.2 }}s;"></div>
+      <div class="speed-line" style="top: {{ i | times: 15 | plus: 20 }}%; animation-duration: {{ i | times: 0.3 | plus: 2 }}s; animation-delay: {{ i | times: 0.2 }}s;"></div>
     {% endfor %}
   </div>
 </div>
