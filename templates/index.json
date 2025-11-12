@@ -49,7 +49,6 @@
   "order": [
     "hero",
     "features",
-    "featured_products",
     "featured_products"
   ]
 }
