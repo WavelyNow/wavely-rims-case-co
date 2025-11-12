@@ -1,18 +1,5 @@
 {
   "sections": {
-    "hero": {
-      "type": "hero-lovable",
-      "settings": {
-        "video_url": "shopify://shop_images/video-background-original.mp4",
-        "image_fallback": "shopify://shop_images/hero-bg.jpg",
-        "title": "Wavely",
-        "subtitle": "Underground Racing Style",
-        "cta_primary_text": "Start Customizing",
-        "cta_primary_link": "/pages/customize",
-        "cta_secondary_text": "Browse Shop",
-        "cta_secondary_link": "/collections/all"
-      }
-    },
     "features": {
       "type": "features-lovable",
       "settings": {
@@ -47,7 +34,6 @@
     
   },
   "order": [
-    "hero",
     "features",
     "featured_products"
   ]
